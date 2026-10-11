@@ -1,6 +1,6 @@
 # The Jankiewicz–Norin–Wise legal-system problem
 
-**An explicit solution of the four-connected form of JNW Problem 5.2.**
+**An explicit solution of the four-connected form of Jankiewicz–Norin–Wise Problem 5.2.**
 
 [Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.13419) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction) · [Back to Euler](../../README.md#mathematical-results)
 
@@ -8,7 +8,15 @@
 
 Kasia Jankiewicz, Sergey Norin, and Daniel T. Wise introduced legal systems as finite combinatorial certificates used to construct virtual algebraic fibrations of right-angled Coxeter groups. This connects concrete graph structure with questions in geometric group theory.
 
-In [Problem 5.2 of their 2021 paper](https://doi.org/10.1017/S1474748019000422), they ask for a graph with strong connectivity and nonnegative curvature whose four-connected ordinary subgraphs nevertheless admit no legal system. A solution shows that those global conditions alone do not guarantee this certificate method will succeed.
+The question appears as **Problem 5.2 in their [2017 preprint](https://arxiv.org/pdf/1711.11505v1#page=7)**, later [published in 2021](https://doi.org/10.1017/S1474748019000422). It asks for a graph with strong connectivity and nonnegative curvature whose four-connected ordinary subgraphs nevertheless admit no legal system. A solution shows that those global conditions alone do not guarantee this certificate method will succeed.
+
+## The researchers behind the question
+
+- **[Kasia Jankiewicz](https://people.ucsc.edu/~kjankiew/)** is an Associate Professor at the University of California, Santa Cruz, working in geometric group theory.
+- **[Sergey Norin](https://www.mcgill.ca/mathstat/sergey-norin)** is a Professor and the Peter Redpath Chair of Pure Mathematics at McGill University, working in graph theory and combinatorics.
+- **[Daniel Wise](https://royalsociety.org/people/daniel-wise-13854/)** is a James McGill Professor and a Fellow of the Royal Society, known for his work in geometric group theory and low-dimensional topology.
+
+These are their current professional profiles; the problem's date is taken from the 2017 preprint.
 
 ## Result
 

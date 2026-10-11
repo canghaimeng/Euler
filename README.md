@@ -17,7 +17,7 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 - 🎉 **[Nikoghosyan (2013–2026)](examples/nikoghosyan/)** — resolving a 13-year-old open problem in Hamiltonian graph theory and completing the single-forbidden-subgraph classification for 1-tough graphs.
 - ✨ **[Lewis–Overton](examples/lewis-overton/)** — a conjecture proposed by NYU Silver Professor Michael Overton and Cornell Professor Adrian Lewis. Both of them are SIAM Fellows.
-- 🎉 **[JNW](examples/jnw/)** — the four-connected legal-system problem, resolved.
+- 🎉 **[Jankiewicz–Norin–Wise (2017)](examples/jnw/)** — a geometric group theory problem co-proposed by James McGill Professor Daniel Wise, a Fellow of the Royal Society.
 
 <p align="center">
   <img src="docs/assets/euler-frontier-loop.png" width="100%" alt="Euler’s frontier-driven research loop: the problem contract and research memory inform the active frontier; agents receive bounded context to prove, refute, retrieve, or compute; verification and reconciliation update the frontier and Fact Graph.">
@@ -97,7 +97,7 @@ BFGS is a widely used optimization method, yet its behavior on nonsmooth functio
 
 **[Explore the case →](examples/lewis-overton/)** · [Paper](examples/lewis-overton/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate)
 
-### JNW: the limits of a bridge from graphs to geometry
+### Jankiewicz–Norin–Wise: the limits of a bridge from graphs to geometry
 
 Legal systems provide combinatorial certificates used in the study of right-angled Coxeter groups. Jankiewicz, Norin, and Wise asked whether a graph could satisfy strong connectivity and curvature conditions while excluding these certificates throughout its four-connected subgraphs. A 33-vertex construction answers that four-connected question, clarifying the limits of this certificate method. The stronger three-connected-subgraph variant remains outside the result.
 
