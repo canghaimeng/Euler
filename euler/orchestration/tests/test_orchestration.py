@@ -171,10 +171,16 @@ def test_loop_runs_rounds_then_exits(tmp: Path):
             EULER_MAX_ROUNDS="2", FAKE_CODEX_SLEEP="0", **venv):
         cli.do_new("P", roles="high:1")
         _stamp("P")
+        from euler.workspace.milestones import configured
+        checkpoint = Path(configured(L.project_dir("P"))["store"]) / "checkpoint-status.json"
+        checkpoint.unlink(missing_ok=True)
         try:
             res = cli.do_start("P/high")
             assert res[0]["result"] == "started"
             assert _wait_until(lambda: not _st("P", "high")["alive"]), "loop should exit at backstop"
+            # A non-live worker must have finished all epilogue writes, not
+            # merely unlinked its PID while the Git snapshot is still running.
+            assert json.loads(checkpoint.read_text())["state"] in {"saved", "unchanged"}
             s = _st("P", "high")
             assert s["state"] == "max_rounds" and s["round"] == 2
             wl = L.WorkerLayout(L.worker_dir("P", "high"))

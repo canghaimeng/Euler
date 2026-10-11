@@ -139,7 +139,7 @@ def _wal_versions(roots):
     return versions
 
 
-def _idle(project):
+def _idle(project, *, settled_worker_pid=None):
     from euler.control.project import is_euler_project, open_project
     from euler.control.campaign import ACTIVE
     if is_euler_project(project):
@@ -150,6 +150,10 @@ def _idle(project):
         try:
             pid = int(pidfile.read_text().strip())
             if pid <= 1:
+                continue
+            # Only the calling, settled worker can exempt itself during its
+            # synchronous checkpoint epilogue. Other workers still block capture.
+            if pid == settled_worker_pid == os.getpid():
                 continue
             os.kill(pid, 0)
         except (ValueError, ProcessLookupError, FileNotFoundError):
@@ -226,7 +230,7 @@ class Milestones:
             'external_links': len([l for l in m['links'] if not l.get('captured_target')]),
             'team': {k:v for k,v in m.get('team',{'available':False}).items() if k!='files'}}
 
-    def capture(self, label, *, key, projection=None, kind='milestone'):
+    def capture(self, label, *, key, projection=None, kind='milestone', _settled_worker_pid=None):
         if not isinstance(label, str) or not 1 <= len(label.strip()) <= 180 or not key:
             raise MilestoneError('a short label and idempotency key are required')
         from euler.control.project import is_euler_project
@@ -242,7 +246,7 @@ class Milestones:
                     if m['label'] != label or m['kind'] != kind:
                         raise MilestoneError('milestone idempotency key has different content')
                     return record
-            _idle(self.project)
+            _idle(self.project, settled_worker_pid=_settled_worker_pid)
             roots = self.settings['roots']
             before, excluded, links = _inventory(roots)
             directories = _directories(roots)
@@ -282,7 +286,7 @@ class Milestones:
                     or directories != _directories(roots) or wal_versions != _wal_versions(roots)
                     or [(l['path'],l['target']) for l in links] != [(l['path'],l['target']) for l in after_links]):
                     raise MilestoneError('team files changed during capture; retry at the next idle boundary')
-                _idle(self.project)
+                _idle(self.project, settled_worker_pid=_settled_worker_pid)
                 m = {'schema': 1, 'key': key, 'label': label, 'kind': kind,
                     'created_at': datetime.now(timezone.utc).isoformat(), 'source_project': str(self.project),
                     'roots': roots, 'files': records, 'directories':directories, 'links': links, 'excluded': excluded,
@@ -421,7 +425,7 @@ def public_projection(project, dashboard=None):
     return result
 
 
-def auto_capture(project):
+def auto_capture(project, *, settled_worker_pid=None):
     """Poll meaningful public state; a changing/busy workspace is deferred."""
     settings = configured(project)
     if not settings:
@@ -439,15 +443,16 @@ def auto_capture(project):
     if any(history.manifest(r['commit'])['key'] == 'auto:' + identity for r in history.list()):
         return None
     return history.capture('Team state checkpoint' if team_state else 'Research state checkpoint', key='auto:' + identity,
-        projection=lambda: public_projection(project, settings.get('dashboard')), kind='automatic')
+        projection=lambda: public_projection(project, settings.get('dashboard')), kind='automatic',
+        _settled_worker_pid=settled_worker_pid)
 
 
-def checkpoint_if_enabled(project):
+def checkpoint_if_enabled(project, *, settled_worker_pid=None):
     """Execution epilogue: preserve a deferred/error record, never fake success."""
     if not configured(project):
         return
     try:
-        result = auto_capture(project)
+        result = auto_capture(project, settled_worker_pid=settled_worker_pid)
         status = {'state':'saved' if result else 'unchanged', 'milestone':result}
     except (MilestoneError, OSError, subprocess.CalledProcessError) as exc:
         status = {'state':'deferred', 'reason':str(exc)}

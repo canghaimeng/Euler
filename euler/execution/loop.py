@@ -359,7 +359,6 @@ def main(worker_dir: str) -> int:
         if _Child.proc is not None:
             _Child.proc.terminate()
         write_status(wl, state="terminated")
-        _cleanup_pid(wl)
         sys.exit(0)
 
     signal.signal(signal.SIGTERM, _on_term)
@@ -665,7 +664,11 @@ def main(worker_dir: str) -> int:
             if beat > 0:
                 time.sleep(beat)
     finally:
-        _cleanup_pid(wl)
-        from euler.workspace.milestones import checkpoint_if_enabled
-        checkpoint_if_enabled(wl.project_dir)
+        # Keep the worker discoverable until its final writes have settled.
+        # Removing .pid first lets status/stop (and a restart) race the snapshot.
+        try:
+            from euler.workspace.milestones import checkpoint_if_enabled
+            checkpoint_if_enabled(wl.project_dir, settled_worker_pid=os.getpid())
+        finally:
+            _cleanup_pid(wl)
     return 0

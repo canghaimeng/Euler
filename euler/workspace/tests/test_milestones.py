@@ -194,3 +194,16 @@ def test_http_restoration_keeps_full_frozen_graph_and_never_exposes_private_file
         response=client.get(path);assert response.status_code==200,response.text
         assert 'private fixture' not in response.text and str(h.store) not in response.text
     assert client.post(route,json=body,headers=headers).json()==result.json()
+
+
+def test_checkpoint_epilogue_exempts_only_the_calling_settled_worker(team):
+    p, c, o, history = team
+    pidfile = p.project_dir / "workers/w1/.pid"
+    pidfile.write_text(str(os.getpid()))
+    with pytest.raises(MilestoneError, match="worker process"):
+        capture(history)
+    with pytest.raises(MilestoneError, match="worker process"):
+        history.capture("Wrong process", key="wrong", _settled_worker_pid=os.getpid() + 1)
+    result = history.capture("Settled worker", key="settled", _settled_worker_pid=os.getpid())
+    assert result["commit"]
+    assert pidfile.exists(), "capture must not clear the worker's lifecycle marker"
