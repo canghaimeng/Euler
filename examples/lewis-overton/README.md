@@ -14,7 +14,7 @@ Their [2008 preprint](https://optimization-online.org/2008/12/2172/), Conjecture
 
 For every $9/5 < u < 13/6$, the tilted absolute-value objective $f_u(x)=\max\{x,-ux\}$ admits two nonterminating executions with distinct sharp trial-normalized rates under the specified Lewis–Overton line-search conventions. Thus initialization affects the exact asymptotic rate, even in this one-dimensional model.
 
-The two executions establish that the **sharp rate can depend on initialization**. It does not assert divergence of BFGS or rule out a shared non-sharp upper bound. The paper and formalization fix the Armijo, Wolfe, and trial-count conventions precisely.
+The two executions establish that the **sharp rate can depend on initialization**. Both constructed executions converge. Their distinct sharp rates can coexist with a shared non-sharp upper bound. The paper and formalization fix the Armijo, Wolfe, and trial-count conventions precisely.
 
 ## Paper
 

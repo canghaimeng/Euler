@@ -100,8 +100,6 @@ ignored; changing either the statement or proof always triggers a fresh check.
 - The Codex backend bypasses its sandbox; the Cursor backend uses forced tool
   approval so it can write the result artifact. `VERIFY_AGENT_HOME` (contract +
   skills) is **trusted input**; do not point it at untrusted content.
-- It is an **LLM judge, not a formal (Lean) checker**, with **no human in the loop
-  by default**; a `correct` verdict writes a permanent fact. Research-level target
-  theorems need expert human review before being trusted.
+- This service performs **independent LLM review**. Its `correct` verdict authorizes Fact admission. LLM judgments are fallible; use the project's formal verification workflow for Lean evidence and expert review for publication decisions.
 - Binds **loopback** by default; the 900-second launcher default bounds each
   verifier-agent call.

@@ -44,10 +44,9 @@ Tell the main agent the problem. It will:
 A **project** is the unit of work: one problem, its own memory and fact graph. You
 can run several at once; every operation names a project.
 
-## 2. The strategy loop (steer, don't prove)
+## 2. The strategy loop
 
-The main agent does **not** do the mathematics. It steers, periodically, on genuine
-new state:
+The main agent coordinates the next research actions as new state arrives:
 
 1. **Elaborate** — distill the shared stores into a high-signal synthesis (verdict,
    closed routes, dangers, the missing bridge lemmas). *(the `elaboration` skill)*
@@ -55,11 +54,9 @@ new state:
    by default, `claude_api`, `claude_code`, or `off`)*
 3. **Propose & schedule** — record the reply as `master_guidance`, persist each
    worker action (`euler propose`), then `euler schedule` (optional `--dispatch`;
-   `--launch` stays off unless you mean to start loops). Direct `euler assign`
-   is not an Euler-managed workflow.
+   `--launch` stays off unless you mean to start loops). Use the managed scheduling path when an action requires an Euler execution lease.
 4. **Monitor** — watch `euler status` / the dashboard; `euler reconcile` after a
-   round; `euler checkpoint` when the target is discharged. Typed pauses
-   (`NO_VERIFIABLE_PROGRESS`, `INFRA_FAILED`) are not proofs. Repeat when there
+   round; `euler checkpoint` when the target is discharged. Typed pauses (`NO_VERIFIABLE_PROGRESS`, `INFRA_FAILED`) record operational status; mathematical acceptance is recorded separately. Repeat when there
    is new state.
 
 Cadence is roughly: a strategy consult every ~2h, a human-readable summary every

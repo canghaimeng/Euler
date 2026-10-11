@@ -12,17 +12,17 @@ This research line reaches back to Chvátal's 1973 toughness framework and Jung'
 
 [Li, Broersma and Zhang (2016)](https://ris.utwente.nl/ws/files/253281133/Li2016forbidden.pdf) isolated this as the sole remaining case of a classification. Combining their necessity theorem with the result here gives: for a forbidden graph $H$ of order at least three, every 1-tough $H$-free graph of order at least three is Hamiltonian **if and only if $H$ is an induced subgraph of $P_4 \cup P_1$**.
 
-The completed classification concerns a single forbidden induced subgraph. It does not resolve Chvátal's general toughness conjecture for unrestricted graphs.
+The completed classification concerns a single forbidden induced subgraph. Chvátal's general toughness conjecture concerns unrestricted graphs and remains a separate question.
 
 ## Result
 
-Every finite simple 1-tough graph on at least three vertices with no induced $P_4 \cup P_1$ has a Hamilton cycle. The conclusion uses edges of the original graph and does not assume a supplied cycle factor or an additional structural certificate.
+Every finite simple 1-tough graph on at least three vertices with no induced $P_4 \cup P_1$ has a Hamilton cycle. The proof establishes factor existence and its structural prerequisites from the original hypotheses, and constructs a cycle using edges of the original graph.
 
 ## Paper
 
 **Qiuyu Chen. _Hamilton cycles in 1-tough graphs with no induced $P_4 \cup P_1$_.**
 
-[paper.pdf](paper.pdf) is the unchanged, reviewed manuscript dated 3 October 2026 in the project archive (32 pages). It is included as a manuscript, without claiming a journal acceptance or an arXiv submission.
+[paper.pdf](paper.pdf) is the unchanged, reviewed manuscript dated 3 October 2026 in the project archive (32 pages). Its publication status is a locally prepared research manuscript.
 
 Original question: Nikoghosyan, _Disconnected Forbidden Subgraphs, Toughness and Hamilton Cycles_ (2013), Conjecture 7; [preprint](https://arxiv.org/abs/1207.5132).
 

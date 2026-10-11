@@ -4,8 +4,7 @@ Euler's persistent mathematical state is shared by human researchers and
 frontier-driven agents. Exact scoped objects support inspection, task selection,
 bounded recall and verified updates. The main coordinates work; workers use the
 verifier-gated Fact gateway; kernel and computation adapters provide their own
-scoped evidence. Human requests create auditable derived investigations through
-the control plane and cannot directly admit Facts or bypass final acceptance.
+scoped evidence. Human requests create auditable derived investigations through the control plane. Their results follow the existing Fact-admission and final-acceptance procedures.
 
 This branch adds the object resolver, run lifecycle, intervention service and
 opt-in human HTTP boundary documented in [HUMAN-INTERVENTION.md](docs/HUMAN-INTERVENTION.md).
@@ -92,9 +91,7 @@ Euler/
    (problem_id + predecessors + glossary_introduces + statement + proof);
    `external_refs` is deliberately excluded so the paper pipeline can rewrite
    citations without breaking the DAG.
-5. Autonomy and resumability. Workers run detached; a "round" continues from
-   persisted memory rather than adding one increment, so no single crash loses
-   verified work.
+5. Autonomy and resumability. Workers run detached and recover their registered progress and context from persisted memory at round boundaries.
 6. The strategy consult is the brain. Between rounds the main agent consults a
    top-tier reasoning model (gpt-5.5-pro over the `gpt_pro` transport, or
    claude-sonnet-4-5 over the `claude_api` / `claude_code` transports) to set direction;
@@ -103,10 +100,7 @@ Euler/
    optional — it is how the swarm gets steered.
 7. Portable and BYO. No hardcoded absolute paths, no committed secrets; keys come
    from gitignored `config/*.env` (templates committed as `*.example`).
-8. Clean author context. Any agent that produces an artifact for an outside
-   audience (a paper, a human report) is a fresh isolated codex fed a scoped,
-   machinery-free prompt, never the orchestrator's own contaminated window. It
-   cannot leak `fact_id`s or swarm vocabulary it never received.
+8. Scoped author context. Paper and report writers receive dedicated contexts assembled from selected research records and the target audience's requirements. Internal identifiers and operational details are filtered during context assembly.
 9. Provider isolation. Codex, Claude Code, Grok, and Cursor use one provider-neutral
    request/command protocol while retaining separate binaries, session recovery,
    MCP configuration, and credential scrubbing. Every mathematical claim reaches

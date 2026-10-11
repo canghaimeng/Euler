@@ -22,7 +22,7 @@ These are their current professional profiles; the problem's date is taken from 
 
 The construction has **33 vertices and 66 edges**. It is 4-regular and four-connected, has girth four and Charney–Davis curvature one, and has no four-connected ordinary subgraph admitting a legal system.
 
-This answers the **four-connected** question. The stronger parenthetical requirement concerning all three-connected ordinary subgraphs is not claimed. Ordinary subgraphs here need not be induced.
+This answers the **four-connected** question. The stronger parenthetical requirement concerning all three-connected ordinary subgraphs is a separate question. An ordinary subgraph may select a subset of both vertices and edges.
 
 ## Paper
 

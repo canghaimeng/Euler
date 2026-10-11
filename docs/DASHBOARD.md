@@ -14,7 +14,7 @@ euler-dashboard --project /absolute/path/to/runtime/projects/my-project --port 8
 ```
 
 Open http://127.0.0.1:8099. For a no-account tour install `.[demo,observability]` and
-run `euler-dashboard-demo`. The mock-model demo is an integration fixture, not research evidence.
+run `euler-dashboard-demo`. The demo exercises the integration workflow with deterministic model fixtures.
 
 The interface defaults to English; the language switch remembers your preference.
 Statements, proofs, task records and formulas retain their original language.
@@ -49,7 +49,7 @@ Pass `--config /absolute/path/to/dashboard.json`. A minimal configuration is:
 
 Catalog paths are relative to the catalog file. Discovery is shallow and confined
 to explicitly configured roots; browser requests choose IDs, never filesystem paths.
-Each team's `workers` names existing project workers. Grouping does not create agents.
+Each team's `workers` names existing project workers. Create agents through the team setup or **Add member** action.
 Use `config/dashboard.example.json` as a starting point.
 
 Optional per-project settings include `monitor_file` for public operational metadata,
@@ -67,9 +67,9 @@ Do not point public viewers at confidential research data.
 - **Team interaction:** select the current project branch and one of its members;
   read that member’s saved history and send new messages to its native conversation.
 
-Missing derivations are not reconstructed. Node counts are not completion percentages.
+The graph displays recorded derivations and marks gaps in their evidence. Read goal closure and outstanding obligations to assess progress.
 An old OPEN task record and a later final formal acceptance are shown as different
-records, with their sources. The interface does not rewrite either.
+records, with their sources. Both are displayed in their original form.
 
 Optional editorial reading guides are loaded from a server-owned JSON file set through
 `EULER_DASHBOARD_PROOF_GUIDES`. The format is tested in
@@ -98,7 +98,7 @@ python -m pytest euler/observability/ -q
 python scripts/build-reader-guide.py
 ```
 
-Browser and wheel checks are described in [release validation](../CONTRIBUTING.md).
+See [Contributing](../CONTRIBUTING.md) for validation commands.
 The guide/story sources are `docs/DASHBOARD-GUIDE{,.zh}.md` and
 the build script copies the user guides into packaged static assets.
 

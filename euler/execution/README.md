@@ -61,7 +61,7 @@ project `fact_graph/` / `global_memory/` and the worker's `local_memory/` are
 contained in their expected roots and accept a unique atomic temp probe that is
 then removed (never a fact or memory JSONL write). Failure writes
 `PRECHECK_FAILED` with `{component,reason}` and must
-not launch `codex`. `/health` is transport identity, not a mathematical verdict.
+not launch `codex`. `/health` reports the verification service identity.
 An own pid/root responder that is not HTTP 200 `ok` makes `euler verify-health`
 exit nonzero.
 

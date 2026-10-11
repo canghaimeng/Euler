@@ -53,7 +53,7 @@ Installation references: [Codex](https://github.com/openai/codex), [Claude Code]
 
 On a remote host without a browser, use the CLI's device sign-in where available, such as `codex login --device-auth`. Credentials stay in local provider configuration, private member runtime directories, or the OS Keychain; they are excluded from milestones and browser responses.
 
-Use model IDs available to your account. Codex, Claude, and Grok use their native effort options. For Gemini and Cursor, set `effort` to `model-defined`: the declared model ID and its supported parameters determine those settings; Euler does not pass an invented generic `--effort` flag. Use `cursor-agent models` to inspect Cursor's model IDs.
+Use model IDs available to your account. Codex, Claude, and Grok use their native effort options. For Gemini and Cursor, set `effort` to `model-defined`: the declared model ID and its supported parameters determine those settings. Use `cursor-agent models` to inspect Cursor's model IDs.
 
 ## 4. Describe your problem and your team
 
@@ -77,7 +77,7 @@ The fields you will change most often:
 | `team.max_turns` | Optional total turn limit for this workspace; omit it or use `null` for no limit. Your questions and the lead's consultations each count. |
 | `team.members[].max_turns` | Optional turn limit for an individual member; omitted means no limit. |
 | `team.turn_seconds` | Time limit for each non-Grok turn (10–3600 s). Grok turns have no fixed limit; they run until they finish or you pause the team. |
-| `task_budget` | Euler's ledger for tasks it schedules itself, such as an optional single task. It does not limit team conversations. |
+| `task_budget` | Resource limits for tasks Euler schedules itself, such as an optional single task. Set team conversation limits with `max_turns`. |
 | `workbench` | Address and port of the workbench. Keep the host `127.0.0.1`. |
 
 To change the statement or scope later, create a new project from an edited definition. The team and its records are tied to the exact statement they started from.
@@ -158,7 +158,7 @@ A new project looks almost empty, and that is correct.
 - **Before the first plan:** the Overview shows a single **Main goal** card marked **Open**, the summary **Main goal not yet closed**, and every evidence level at zero. Diagnostics lists the events that created the project: the problem contract, the main-goal obligation and the task budget.
 - **After the lead records a plan:** the main goal gets a **Proof route** (marked **Proposed**) and the route's steps appear as **Proof module** cards marked **Open**. Lines connect each step to the route and the route to the main goal. Live research shows "New research route registered".
 
-These are proposals. The team host can create open steps and routes, but it cannot mark anything proved. Section 10 explains how a step becomes **Closed**.
+These records begin as proposals. Section 10 explains how registered verification evidence changes a step to **Closed**.
 
 ## 9. The six views
 
@@ -169,8 +169,8 @@ The tabs under the project name cover proof reading, research progress and team 
 - The header shows the project title and **Main goal · original statement**; **Show original** expands your exact statement.
 - **Main-goal acceptance status** shows whether acceptance has been recorded and links to the main goal. A completed proof, a positive teammate review, and recorded goal acceptance are separate stages; without recorded acceptance the goal still reads “not yet closed”.
 - **Proof structure** draws the recorded proof architecture from left to right: foundational steps, routes, and the main goal. Each card shows its kind, its state and how many records lie below it (for example "3 below · 3 open"). Lines are recorded dependencies, from a premise to the result that uses it. Click a card to open its summary panel on the right.
-- **Evidence levels** counts five separate kinds of record: proposed routes, self-reports, accepted evidence, checked components and main-goal closure. A higher count at a lower level never implies the level above.
-- **Proof routes** lists the methods proposed for reaching a goal and how many premises each still needs. A completed route is still not a closed main goal.
+- **Evidence levels** counts five separate kinds of record: proposed routes, self-reports, accepted evidence, checked components and main-goal closure. Each level reflects its own evidence and acceptance requirements.
+- **Proof routes** lists the methods proposed for reaching a goal and how many premises each still needs. Main-goal closure requires its own final acceptance record.
 - **Live research · happening now** shows the members, their assignments and the latest public records.
 - **Start reading here** suggests an order for reading the records.
 
@@ -200,7 +200,7 @@ The map draws every recorded node and relation.
 
 ### Diagnostics: is the machinery healthy?
 
-Diagnostics lists the configured members and the log of control events, such as the contract, new obligations and routes. Here members may show "Unknown status"; the live state of the team is in **Team interaction**. Diagnostics describes operations, never mathematical conclusions.
+Diagnostics lists the configured members and the log of control events, such as the contract, new obligations and routes. Here members may show "Unknown status"; the live state of the team is in **Team interaction**. Use Diagnostics to inspect execution and the Proof reader to inspect mathematical evidence.
 
 ### Team interaction: project → branch → member
 
@@ -223,13 +223,13 @@ Use **＋ Add member** below the member list to choose a name, CLI, model, effor
 | **Check failed**, **Check unconfirmed** | Evidence was registered, but its check did not pass or has no result. |
 | **Recorded** | Appears in imported historical archives that are documented from original sources. |
 
-Counts of nodes, edges or facts are not completion percentages. One unresolved step can decide the whole goal.
+Assess progress through the main goal and its outstanding prerequisites. A single unresolved step can determine whether the goal closes.
 
 ## 10. How a step becomes Closed
 
-Team members can write drafts, review each other and record proposed steps. None of that closes a step. A step becomes **Closed** only when Euler registers evidence that meets your contract's required level. For `LLM_CHECKED_PROOF` that means an independent proof check through Euler's verification service; for `KERNEL_CHECKED_PROOF`, a Lean kernel check. These verification tools are set up separately from this guide's first path; `docs/cli-and-tools.md` lists the commands (`euler kernel-check`, `euler admit-fact`).
+Team members write drafts, review arguments, and record proposed steps. A step becomes **Closed** when Euler registers evidence meeting your contract's required level. For `LLM_CHECKED_PROOF` that means an independent proof check through Euler's verification service; for `KERNEL_CHECKED_PROOF`, a Lean kernel check. These verification tools are set up separately from this guide's first path; `docs/cli-and-tools.md` lists the commands (`euler kernel-check`, `euler admit-fact`).
 
-Until then, read the team's drafts yourself. Members write files inside the project folder; for example, the lead's working folder is `projects/euclid-primes/workers/codex/`. Milestones save these files. The workbench shows Euler's records, not arbitrary files, and it never re-verifies proofs.
+Until then, read the team's drafts yourself. Members write files inside the project folder; for example, the lead's working folder is `projects/euclid-primes/workers/codex/`. Milestones save these files. The workbench displays registered Euler records and their verification results. Open the project folder to read other files.
 
 ## 11. Follow one step and its proof path
 
@@ -238,15 +238,15 @@ Until then, read the team's drafts yourself. Members write files inside the proj
 3. In the Relation map, clicking a node opens **Node details** and highlights its recorded chain: upstream premises in blue, downstream conclusions in green. **Full dependency path** isolates that chain. **Neighbours**, **All premises**, **All downstream** and **Whole graph** change how much you see. **Copy ID** copies the record's identifier.
 4. Click a line between two nodes to see the relation's type and its recorded rationale.
 
-Highlighting a path is a reading aid. It is not an additional mathematical check, and a line records that a dependency was claimed, not that the derivation is complete.
+Highlighted paths show recorded dependencies. Open each step's argument and registered evidence to inspect the derivation and its verification status.
 
 ## 12. Original wording and interface language
 
-The interface starts in English. **中文** switches the buttons, headings and explanations to Chinese and remembers your choice; `?lang=en` or `?lang=zh` in the address sets it directly. Your statement, the team's steps and replies, and your own questions always appear exactly as written. They are never translated, so the mathematics you read is the mathematics that was recorded.
+The interface starts in English. **中文** switches the buttons, headings and explanations to Chinese and remembers your choice; `?lang=en` or `?lang=zh` in the address sets it directly. Your statement, the team's steps and replies, and your own questions always appear exactly as written. Mathematical content keeps its original language and wording.
 
 ## 13. Live view versus running work
 
-The page reads the records every 15 seconds (**Live sync**; turning it off only stops refreshing). Team interaction checks active work every three seconds while visible. Reading never starts work.
+The page reads the records every 15 seconds (**Live sync**; turning it off only stops refreshing). Team interaction checks active work every three seconds while visible. The reading views refresh independently of research execution.
 
 Work starts in exactly three ways:
 
@@ -254,7 +254,7 @@ Work starts in exactly three ways:
 2. the lead consults another member during one of its turns;
 3. you resume queued work.
 
-Work runs in a background process on the Mac or Linux research host. Closing the browser does not stop it, and neither does stopping the workbench with Ctrl-C. To stop work, use **Pause team** or **Stop team** (section 17).
+Research runs in a background process on the Mac or Linux host and continues when the browser or workbench closes. Use **Pause team** or **Stop team** to control execution (section 17).
 
 ## 14. Talking with the team
 
@@ -262,13 +262,13 @@ Work runs in a background process on the Mac or Linux research host. Closing the
 
 **Asking about a particular step.** **Ask the current team** in a node's action group opens Team interaction with that step attached. Its recorded statement, scope when available and ID are included in the native member's input. You can remove or change the attachment, or attach a step directly from the composer. No terminal is needed.
 
-**Where replies appear.** On the right, in the selected member's conversation. Your message first shows **Queued**, then **Working**, and the public reply appears in place when ready. Consultations show which member was asked and let you open that member's conversation. Switch members on the left to inspect their respective histories. A transport failure offers an explicit retry with the same request identity, so it does not duplicate an already accepted message.
+**Where replies appear.** On the right, in the selected member's conversation. Your message first shows **Queued**, then **Working**, and the public reply appears in place when ready. Consultations show which member was asked and let you open that member's conversation. Switch members on the left to inspect their respective histories. A transport failure offers an explicit retry with the same request identity, preserving the original message's idempotency.
 
-**What members remember.** Each member continues its own native conversation, including earlier questions and its own replies. Members do not see each other's conversations except through consultations.
+**What members remember.** Each member continues its own native conversation, including earlier questions and its own replies. Members share information through explicit consultations.
 
 ## 15. Save a milestone
 
-A milestone saves, together, the project files, the research graph, tasks, evidence, and each member's native conversation. It goes into the private Git history in `history/`, outside the project. It is never pushed anywhere and is not a mathematical result.
+A milestone saves, together, the project files, the research graph, tasks, evidence, and each member's native conversation. It goes into local private Git history in `history/`, outside the project. This history has no remote and records the team's saved state. Mathematical acceptance stays with each goal's evidence records.
 
 - **Automatic milestones.** After sessions are connected, and whenever the team finishes its queued work and is idle, Euler saves a "Team state checkpoint" if anything changed.
 - **Named milestones.** Open **Research milestones**, expand **Save the current team state**, enter a **Milestone label** such as "Plan reviewed by grok", and choose **Create Git milestone**. The team must be idle; if a turn is still running, wait and try again.
@@ -284,9 +284,9 @@ Use this when you want to try a different direction without disturbing current w
 3. Optionally write the question you have in mind, then choose **Restore full workspace and prepare question**.
 4. The page opens **Team interaction** in the new independent branch. Its project, branch and source milestone appear on the left, with inherited conversation history on the right. Your original workspace is unchanged.
 5. The branch shows **Sessions awaiting recovery** and Send stays disabled. Choose **Recover this branch’s member sessions** in the conversation area. Codex and Grok create native forks; Claude forks on the first Send. Gemini and Cursor resume complete native stores copied into independent branch directories, retaining their provider session IDs. The UI identifies the recovery method. The member resumes the native conversation state saved at the milestone; later messages from the original workspace are not copied into it.
-6. Your saved question is placed in the lead’s composer as an unsent draft. Review it, choose the appropriate member, and press **Send**. The saved-question note can put it back in the composer if needed. Recovering or opening a page never sends the question automatically.
+6. Your saved question is placed in the lead’s composer as an unsent draft. Review it, choose the appropriate member, and press **Send**. The saved-question note can put it back in the composer if needed. Pressing **Send** starts the question.
 
-Restoration preserves the mathematical state at the selected milestone: open goals remain open, and existing acceptance records are retained. Pausing the team or recovering its sessions does not itself change proof acceptance.
+Restoration preserves the mathematical state at the selected milestone: open goals remain open, and existing acceptance records are retained. Proof acceptance remains tied to its registered evidence throughout pause and recovery.
 
 A restored workspace starts with a fresh turn allowance and keeps its own milestones. It stays in the project selector after you restart the workbench.
 
@@ -298,7 +298,7 @@ If restoring with a selected step fails with "selected object does not exist in 
 | --- | --- | --- | --- |
 | Where | This workspace, as it is now | A new, independent copy of a saved point | This workspace |
 | Who answers | The member you choose, continuing its conversation | The restored members, continuing their conversations from the milestone | Nobody; it shows the record's exact version, scope and evidence |
-| What starts work | **Send** | Nothing until you recover sessions and send | Nothing |
+| What starts work | **Send** | Recover sessions, then **Send** | Read-only inspection; configured single tasks have a separate Start action |
 | Use it to | Push the current line of work forward | Explore an alternative, or keep going after the turn allowance is used | Check precisely what a step says and depends on |
 
 When single tasks are configured, the third entry reads **Inspect object · single task**. It can then prepare one bounded task for a separately configured worker; that task is previewed and starts only when you press its own Start button. It is off in the example workspace; see `docs/HUMAN-INTERVENTION.md` to set it up.
@@ -331,7 +331,7 @@ Keep `projects/`, `history/` and `workbench/` together where the script created 
 
 Some projects in a workbench may be imported archives: finished research documented from original sources, with no registered team. You can read them completely in the research views, but there is no team to ask. Their milestones are **files only**. Restoring one gives you the files and graph in a new workspace, without the old conversations.
 
-Euler never substitutes a summary or a fresh agent for a missing member conversation. Steps in such archives show "Historical record · read-only here".
+Conversation recovery requires a saved native archive for the member. Records with only historical source material show "Historical record · read-only here".
 
 ## 20. When something does not work
 

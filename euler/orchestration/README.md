@@ -23,18 +23,18 @@ euler/orchestration/
 | `status <p>[/<w>] [--json]` | per-worker liveness + round + `stuck?` soft signal; `--json` includes `failures` (usable when verify is down) |
 | `failures <p> [--json]` | read-only failure-cluster ledger (ids/states/triggers); no worker private memory. Sidecar/ledger crash recovery is in `execution/failure_clusters.py`; `FAILURE_CONTROL_FAILED` stops the worker loop |
 | `stop <p>[/<w>] [--force]` | graceful `.stop` / `--force` `killpg` |
-| `verify-health [--json]` | read-only verify identity (`ours`/`foreign`/`stale`/`down`); not a math verdict |
+| `verify-health [--json]` | read-only service identity check (`ours`/`foreign`/`stale`/`down`) |
 | `doctor [--json]` | read-only proving-readiness (python+mcp, worker tools, verify identity) |
 
 ## Notes
 
 - Liveness is **zombie-aware** (`os.kill(pid,0)` + a `/proc/<pid>/stat` Z-state
-  check), so `status`/`list` don't lie and `start` can restart a crashed worker.
-- No `assign`-all, no pause/resume — restart = `stop` then `start`.
+  check), so `status`/`list` report exited processes and `start` can restart a crashed worker.
+- Restart a worker loop with `stop` followed by `start`.
 - Touches core only indirectly: `new` creates the empty `global_memory/`/`fact_graph/`
   dirs (populated lazily by core on first write); it never writes the truth stores.
 - **No `submit` verb.** Direct gateway imports and JSONL writes are prohibited
-  production fallbacks; missing MCP is `PRECHECK_FAILED`, not a bypass.
+  production fallbacks; missing MCP produces `PRECHECK_FAILED`.
 
 ## Tests
 

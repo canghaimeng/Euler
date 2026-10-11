@@ -101,7 +101,7 @@ bash scripts/services.sh up verify
 
 ```bash
 euler doctor                    # proving-readiness (python, gateway tools, verify identity)
-euler verify-health             # is OUR verify answering /health? (not a math verdict)
+euler verify-health             # check verification service identity
 bash scripts/doctor.sh          # fuller ops check (codex backend, TeX, Chrome)
 ```
 

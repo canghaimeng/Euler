@@ -54,11 +54,7 @@ fg.get_raw(fid); fg.list(); fg.predecessors(fid); fg.glossary(); fg.descendants(
 fg.revoke(fid, reason="...")     # cascades to dependents
 ```
 
-**The promotion flow is prose, not a function.** When a verifiable global-memory
-finding passes the verifier, the agent (per its prompt) calls `fg.add(...)` to
-write the fact and `gm.set_status(id, "verified", fact_id)` to back-link. The
-library does not bundle that into a `promote()` — the decision and the verify
-call are the agent's.
+**Production Fact admission uses the gateway.** Workers submit a statement and proof through `fact_submit`. The gateway coordinates verification and uses the core storage operations to write accepted Facts and their outcome records. The examples above illustrate the underlying storage API.
 
 ## Invariants the library enforces (mechanical only)
 

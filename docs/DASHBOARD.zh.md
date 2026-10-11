@@ -27,7 +27,7 @@ euler-dashboard --project /absolute/path/to/runtime/projects/my-project --port 8
 通过 `--config /absolute/path/to/dashboard.json` 配置展示名称和团队分组。
 参见 [`config/dashboard.example.json`](../config/dashboard.example.json)：
 `teams[].workers` 引用该项目 `workers/` 下的真实 worker 名称。
-配置仅为展示分组，不会创建模型、进程或研究任务。未分组的真实成员仍会显示。
+该配置负责展示分组。通过团队配置或**添加成员**创建实际成员；未分组的成员仍会显示。
 没有配置时展示一个默认团队，不会把不同模型自动当成不同团队。
 
 可选字段：
@@ -44,10 +44,10 @@ euler-dashboard --project /absolute/path/to/runtime/projects/my-project --port 8
 ## 图与交互
 
 **Fact Graph** 读取已记录的事实及显式前驱，支持搜索、成员/团队筛选、依赖追溯、
-节点详情和证明阅读。无前驱表示未记录依赖，不能据此称其为公理。
+节点详情和证明阅读。前驱列表说明已登记的依赖；命题的假设与证明在节点详情中查看。
 
 **Research Graph** 从控制事件展示证明义务、研究路线、证据及明确记录的关系。
-没有写入事件的论文推理步骤不会自动变成图中的连边。两张图的状态及节点数量各自计算。
+连边对应已登记的依赖事件。两张图分别展示各自的状态和节点数量。
 
 图视图提供依赖/网络布局、缩放、适应画布、上下游聚焦、可访问的列表视图及 PNG 导出。
 刷新保留当前视图；团队与公开活动帮助定位停止、阻塞和新交付。
@@ -78,7 +78,7 @@ ssh -N -L 8099:127.0.0.1:8099 user@research-host
 后端写接口或外部前端服务。帮助页保留所选项目与语言，返回时仍进入原项目。
 
 为具体项目撰写介绍时，明确列出原问题、提出者与出处、研究意义、当前结果和检查范围；
-未知结果保持未知。不要从 Fact 数量、进程状态或部分 Lean 成功推断整个猜想已经完成。
+结果状态依据相应验收记录填写；主目标的完成情况以覆盖原始命题的最终验收为准。
 
 采用 FastAPI 提供同源数据接口与静态页面，保留 Python 项目的一条启动命令。
 图渲染使用 [Cytoscape.js](https://js.cytoscape.org/) 的选择、遍历、布局及触摸交互能力；
@@ -95,4 +95,4 @@ BASE_URL=http://127.0.0.1:8099 node scripts/check-release-ui.mjs
 它检查实际导航、筛选、图交互及移动端，并保存截图。API 测试覆盖多团队、状态来源、
 损坏/缺失记录、只读访问和可选口令；安装包另需检查静态资源是否齐全。
 
-本次实际检查结果见 [RELEASE-VALIDATION.md](../CONTRIBUTING.md)。
+验证命令与提交要求见[贡献指南](../CONTRIBUTING.md)。

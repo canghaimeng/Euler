@@ -10,15 +10,12 @@ The restored project is independent. Codex uses a native `thread/fork` from an
 opaque frozen rollout copy; Grok uses its native session-fork RPC from the
 captured session directory. These two providers receive new session IDs with explicit parent
 IDs. Claude forks on the first Send; Gemini and Cursor resume full native stores
-in branch-private directories, retaining provider IDs. See [CLI support](CLI-SUPPORT.md). Subsequent questions resume these forked sessions. No replacement agent
-is given a model-generated digest of the old conversation.
+in branch-private directories, retaining provider IDs. See [CLI support](CLI-SUPPORT.md). Subsequent questions continue the saved native conversations through the selected provider's restoration method.
 
 ## Start a persistent team
 
 Use this host for new projects whose team conversations must be recoverable.
-It supports Codex, Claude Code, Gemini CLI, native Grok and Cursor Agent on Linux and macOS. Existing file-only checkpoints do not gain
-missing conversations retroactively. Unregistered external sessions require a supported import/fork adapter; they cannot silently
-fall back to a summary.
+It supports Codex, Claude Code, Gemini CLI, native Grok and Cursor Agent on Linux and macOS. Conversation recovery requires a checkpoint containing native session archives. Importing external sessions requires a supported provider adapter.
 
 Prepare a project directory and a definition such as:
 
@@ -46,20 +43,16 @@ euler-team status --project /research/project
 
 `prepare` connects native sessions or prepares their first-turn native creation/fork without starting inference. Native session
 preparation and completed mailbox batches automatically create Git milestones
-when the whole team is idle. The trigger includes conversation changes even
-when the mathematical graph has not changed; checkpoint count is not a measure
-of mathematical progress. The lead has
+when the whole team is idle. A checkpoint can capture conversation changes while the mathematical graph stays the same. Mathematical progress is tracked through obligations and accepted evidence. The lead has
 team-member, message, delegation and proposed-proof-step tools. A delegated
 reply returns to the lead's existing conversation; the host preserves the
-causal message IDs. Proposed obligations remain open until verified. Discussion
-and peer review do not bypass the existing Fact-admission or final-audit gates.
+causal message IDs. Proposed obligations remain open until verified. Discussion and peer review supply proposals for the Fact-admission and final-audit procedures.
 
 `max_turns` optionally bounds new provider turns in a branch, and each member
 can have its own `max_turns`. Limits are user-configured; omitted limits are
 unrestricted. `turn_seconds` bounds non-Grok turns; **Grok has no fixed whole-turn
 deadline**. Account-percentage monitoring is opt-in and is not enabled by release
-defaults. Existing local monitoring policies are preserved. Credentials are
-current runtime configuration, not archived team state.
+defaults. Existing local monitoring policies are preserved. Credentials come from the current runtime configuration.
 
 ## Save and restore
 
@@ -77,11 +70,7 @@ euler-team prepare --project /path/printed/by/restore
 
 Restoration preserves the roster and old mailbox, suspends queued work, and
 records the original turn usage separately from the new branch's allowance.
-All inherited conversations must recover successfully before new questions can run. Newly added members connect their native sessions on their first task. A missing
-archive is a reported recovery gap, never a fresh worker pretending to be the
-old member. Native goals remain recorded; recovery does not automatically start
-unbounded autonomous goal continuation. Research resumes through explicit
-questions or explicitly resumed queued work.
+All inherited conversations must recover successfully before new questions can run. Newly added members connect their native sessions on their first task. A missing archive produces a recovery error. The checkpoint preserves native goals, and research resumes when you send a question or explicitly resume queued work.
 
 ## Browser workflow
 
@@ -99,8 +88,7 @@ new messages in the current branch are marked separately. Selecting a different
 branch changes the histories and the actual recipients of subsequent messages.
 
 The conversation view shows public questions and replies, including delegated
-consultations. It does not open a terminal and does not expose internal model
-reasoning. **Inspect object record** opens version, scope and evidence details.
+consultations. The workbench connects to the native session through its conversation interface; internal model reasoning remains on the execution host. **Inspect object record** opens version, scope and evidence details.
 When single-task controls are enabled, **Inspect object · single task** remains
 a separate bounded-action interface. Historical records without native identity
 stay read-only; their proof reader and recorded dependencies remain available.
@@ -120,18 +108,16 @@ Enable the registered team's controls with `EULER_TEAM_CONFIG`:
 Only server-configured catalog projects can launch. A restored project's policy
 is inherited only when its source was explicitly configured. Pause suspends
 queued work and interrupts the current turn; Stop also blocks further requests.
-A cancellation is an operational event, not a mathematical failure.
+A cancellation is recorded in the task lifecycle, with mathematical evidence and acceptance status preserved.
 
 ## Isolation and evidence boundary
 
 Execution uses Linux Landlock ABI 3+ or macOS Seatbelt through `sandbox-exec`. Provider processes can write
 inside the new workspace; source file contents and writes are denied, including
 symlink access. Ancestor directory listings remain available for package
-imports. This is filesystem isolation, not a VM image or a general network
-sandbox. Current credentials, executable versions and operating-system process
-handles are not restored from Git.
+imports. The isolation boundary covers filesystem access. The host supplies network policy, current credentials, executable versions, and new process handles.
 
-The included protocol tests exercise checkpointing, branch isolation, and native-session restoration with local CLI doubles. Private collaboration transcripts and development captures are excluded.
+The included protocol tests exercise checkpointing, branch isolation, and native-session restoration with local CLI doubles. The tests use synthetic session data.
 
 ## Start projects and grow a team from the browser
 

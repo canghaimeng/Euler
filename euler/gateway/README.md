@@ -1,8 +1,6 @@
 # euler/gateway — role-gated MCP server (the permission gate)
 
-The **only sanctioned door to the truth stores.** A stdio MCP server (`euler-core`)
-whose exposed tools depend on the caller's role — permission is enforced by *which
-tools a role can even see*, not by prompt convention.
+The stdio MCP server (`euler-core`) controls access to shared mathematical records. Its role table determines the tools available to each caller.
 
 ```
 euler/gateway/
@@ -33,7 +31,7 @@ trace the outcome to global memory. Service unreachable / timeout / non-dict bod
 `verification` row. The gate trusts a valid verdict string; it does not recompute it.
 **Prohibited:** calling `fact_submit` from a CLI/shell fallback or writing the
 JSONL/markdown stores by hand because MCP tools are missing — that is a
-proving-preflight failure, not a bypass.
+`PRECHECK_FAILED` condition that must be corrected before submission.
 
 ## Launched by
 

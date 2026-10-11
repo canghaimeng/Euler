@@ -36,8 +36,8 @@ Researchers and agents work on the same records, making the evolving investigati
 | --- | --- |
 | [**Six workbench views**](docs/DASHBOARD-GUIDE.md#9-the-six-views) | Overview, proof reader, live research, relation map, diagnostics, and team interaction, with an English or Chinese interface. |
 | [**Live Research Graph and Fact Graph**](docs/DASHBOARD-GUIDE.md#relation-map-how-is-everything-connected) | Goals, routes, and steps form a working graph that updates while the team works; admitted results form a separate Fact Graph. Switch between the main line, the frontier, and all records. |
-| [**Precise statements, scope, and evidence**](docs/DASHBOARD-GUIDE.md#11-follow-one-step-and-its-proof-path) | Each record keeps its exact wording, scope, direct premises, and registered evidence, shown as recorded and never translated. |
-| [**Evidence-gated admission**](docs/DASHBOARD-GUIDE.md#10-how-a-step-becomes-closed) | Drafts, peer reviews, and proposals never close a step. A step closes only with evidence at the level its contract requires, such as an independent proof check or a Lean kernel check. |
+| [**Precise statements, scope, and evidence**](docs/DASHBOARD-GUIDE.md#11-follow-one-step-and-its-proof-path) | Each record keeps its exact wording, scope, direct premises, and registered evidence, displayed in its original language. |
+| [**Evidence-gated admission**](docs/DASHBOARD-GUIDE.md#10-how-a-step-becomes-closed) | Steps close when registered evidence meets the level their contract requires, such as an independent proof check or a Lean kernel check. |
 | [**Scoped intervention**](docs/HUMAN-INTERVENTION.md) | Ask the team about one step with its statement and scope attached or, when enabled, prepare a single bounded task that starts only when you confirm it. |
 | [**Whole-team milestones**](docs/TEAM-RECOVERY.md) | Save project files, graphs, evidence, and supported native team conversations in private Git history, then restore a saved milestone into an independent branch. |
 | [**Your CLIs, one browser**](docs/CLI-SUPPORT.md) | Combine Codex, Claude Code, Gemini CLI, Grok, and Cursor Agent on Linux or macOS. Create projects, add teammates, and read or continue each member's conversation from the workbench. |
@@ -69,7 +69,7 @@ python examples/personal-research/create_workspace.py \
   --definition ~/euler-research/first.json --workspace ~/euler-research/first
 ```
 
-The initializer contacts no provider and prints the two commands that follow: `euler-team prepare` connects each member's native session, and `start-workbench.sh` serves the workbench at <http://127.0.0.1:8130>. Open **Team interaction**, select the lead, and send your first question.
+The initializer runs locally and prints the two commands that follow: `euler-team prepare` connects each member's native session, and `start-workbench.sh` serves the workbench at <http://127.0.0.1:8130>. Open **Team interaction**, select the lead, and send your first question.
 
 The bundled definition uses Euclid's theorem on infinitely many primes as an onboarding exercise, with a Codex lead and a Grok assistant; [`research.five-clis.json`](examples/personal-research/research.five-clis.json) shows all five CLIs. New teams have no default turn or account-percentage cap; set `max_turns` for the team or a member if you want one. The [user guide](docs/DASHBOARD-GUIDE.md) covers every field, remote access over SSH, and troubleshooting, and you can hand it to a coding agent to set up your machine.
 
@@ -78,10 +78,10 @@ The bundled definition uses Euclid's theorem on infinitely many primes as an onb
 1. **Fix the problem.** A definition records the exact statement, assumptions, target kind, required evidence level, and team. The project stays bound to that contract.
 2. **Ask.** Work starts from an explicit question, either yours or the lead's to a teammate. Proposed routes and steps enter the shared state as open records.
 3. **Follow.** The views refresh while the team works: read the proof structure, open any step's premises and argument, and watch the frontier move.
-4. **Admit.** A step closes when evidence of the required kind is registered for it, and not before.
+4. **Admit.** A step closes when evidence of the required kind is registered for it.
 5. **Branch.** Save a milestone, restore it into an independent workspace, recover the members' sessions, and pursue another direction while the original stays untouched.
 
-Restoration requires a saved milestone and the corresponding native session archives; a graph node alone cannot reconstruct missing team history.
+To restore a team from a graph node, choose its associated saved milestone and recover the corresponding native session archives.
 
 ## Mathematical results
 
@@ -99,7 +99,7 @@ A Hamilton cycle visits every vertex exactly once. The relationship between toug
 
 ### Jankiewicz–Norin–Wise: the limits of a bridge from graphs to geometry
 
-Legal systems provide combinatorial certificates used in the study of right-angled Coxeter groups. Jankiewicz, Norin, and Wise asked whether a graph could satisfy strong connectivity and curvature conditions while excluding these certificates throughout its four-connected subgraphs. A 33-vertex construction answers that four-connected question, clarifying the limits of this certificate method. The stronger three-connected-subgraph variant remains outside the result.
+Legal systems provide combinatorial certificates used in the study of right-angled Coxeter groups. Jankiewicz, Norin, and Wise asked whether a graph could satisfy strong connectivity and curvature conditions while excluding these certificates throughout its four-connected subgraphs. A 33-vertex construction answers that four-connected question, clarifying the limits of this certificate method. The result covers four-connected ordinary subgraphs; the three-connected variant is a separate question.
 
 **[Explore the case →](examples/jnw/)** · [Paper](examples/jnw/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction)
 
@@ -113,7 +113,7 @@ Legal systems provide combinatorial certificates used in the study of right-angl
 | [Human intervention](docs/HUMAN-INTERVENTION.md) | Optional bounded single tasks |
 | [Architecture](ARCHITECTURE.md) · [Security and trust](docs/security-and-trust.md) | Layers, invariants, interfaces, and the trust model |
 
-The [case index](examples/README.md) identifies the included paper versions and their separate Lean repositories. These historical investigations span earlier research workflows; they are not controlled end-to-end benchmarks of this software release.
+The [case index](examples/README.md) identifies the included paper versions and their separate Lean repositories. The case pages document investigations conducted across earlier research workflow versions.
 
 ## Development
 
@@ -126,7 +126,7 @@ The suite runs offline, with local protocol doubles standing in for the provider
 
 ## License
 
-Euler is **source-available for noncommercial use**. Euler-original work and modifications in this distribution are licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE), which is not an OSI-approved open-source license. Third-party portions retain their original licenses; see [LICENSING.md](LICENSING.md) and [NOTICE](NOTICE) for the applicable terms and attributions.
+Euler's original work and modifications use the **[PolyForm Noncommercial License 1.0.0](LICENSE)**, which permits noncommercial use, modification, and redistribution under its terms. See [Licensing](LICENSING.md) for the licenses of included code, libraries, and papers.
 
 ## Author and citation
 

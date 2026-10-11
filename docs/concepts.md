@@ -7,15 +7,9 @@ see `security-and-trust.md`.
 
 ## What Euler is
 
-Euler is an **automated mathematics proof-search system**. You give it a problem;
-a swarm of autonomous agents tries to prove it; every claimed result is checked by
-a single correctness authority; verified results accumulate in a shared graph; and
-when you decide the answer is in hand, Euler renders it into a human progress
-report or a publishable LaTeX paper.
+Euler is a mathematical research agent system that helps researchers understand the full reasoning process. A team explores a precise mathematical problem while recording statements, assumptions, candidate routes, dependencies, obstacles, and verification evidence in shared state. Researchers inspect that state through the workbench and continue the investigation through team conversations, scoped tasks, and saved milestones.
 
-The defining idea is a **hard separation between *producing* mathematics and
-*deciding it is correct***. Many agents produce; exactly one authority (the
-verifier) decides; and a result only *exists* once that authority has accepted it.
+The same representation supports agent planning and collaboration. Candidate results enter the research graph; acceptance into the Fact Graph follows the configured verification path. Each project contract defines the evidence required to close its target.
 
 ## The actors
 
@@ -23,19 +17,9 @@ verifier) decides; and a result only *exists* once that authority has accepted i
   surfaces (is this the answer? push the paper outward?), and set the spending and
   operating preferences. You talk to Euler in natural language through the main
   agent.
-- **The main agent (codex).** The orchestrator and your entry point. It
-  **steers — it does not do the mathematics.** It sets up projects, runs the
-  strategy loop, assigns work, monitors, and drives the report/paper skills. It
-  *structurally cannot* fabricate a result (it has no `fact_submit` tool).
-- **The native workers.** Codex, Claude Code, Grok, and Cursor workers receive
-  lease-bound assignments through one provider-neutral protocol. They explore,
-  check, formalize, run bounded searches, and persist progress independently.
-  Every claimed result must pass through the verifier before it can enter the
-  Fact Graph. Workers run detached and resume from persisted memory.
-- **The verifier.** A **cold-start** Grok Build judge (with Codex/Cursor retained only as explicit rollback backends), started fresh for each check,
-  that is the **sole authority on correctness**. A result becomes a fact **if and
-  only if** the verifier returns a `correct` verdict. It is an LLM, not a formal
-  proof assistant — see `security-and-trust.md`.
+- **The lead agent.** Coordinates the project, proposes plans, assigns work, monitors progress, and communicates with you. Its gateway permissions support planning and Fact revocation; workers submit new Facts for verification.
+- **Team members and workers.** Codex, Claude Code, Gemini, Grok, and Cursor can explore, check, formalize, and compute using their configured roles. Managed workers receive scoped assignments and execution leases; native teams preserve their member conversations.
+- **The verifier.** Reviews proposed statements and proofs in an independent session. The gateway records its verdict and provenance. Formal workflows supply their corresponding kernel and alignment evidence; see [Verification and access controls](security-and-trust.md).
 - **The strategy consult.** The main agent's high-intelligence step: it distills
   the project's state (an *elaboration*) and consults a strong reasoning model,
   whose reply becomes the swarm's steering (`master_guidance`).
@@ -134,13 +118,9 @@ initialize ─▶ new project ─▶ strategy loop ⇄ worker swarm ─▶ verif
   publishable paper, re-verified as written — the whole document, through a
   dedicated paper-math verifier — before delivery.
 
-## Why you can trust the shape
+## Implementation and evidence
 
-Every guarantee above — one correctness boundary, permission by construction, the
-verifier as the sole write-gate, resumable workers, the judgment calls staying with
-you — is enforced in code, not by prompt convention. For exactly what you are
-trusting (and what to double-check), read `security-and-trust.md`; the full
-engineering invariant list is `../ARCHITECTURE.md` §3.
+The code enforces gateway permissions, admission transitions, content-addressed records, and worker recovery. [Verification and access controls](security-and-trust.md) describes the evidence supplied by each checking path. See [Architecture](../ARCHITECTURE.md) for the implementation boundaries.
 
 ## Where to go next
 

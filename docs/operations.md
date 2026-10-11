@@ -3,11 +3,7 @@
 Day-to-day operation of a Euler deployment: the persistent services, health checks,
 recovery after a restart, and unattended-operation helpers.
 
-> In normal operation you do not run these commands yourself — you talk to the
-> **main agent** (codex), and it runs them for you. This page documents what
-> happens underneath, and doubles as your fallback for the moments the main agent
-> is not there to act (a fresh host restart, a session that will not start,
-> debugging the stack by hand).
+> The main agent can run these operations on your behalf. Use this runbook for direct administration, host restarts, and troubleshooting.
 
 ## The persistent services
 
@@ -17,7 +13,7 @@ shell). Start them only this way.
 
 ```bash
 bash scripts/services.sh up verify            # REQUIRED — no verify ⇒ fact_submit fails ⇒ no facts
-bash scripts/services.sh up dashboard <p>     # optional read-only view of project <p>
+bash scripts/services.sh up dashboard <p>     # project workbench with configured controls
 bash scripts/services.sh status               # what's up (+ a verify /health probe)
 bash scripts/services.sh logs <svc> [-f]      # tail a service log
 bash scripts/services.sh down <svc> | all     # stop
@@ -25,8 +21,7 @@ bash scripts/services.sh down <svc> | all     # stop
 
 - **verify** — `127.0.0.1:8091`. The correctness gate. Must be up before starting
   any workers.
-- **dashboard** — `127.0.0.1:8099`, read-only. View it via an SSH port-forward
-  (do not expose it to a network).
+- **dashboard** — `127.0.0.1:8099`. Displays project records and configured research controls. Use SSH forwarding for remote access.
 
 > **Shared-host caveat.** These ports are per-host, not per-deployment. If a second
 > Euler deployment (another user/checkout) is already bound to `8091`, your
@@ -44,7 +39,7 @@ of `up` invocations, so a restart can replay them (see recovery).
 ## Health checks
 
 ```bash
-euler verify-health             # read-only verify identity (ours/foreign/stale/down); not a math verdict
+euler verify-health             # read-only service identity (ours/foreign/stale/down)
 euler doctor                    # proving-readiness: python+mcp, worker tools, verify identity
 bash scripts/doctor.sh          # green / FAIL / warn across the whole stack (ops extras: codex, TeX, Chrome)
 bash scripts/check-codex.sh     # one live codex ping + scan recent logs for API errors
