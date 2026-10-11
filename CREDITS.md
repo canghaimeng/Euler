@@ -5,9 +5,10 @@ Shanghai Jiao Tong University.
 
 ## Danus
 
-Euler builds on the architecture and software foundations of
-[Danus](https://github.com/frenzymath/Danus), released by FrenzyMath under the
-Apache License 2.0.
+We thank [Danus](https://github.com/frenzymath/Danus), released by FrenzyMath
+under Apache-2.0, for its earlier work on mathematical research agents.
+Parts of Euler contain adapted Danus code; the corresponding source notices
+record that provenance.
 
 Danus is described in *Danus: Orchestrating Mathematical Reasoning Agents with
 Fact-Graph Memory* ([arXiv:2607.06447](https://arxiv.org/abs/2607.06447)) by
@@ -19,9 +20,9 @@ orchestration, verifier-gated facts, memory, and research workflows.
 
 ## Rethlas
 
-Euler also builds on ideas and proving workflows from
-[Rethlas](https://github.com/frenzymath/Rethlas), released by FrenzyMath under
-the Apache License 2.0.
+We thank [Rethlas](https://github.com/frenzymath/Rethlas), released by FrenzyMath
+under Apache-2.0, for its earlier work on mathematical reasoning and formal
+verification. Source files identified as adaptations retain their origin notices.
 
 Rethlas is described in *Automated Conjecture Resolution with Formal
 Verification* ([arXiv:2604.03789](https://arxiv.org/abs/2604.03789)) by

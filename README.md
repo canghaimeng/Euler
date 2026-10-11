@@ -104,7 +104,7 @@ The suite runs offline, with local protocol doubles standing in for the provider
 
 ## License
 
-Euler is **source-available for noncommercial use**. Euler-original work and modifications in this distribution are licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE), which is not an OSI-approved open-source license. Upstream portions from Danus and Rethlas remain under [Apache-2.0](LICENSES/Apache-2.0.txt) with their notices retained, and bundled third-party components keep their own licenses. [LICENSING.md](LICENSING.md) describes the component boundaries, and [NOTICE](NOTICE) carries the required attributions.
+Euler is **source-available for noncommercial use**. Euler-original work and modifications in this distribution are licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE), which is not an OSI-approved open-source license. Third-party portions retain their original licenses; see [LICENSING.md](LICENSING.md) and [NOTICE](NOTICE) for the applicable terms and attributions.
 
 ## Author and citation
 
@@ -112,8 +112,6 @@ Euler is **source-available for noncommercial use**. Euler-original work and mod
 
 ## Acknowledgments
 
-Euler builds on [Danus](https://github.com/frenzymath/Danus) from FrenzyMath, which provides its architectural and software foundation. The Fact Graph memory and verifier-gated workflows that Euler retains come from Danus, and we are grateful to its authors and developers.
+We thank the authors and developers of [Danus](https://github.com/frenzymath/Danus) and [Rethlas](https://github.com/frenzymath/Rethlas) for their earlier explorations of AI-assisted mathematical research and for sharing their research and software with the community. Their work on mathematical memory, agent coordination, and proof verification provides valuable prior work for this field.
 
-Euler also builds on ideas and proving workflows from [Rethlas](https://github.com/frenzymath/Rethlas), also from FrenzyMath, including its proof-generation and verification workflows and reusable proving skills. We thank the Rethlas authors and developers.
-
-Papers, author lists, and license details for both projects are in [CREDITS.md](CREDITS.md).
+Detailed references and software attributions are recorded in [CREDITS.md](CREDITS.md) and [NOTICE](NOTICE).

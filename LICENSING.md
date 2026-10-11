@@ -20,17 +20,14 @@ This is a **source-available, noncommercial distribution**, not an OSI-approved
 open-source license. Access to this private repository does not announce a public
 release.
 
-## Upstream and bundled components
+## Third-party notices
 
-Euler builds on Danus and Rethlas. Their upstream portions remain licensed under
-[Apache-2.0](LICENSES/Apache-2.0.txt). Their copyright, license and attribution
-notices are retained; this change does not impose a noncommercial condition on
-those upstream portions when used under their original licenses.
-
-Bundled Cytoscape.js, markdown-it, KaTeX, and fonts retain their respective
-notices and licenses under `euler/observability/static/vendor/`. See
-[CREDITS.md](CREDITS.md) and [NOTICE](NOTICE). No third-party component is
-relicensed merely by appearing in this repository.
+Third-party portions retain their original licenses, including
+[Apache-2.0](LICENSES/Apache-2.0.txt) for upstream-derived code identified in the
+source notices. Provenance and required attributions are recorded in
+[CREDITS.md](CREDITS.md) and [NOTICE](NOTICE). Licenses for bundled frontend
+libraries and fonts are preserved under `euler/observability/static/vendor/`.
+Euler's noncommercial terms do not replace those component licenses.
 
 ## Earlier versions
 
