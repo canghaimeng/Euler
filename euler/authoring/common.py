@@ -1,5 +1,6 @@
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 """Shared pure primitives for the artifact renderers.
 
 The machinery ``euler.write_paper`` and ``euler.human_summary`` share:

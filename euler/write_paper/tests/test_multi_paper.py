@@ -1,5 +1,6 @@
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 """Offline tests for Item B — MULTIPLE papers per project. Zero network / codex.
 
 The whole point of the design is that a paper's facts are the SAME

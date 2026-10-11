@@ -1,5 +1,6 @@
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 """Offline tests for euler.authoring.driver — the one-shot isolated codex driver.
 
 Uses the deterministic ``fake_codex.py`` stub (EULER_CODEX_BIN) instead of a real

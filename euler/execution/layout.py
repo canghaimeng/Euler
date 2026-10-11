@@ -1,5 +1,6 @@
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 """On-disk layout, project/worker resolution, and role parsing for the swarm.
 
 This is the single source of truth for *where everything lives* — shared by

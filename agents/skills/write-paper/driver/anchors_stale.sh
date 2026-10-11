@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 # anchors_stale.sh — is the style-anchor set stale (needs re-distilling)?
 #
 # The write-paper SKILL preflight (stage 1a) uses this to decide whether to run

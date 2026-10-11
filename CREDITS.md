@@ -35,19 +35,15 @@ skills.
 
 ## Licensing
 
-Danus and Rethlas are distributed under the Apache License 2.0. Euler Agent is
-also distributed under the Apache License 2.0. See [LICENSE](LICENSE) and
-[NOTICE](NOTICE).
+Euler-original work and modifications in the current distribution are offered under
+[PolyForm Noncommercial 1.0.0](LICENSE). Danus and Rethlas upstream portions retain
+[Apache-2.0](LICENSES/Apache-2.0.txt). See [LICENSING.md](LICENSING.md) for the
+component boundaries and preservation of earlier grants, and [NOTICE](NOTICE)
+for attribution.
 
-Source files carrying the header below contain code adapted from the upstream
-projects and modified for Euler; newly implemented Euler modules do not carry
-that adaptation header:
-
-```text
-SPDX-License-Identifier: Apache-2.0
-Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
-```
-
+Adapted source files retain their upstream attribution and identify both licenses;
+this does not relicense the upstream portions or offer all Euler modifications
+under Apache-2.0. Euler-original file headers identify PolyForm Noncommercial.
 
 ## Bundled workbench dependencies
 

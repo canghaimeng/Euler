@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 # Copyright 2026 Qiuyu Chen (canghaimeng).
 """Browser project creation: server-owned roots and existing personal controls."""
 from fastapi import HTTPException, Request

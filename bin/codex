@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 # codex worker-binary wrapper. The codex *binary* is @openai/codex, provisioned
 # by scripts/bootstrap.sh; its exact path is written to runtime/runtime.env as
 # EULER_NODE / EULER_CODEX_JS. This wrapper keeps a single codex version on the

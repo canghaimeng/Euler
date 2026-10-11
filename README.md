@@ -1,54 +1,97 @@
+<div align="center">
+
 # Euler
 
-**Mathematical research that researchers can understand, inspect, and continue.**
+**A shared research state for mathematicians and their agent teams.**
 
-Euler is a mathematical research agent system designed around mathematicians’ understanding, judgment, and continued exploration. It preserves statements, assumptions, proof dependencies, candidate routes, failed approaches, and verification evidence in a shared research state. Agents use that state to plan and collaborate; researchers use the same state to understand progress and decide where to investigate next.
+Euler is a mathematical research agent system built to help researchers follow and understand the entire reasoning process. Its agent teams share a structured research state that makes derivations inspectable and is designed to strengthen model reasoning and team coordination.
 
-[User guide](docs/DASHBOARD-GUIDE.md) · [中文使用指南](docs/DASHBOARD-GUIDE.zh.md) · [Architecture](ARCHITECTURE.md) · [Case examples](examples/README.md)
+[![tests](https://github.com/canghaimeng/Euler/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/canghaimeng/Euler/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![Linux | macOS](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-57606A)](docs/CLI-SUPPORT.md)
+[![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-8250DF)](LICENSING.md)
 
-## What you can do
+[Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [中文指南](docs/DASHBOARD-GUIDE.zh.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license)
 
-- Follow an investigation through its overview, proof reader, live research view, and dependency graph.
-- Inspect what a statement assumes, what supports it, and what remains unresolved.
-- Talk to individual team members and read their conversations in the selected project branch.
-- Save team milestones and restore a node’s associated saved state into an independent workspace, including files and supported native conversations.
-- Create projects and add members from the workbench, or let the lead register a configured teammate.
-- Combine Codex, Claude Code, Gemini CLI, Grok, and Cursor Agent on Linux or macOS.
+</div>
 
-Restoration requires a recorded milestone and available native session archives; a graph node alone cannot recreate missing history. Proposals and conversations do not become accepted mathematical facts without the configured verification path.
+<br>
 
-## Try the workbench without model accounts
+<p align="center">
+  <img src="docs/assets/euler-shared-state.svg" width="100%" alt="Conceptual diagram: researchers and an agent team read and extend one shared research state, whose frontier is its active projection. Proposals reach the Fact Graph only through the required evidence, and whole-team Git milestones can be restored into independent branches.">
+</p>
+
+A mathematical investigation is much more than its final proof. Statements are sharpened, routes are proposed and abandoned, lemmas pick up dependencies, and checks pass or fail. Euler organizes these records into a **shared research state**: exact statements and scope, goals and steps, proof routes, dependencies, failed attempts, and the evidence registered for each record. That one structure serves two purposes.
+
+- **It lets researchers grasp the entire reasoning process.** Follow an investigation from the main goal down to a single step, see what each claim rests on and why a route stalled, and find where work remains open, while the team is running and even when the problem stays unsolved.
+- **It gives the agent team a common working structure.** Agents plan against explicit open records, refer to exact statements instead of paraphrasing a conversation, and coordinate around the same goals and routes. The representation is designed to improve how agents reason and coordinate across a long investigation.
+
+Researchers and agents work on the same records, making the evolving investigation available for inspection as it happens. The **frontier** (open goals, live routes, blockers, and their evidence) is the active projection of that state, showing both sides where the work stands now.
+
+## Highlights
+
+| | |
+| --- | --- |
+| [**Six workbench views**](docs/DASHBOARD-GUIDE.md#9-the-six-views) | Overview, proof reader, live research, relation map, diagnostics, and team interaction, with an English or Chinese interface. |
+| [**Live Research Graph and Fact Graph**](docs/DASHBOARD-GUIDE.md#relation-map-how-is-everything-connected) | Goals, routes, and steps form a working graph that updates while the team works; admitted results form a separate Fact Graph. Switch between the main line, the frontier, and all records. |
+| [**Precise statements, scope, and evidence**](docs/DASHBOARD-GUIDE.md#11-follow-one-step-and-its-proof-path) | Each record keeps its exact wording, scope, direct premises, and registered evidence, shown as recorded and never translated. |
+| [**Evidence-gated admission**](docs/DASHBOARD-GUIDE.md#10-how-a-step-becomes-closed) | Drafts, peer reviews, and proposals never close a step. A step closes only with evidence at the level its contract requires, such as an independent proof check or a Lean kernel check. |
+| [**Scoped intervention**](docs/HUMAN-INTERVENTION.md) | Ask the team about one step with its statement and scope attached or, when enabled, prepare a single bounded task that starts only when you confirm it. |
+| [**Whole-team milestones**](docs/TEAM-RECOVERY.md) | Save project files, graphs, evidence, and supported native team conversations in private Git history, then restore a saved milestone into an independent branch. |
+| [**Your CLIs, one browser**](docs/CLI-SUPPORT.md) | Combine Codex, Claude Code, Gemini CLI, Grok, and Cursor Agent on Linux or macOS. Create projects, add teammates, and read or continue each member's conversation from the workbench. |
+
+## Quickstart
+
+> [!NOTE]
+> You need **Python 3.10+** and **Git**; running a team also needs **Linux** with Landlock ABI 3+ or **macOS**. Install from a source checkout, which includes the agent contracts and skills that teams use.
+
+**Tour the workbench without model accounts.** The demo serves a small project produced offline by deterministic mock models.
 
 ```bash
-git clone https://github.com/canghaimeng/Euler.git
-cd Euler
-python3 -m venv .venv
-source .venv/bin/activate
+git clone https://github.com/canghaimeng/Euler.git && cd Euler
+python3 -m venv .venv && source .venv/bin/activate
 python -m pip install -e '.[demo,observability]'
-euler-dashboard-demo --port 8099
+euler-dashboard-demo --port 8099        # then open http://127.0.0.1:8099
 ```
 
-Open **http://127.0.0.1:8099**. This uses deterministic mock models to demonstrate the workflow; it does not reproduce a research discovery. English is the default, with a Chinese interface toggle.
-
-## Start a research team
-
-Install and sign in to the model CLIs you choose, then follow the [complete setup guide](docs/DASHBOARD-GUIDE.md). You may give that guide and this repository URL to a coding agent to configure your machine.
+**Start your own research team.** Install and sign in to the CLIs you want on the team, then:
 
 ```bash
 python -m pip install -e '.[gateway,observability]'
-euler-team doctor
-python examples/personal-research/create_workspace.py --workspace ~/euler-research/my-first-project
+euler-team doctor                       # checks CLIs and OS isolation; no model calls
+
+mkdir -p ~/euler-research
+cp examples/personal-research/research.json ~/euler-research/first.json
+# edit first.json: the statement, its scope, the required evidence, and the team
+python examples/personal-research/create_workspace.py \
+  --definition ~/euler-research/first.json --workspace ~/euler-research/first
 ```
 
-The initializer uses Euclid’s infinitude-of-primes theorem as an onboarding exercise and prints the next steps. Edit its research definition to specify your own mathematical statement and team. Creating the workspace does not start model calls.
+The initializer contacts no provider and prints the two commands that follow: `euler-team prepare` connects each member's native session, and `start-workbench.sh` serves the workbench at <http://127.0.0.1:8130>. Open **Team interaction**, select the lead, and send your first question.
 
-New teams have no default conversation-turn or remaining-account-percentage limit. Configure optional usage controls for your accounts and team; explicit single-task resource policies remain separate. Provider availability and native restoration support depend on the installed CLI version; see [CLI support](docs/CLI-SUPPORT.md).
+The bundled definition uses Euclid's theorem on infinitely many primes as an onboarding exercise, with a Codex lead and a Grok assistant; [`research.five-clis.json`](examples/personal-research/research.five-clis.json) shows all five CLIs. New teams have no default turn or account-percentage cap; set `max_turns` for the team or a member if you want one. The [user guide](docs/DASHBOARD-GUIDE.md) covers every field, remote access over SSH, and troubleshooting, and you can hand it to a coding agent to set up your machine.
 
-## Research examples
+## How a project runs
 
-Nikoghosyan, Lewis–Overton, and Jankiewicz–Norin–Wise (JNW) are the three selected research cases. Their release contents are being prepared separately and are **not included in this software snapshot**. Private proof manuscripts, Lean projects, historical team conversations, and private source bundles are excluded.
+1. **Fix the problem.** A definition records the exact statement, assumptions, target kind, required evidence level, and team. The project stays bound to that contract.
+2. **Ask.** Work starts from an explicit question, either yours or the lead's to a teammate. Proposed routes and steps enter the shared state as open records.
+3. **Follow.** The views refresh while the team works: read the proof structure, open any step's premises and argument, and watch the frontier move.
+4. **Admit.** A step closes when evidence of the required kind is registered for it, and not before.
+5. **Branch.** Save a milestone, restore it into an independent workspace, recover the members' sessions, and pursue another direction while the original stays untouched.
 
-The workspace initializer uses a classical theorem for onboarding. Internal deterministic mocks and elementary test fixtures test software behavior and are not research claims.
+Restoration requires a saved milestone and the corresponding native session archives; a graph node alone cannot reconstruct missing team history.
+
+## Documentation
+
+| Guide | Covers |
+| --- | --- |
+| [User guide](docs/DASHBOARD-GUIDE.md) · [中文](docs/DASHBOARD-GUIDE.zh.md) | Setup, a first project, the six views, milestones, troubleshooting |
+| [CLI support](docs/CLI-SUPPORT.md) | Providers, OS isolation, native session recovery |
+| [Team recovery](docs/TEAM-RECOVERY.md) · [Milestones](docs/RESEARCH-MILESTONES.md) | What a checkpoint saves and how restoration works |
+| [Human intervention](docs/HUMAN-INTERVENTION.md) | Optional bounded single tasks |
+| [Architecture](ARCHITECTURE.md) · [Security and trust](docs/security-and-trust.md) | Layers, invariants, interfaces, and the trust model |
+
+Case bundles for the Nikoghosyan, Lewis–Overton, and Jankiewicz–Norin–Wise (JNW) investigations follow separately; this repository contains the software and its onboarding example.
 
 ## Development
 
@@ -57,10 +100,20 @@ python -m pip install -e '.[dev]'
 python -m pytest euler/ -q
 ```
 
-Tests exercise software behavior, including evidence gates, project isolation, native-session protocol doubles, and graph views. Passing them does not establish mathematical discovery performance or improvements in human understanding. See [Contributing](CONTRIBUTING.md).
+The suite runs offline, with local protocol doubles standing in for the provider CLIs. CI runs it on Python 3.10 and 3.13 and checks the packaged workbench in a real browser. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-## Distribution and attribution
+## License
 
-This repository starts with a clean software snapshot. It includes source, bundled workbench assets, agent contracts, configuration templates, installation tools, tests, guides, and onboarding configuration. It excludes development reports, research snapshots, technical-report versions, account configuration, runtime state, and private transcripts.
+Euler is **source-available for noncommercial use**. Euler-original work and modifications in this distribution are licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE), which is not an OSI-approved open-source license. Upstream portions from Danus and Rethlas remain under [Apache-2.0](LICENSES/Apache-2.0.txt) with their notices retained, and bundled third-party components keep their own licenses. [LICENSING.md](LICENSING.md) describes the component boundaries, and [NOTICE](NOTICE) carries the required attributions.
 
-**By canghaimeng**. Euler is by **Qiuyu Chen (陈秋宇), Shanghai Jiao Tong University**. It builds on **Danus and Rethlas**; see [Credits](CREDITS.md). Euler is licensed under [Apache-2.0](LICENSE). Bundled frontend dependencies retain their original licenses in `euler/observability/static/vendor/`.
+## Author and citation
+
+**By canghaimeng** (Qiuyu Chen, 陈秋宇), Shanghai Jiao Tong University. To cite the software, use [CITATION.cff](CITATION.cff).
+
+## Acknowledgments
+
+Euler builds on [Danus](https://github.com/frenzymath/Danus) from FrenzyMath, which provides its architectural and software foundation. The Fact Graph memory and verifier-gated workflows that Euler retains come from Danus, and we are grateful to its authors and developers.
+
+Euler also builds on ideas and proving workflows from [Rethlas](https://github.com/frenzymath/Rethlas), also from FrenzyMath, including its proof-generation and verification workflows and reusable proving skills. We thank the Rethlas authors and developers.
+
+Papers, author lists, and license details for both projects are in [CREDITS.md](CREDITS.md).

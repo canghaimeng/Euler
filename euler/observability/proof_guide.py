@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 # Copyright 2026 Qiuyu Chen (canghaimeng).
 """Editorial reading guides for existing proofs, pinned to the exact source text.
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 # write-paper-mcp — launches the write-paper MCP service (role=main)
 # for Claude Code (.mcp.json) or any MCP client. Sources env so EULER_AGENTS_ROOT
 # etc. are set, and exports EULER_WRITE_PAPER_SKILL_DIR so the assembler finds the

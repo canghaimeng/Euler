@@ -7,3 +7,5 @@ Install with `python -m pip install -e '.[dev]'` and run `python -m pytest euler
 Pull requests should identify affected modules and validation commands. Include screenshots for UI changes. Keep changes focused; subjects such as `fix: ...`, `docs: ...`, and `feat: ...` match the project conventions.
 
 Never bypass Fact admission, reinterpret infrastructure errors as mathematical refutations, or commit runtime state and account configuration. Preserve upstream attribution.
+
+Submit Euler-original contributions under the terms in [LICENSING.md](LICENSING.md). Preserve all upstream and third-party license notices.

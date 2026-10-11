@@ -1,5 +1,6 @@
-/* SPDX-License-Identifier: Apache-2.0 */
-/* Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng. */
+/* SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0 */
+/* Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+   Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0. */
 /* Read-only proof overview, reader, live research and relation graph. All runtime assets are local.
    Interface text comes from i18n.js; source content is rendered unchanged and marked data-original. */
 'use strict';

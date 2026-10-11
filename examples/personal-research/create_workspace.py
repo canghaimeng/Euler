@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 # Copyright 2026 Qiuyu Chen (canghaimeng).
 """EXAMPLE, NOT CORE: create one personal Euler research workspace. No model is contacted.
 

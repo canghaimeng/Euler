@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 # Start the Euler verify service (resident HTTP gateway on 127.0.0.1:$VERIFY_PORT;
 # each POST /verify spawns a fresh configured verifier agent). Run via services.sh so it
 # outlives the launching shell:  bash scripts/services.sh up verify

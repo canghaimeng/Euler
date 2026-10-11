@@ -1,5 +1,6 @@
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
@@ -7,17 +8,17 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "euler-math-research"
 version = "0.3.0.dev0"
-description = "Euler — human-centered mathematical research with frontier-driven agents"
+description = "Euler — structured research state for understanding mathematical reasoning and coordinating agents"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "Apache-2.0" }
+license = { text = "PolyForm-Noncommercial-1.0.0; third-party components retain their licenses" }
 authors = [{ name = "Qiuyu Chen" }]
 maintainers = [{ name = "canghaimeng" }]
 keywords = ["mathematics", "proof-search", "multi-agent", "llm", "orchestration"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: Other/Proprietary License",
     "Operating System :: POSIX :: Linux",
     "Operating System :: MacOS :: MacOS X",
     "Programming Language :: Python :: 3",
@@ -56,3 +57,6 @@ include = ["euler*"]
 [tool.setuptools.package-data]
 "euler.core" = ["*.json"]
 "euler.observability" = ["proof_guides.json", "static/*", "static/vendor/*", "static/vendor/**/*"]
+
+[tool.setuptools]
+license-files = ["LICENSE", "LICENSING.md", "NOTICE", "LICENSES/*.txt"]

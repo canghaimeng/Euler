@@ -1,4 +1,4 @@
-/* SPDX-License-Identifier: Apache-2.0 */
+/* SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0 */
 // Copyright 2026 Qiuyu Chen (canghaimeng).
 /* Interface catalog for the read-only dashboard. Only interface chrome is translated:
    statements, proofs, quotes, formulas, code, headings and research/task records are

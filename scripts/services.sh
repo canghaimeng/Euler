@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 # =============================================================================
 # Euler services — start/stop/inspect the long-running services so they PERSIST
 # beyond the session that launched them (a codex session, an ssh shell…).

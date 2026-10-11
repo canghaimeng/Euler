@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: Apache-2.0 AND PolyForm-Noncommercial-1.0.0
 # Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# Upstream portions: Apache-2.0; Euler modifications: PolyForm-Noncommercial-1.0.0.
 """A stand-in for the ``codex`` CLI, for PLUMBING tests of euler.authoring.driver.
 
 The real driver runs ``codex exec ... -`` with the prompt on stdin and treats

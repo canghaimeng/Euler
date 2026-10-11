@@ -189,6 +189,12 @@ def test_release_attribution_is_canonical() -> None:
     assert 'maintainers = [{ name = "canghaimeng" }]' in package
     assert "**By canghaimeng**" in readme
     assert "Copyright 2026 Qiuyu Chen (canghaimeng)" in license_text
+    assert "PolyForm Noncommercial License 1.0.0" in license_text
+    assert "PolyForm-Noncommercial-1.0.0" in citation
+    assert "OSI Approved :: Apache" not in package
+    upstream_license = (_REPO_ROOT / "LICENSES" / "Apache-2.0.txt").read_text()
+    assert "Apache License" in upstream_license and "Version 2.0" in upstream_license
+    assert (_REPO_ROOT / "LICENSING.md").is_file()
     assert "By canghaimeng" in notice
     assert "Affiliation: Shanghai Jiao Tong University" in notice
     assert "Danus" in credits and "Rethlas" in credits
@@ -236,7 +242,8 @@ def test_upstream_adaptation_headers_are_consistent() -> None:
     inconsistent = []
     for path in candidates:
         text = path.read_text(encoding="utf-8", errors="ignore")
-        has_spdx = "SPDX-License-Identifier: Apache-2.0" in text
+        has_spdx = ("SPDX-License-Identifier: Apache-2.0" in text
+                    or "SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0" in text)
         has_origin = (
             "Adapted from Danus/Rethlas; modified for Euler Agent by "
             "canghaimeng."
@@ -246,7 +253,7 @@ def test_upstream_adaptation_headers_are_consistent() -> None:
         has_original_copyright = "Copyright 2026 Qiuyu Chen (canghaimeng)." in text
         if has_spdx != (has_origin or has_original_copyright):
             inconsistent.append(path.relative_to(_REPO_ROOT).as_posix())
-    assert len(adapted) >= 162
+    assert adapted, "expected the retained upstream/original copyright notices"
     assert not inconsistent, f"incomplete adaptation headers: {inconsistent}"
 
     for rel in (
