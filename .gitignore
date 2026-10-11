@@ -69,7 +69,7 @@ euler/verify/agent/
 agents/skills/human-summary/node_modules/
 agents/skills/human-summary/package-lock.json
 
-# Research artifacts are deliberately excluded from this software repository.
+# Research artifacts are excluded except the three explicitly selected case papers.
 /reports/
 /snapshots/
 *.pdf
@@ -78,3 +78,8 @@ agents/skills/human-summary/package-lock.json
 .euler-team/
 
 /OPERATOR.md
+
+# Selected case papers; keep all other PDFs ignored.
+!/examples/nikoghosyan/paper.pdf
+!/examples/lewis-overton/paper.pdf
+!/examples/jnw/paper.pdf

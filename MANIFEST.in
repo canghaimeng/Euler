@@ -15,3 +15,8 @@ prune agents/skills/human-summary/node_modules
 
 recursive-include LICENSES *.txt
 recursive-include docs/assets *.svg *.png
+
+# Explicitly selected case papers only.
+include examples/nikoghosyan/paper.pdf
+include examples/lewis-overton/paper.pdf
+include examples/jnw/paper.pdf

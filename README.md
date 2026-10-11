@@ -2,8 +2,6 @@
 
 # Euler
 
-**A shared research state for mathematicians and their agent teams.**
-
 Euler is a mathematical research agent system built to help researchers follow and understand the entire reasoning process. Its agent teams share a structured research state that makes derivations inspectable and is designed to strengthen model reasoning and team coordination.
 
 [![tests](https://github.com/canghaimeng/Euler/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/canghaimeng/Euler/actions/workflows/ci.yml)
@@ -11,11 +9,15 @@ Euler is a mathematical research agent system built to help researchers follow a
 [![Linux | macOS](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-57606A)](docs/CLI-SUPPORT.md)
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-8250DF)](LICENSING.md)
 
-[Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [中文指南](docs/DASHBOARD-GUIDE.zh.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license)
+[Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [中文指南](docs/DASHBOARD-GUIDE.zh.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license)
 
 </div>
 
-<br>
+## 🚀 News
+
+- 🎉 **[Nikoghosyan (2013–2026)](examples/nikoghosyan/)** — resolving a 13-year-old open problem in Hamiltonian graph theory and completing the single-forbidden-subgraph classification for 1-tough graphs.
+- ✨ **[Lewis–Overton](examples/lewis-overton/)** — a conjecture by NYU Silver Professor Overton and Cornell Professor Lewis, both SIAM Fellows, refuted.
+- 🎉 **[JNW](examples/jnw/)** — the four-connected legal-system problem, resolved.
 
 <p align="center">
   <img src="docs/assets/euler-frontier-loop.png" width="100%" alt="Euler’s frontier-driven research loop: the problem contract and research memory inform the active frontier; agents receive bounded context to prove, refute, retrieve, or compute; verification and reconciliation update the frontier and Fact Graph.">
@@ -81,6 +83,26 @@ The bundled definition uses Euclid's theorem on infinitely many primes as an onb
 
 Restoration requires a saved milestone and the corresponding native session archives; a graph node alone cannot reconstruct missing team history.
 
+## Mathematical results
+
+### Nikoghosyan: completing a Hamiltonicity classification
+
+A Hamilton cycle visits every vertex exactly once. The relationship between toughness and Hamiltonicity has been studied since the 1970s. The Nikoghosyan result supplies the final missing case in the single-forbidden-subgraph classification: combined with Li, Broersma and Zhang's earlier theorem, it determines exactly which forbidden induced graphs make 1-toughness sufficient for Hamiltonicity. [Classification background](https://ris.utwente.nl/ws/files/253281133/Li2016forbidden.pdf).
+
+**[Explore the case →](examples/nikoghosyan/)** · [Paper](examples/nikoghosyan/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture)
+
+### Lewis–Overton: initialization changes the asymptotic rate
+
+BFGS is a widely used optimization method, yet its behavior on nonsmooth functions remains subtle. A 2008 conjecture of Adrian Lewis and Michael Overton predicted a rate determined by the problem parameter alone. Two executions on the same objective are shown to have different sharp trial-normalized rates throughout an open parameter interval, establishing that initialization can matter even in this simple one-dimensional model.
+
+**[Explore the case →](examples/lewis-overton/)** · [Paper](examples/lewis-overton/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate)
+
+### JNW: the limits of a bridge from graphs to geometry
+
+Legal systems provide combinatorial certificates used in the study of right-angled Coxeter groups. Jankiewicz, Norin, and Wise asked whether a graph could satisfy strong connectivity and curvature conditions while excluding these certificates throughout its four-connected subgraphs. A 33-vertex construction answers that four-connected question, clarifying the limits of this certificate method. The stronger three-connected-subgraph variant remains outside the result.
+
+**[Explore the case →](examples/jnw/)** · [Paper](examples/jnw/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction)
+
 ## Documentation
 
 | Guide | Covers |
@@ -91,7 +113,7 @@ Restoration requires a saved milestone and the corresponding native session arch
 | [Human intervention](docs/HUMAN-INTERVENTION.md) | Optional bounded single tasks |
 | [Architecture](ARCHITECTURE.md) · [Security and trust](docs/security-and-trust.md) | Layers, invariants, interfaces, and the trust model |
 
-Case bundles for the Nikoghosyan, Lewis–Overton, and Jankiewicz–Norin–Wise (JNW) investigations follow separately; this repository contains the software and its onboarding example.
+The [case index](examples/README.md) identifies the included paper versions and their separate Lean repositories. These historical investigations span earlier research workflows; they are not controlled end-to-end benchmarks of this software release.
 
 ## Development
 

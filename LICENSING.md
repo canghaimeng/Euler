@@ -29,6 +29,14 @@ source notices. Provenance and required attributions are recorded in
 libraries and fonts are preserved under `euler/observability/static/vendor/`.
 Euler's noncommercial terms do not replace those component licenses.
 
+## Included research papers
+
+The unmodified Lewis–Overton and JNW PDFs in `examples/` retain their
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) licenses
+as recorded on their arXiv pages. Their case READMEs identify the author, source,
+and version. The software license does not replace these paper licenses.
+Linked Lean repositories retain their own licenses and are not bundled here.
+
 ## Earlier versions
 
 This license applies to this distribution prospectively. It does **not revoke
