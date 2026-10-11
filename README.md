@@ -15,8 +15,8 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 ## 🚀 News
 
-- 🎉 **[Nikoghosyan (2013–2026)](examples/nikoghosyan/)** — resolving a 13-year-old open problem in Hamiltonian graph theory and completing the single-forbidden-subgraph classification for 1-tough graphs.
-- ✨ **[Lewis–Overton](examples/lewis-overton/)** — a conjecture proposed by NYU Silver Professor Michael Overton and Cornell Professor Adrian Lewis. Both of them are SIAM Fellows.
+- 🎉 **[Nikoghosyan (2013)](examples/nikoghosyan/)** — resolving a 13-year-old open problem in Hamiltonian graph theory and completing the single-forbidden-subgraph classification for 1-tough graphs.
+- ✨ **[Lewis–Overton (2008)](examples/lewis-overton/)** — a conjecture proposed by NYU Silver Professor Michael Overton and Cornell Professor Adrian Lewis. Both of them are SIAM Fellows.
 - 🎉 **[Jankiewicz–Norin–Wise (2017)](examples/jnw/)** — a geometric group theory problem co-proposed by James McGill Professor Daniel Wise, a Fellow of the Royal Society.
 
 <p align="center">
