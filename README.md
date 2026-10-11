@@ -16,7 +16,7 @@ Euler is a mathematical research agent system built to help researchers follow a
 ## 🚀 News
 
 - 🎉 **[Nikoghosyan (2013–2026)](examples/nikoghosyan/)** — resolving a 13-year-old open problem in Hamiltonian graph theory and completing the single-forbidden-subgraph classification for 1-tough graphs.
-- ✨ **[Lewis–Overton](examples/lewis-overton/)** — a conjecture by NYU Silver Professor Overton and Cornell Professor Lewis, both SIAM Fellows, refuted.
+- ✨ **[Lewis–Overton](examples/lewis-overton/)** — a conjecture proposed by NYU Silver Professor Michael Overton and Cornell Professor Adrian Lewis. Both of them are SIAM Fellows.
 - 🎉 **[JNW](examples/jnw/)** — the four-connected legal-system problem, resolved.
 
 <p align="center">

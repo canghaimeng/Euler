@@ -1,6 +1,6 @@
 # The Lewis–Overton BFGS rate conjecture
 
-**A 2008 conjecture on a fundamental optimization method, refuted in its initialization-independent sharp-rate assertion.**
+**Initialization-dependent sharp rates for a classical BFGS model studied by Lewis and Overton.**
 
 [Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.09872) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate) · [Back to Euler](../../README.md#mathematical-results)
 
@@ -14,7 +14,7 @@ Their [2008 preprint](https://optimization-online.org/2008/12/2172/), Conjecture
 
 For every $9/5 < u < 13/6$, the tilted absolute-value objective $f_u(x)=\max\{x,-ux\}$ admits two nonterminating executions with distinct sharp trial-normalized rates under the specified Lewis–Overton line-search conventions. Thus initialization affects the exact asymptotic rate, even in this one-dimensional model.
 
-This refutes the initialization-independent **sharp-rate** assertion. It does not assert divergence of BFGS or rule out a shared non-sharp upper bound. The paper and formalization fix the Armijo, Wolfe, and trial-count conventions precisely.
+The two executions establish that the **sharp rate can depend on initialization**. It does not assert divergence of BFGS or rule out a shared non-sharp upper bound. The paper and formalization fix the Armijo, Wolfe, and trial-count conventions precisely.
 
 ## Paper
 
