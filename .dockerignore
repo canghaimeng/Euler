@@ -1,0 +1,14 @@
+.git
+runtime
+config/*.env
+.env*
+setup
+snapshots
+.venv
+venv
+dist
+build
+*.egg-info
+**/__pycache__
+**/.pytest_cache
+**/node_modules

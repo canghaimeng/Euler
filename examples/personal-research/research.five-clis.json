@@ -1,0 +1,128 @@
+{
+  "id": "euclid-primes",
+  "title": "Example · infinitely many primes (Euclid)",
+  "note": "A classical theorem used to learn Euler's workflow. It is not a research result.",
+  "problem": {
+    "statement": "For every positive integer N there exists a prime p > N.",
+    "assumptions": [],
+    "parameter_domain": "N ranges over the positive integers; p ranges over the prime numbers.",
+    "definitions": "A prime is an integer greater than 1 whose only positive divisors are 1 and itself.",
+    "quantifiers": [
+      {
+        "variable": "N",
+        "kind": "FORALL",
+        "domain": "positive integers"
+      },
+      {
+        "variable": "p",
+        "kind": "EXISTS",
+        "domain": "prime numbers",
+        "depends_on": [
+          "N"
+        ]
+      }
+    ],
+    "objects": [],
+    "target_kind": "PROOF",
+    "required_evidence_level": "LLM_CHECKED_PROOF",
+    "completion_checks": [
+      "An independent check accepts a complete proof of the exact statement."
+    ],
+    "external_help_policy": "Classical result; standard literature may be cited. This project exercises the workflow.",
+    "permitted_tools": []
+  },
+  "team": {
+    "objective": "Develop a complete proof of the exact statement and have the assistant review its critical step.",
+    "max_turns": null,
+    "turn_seconds": 300,
+    "members": [
+      {
+        "id": "codex",
+        "provider": "codex",
+        "role": "lead",
+        "model": "gpt-6.1-sol",
+        "effort": "high",
+        "assignment": "Coordinate the research and consult registered members."
+      },
+      {
+        "id": "claude",
+        "provider": "claude-code",
+        "role": "assistant",
+        "model": "claude-sonnet-4-6",
+        "effort": "high",
+        "assignment": "Audit the proof dependencies."
+      },
+      {
+        "id": "gemini",
+        "provider": "gemini",
+        "role": "assistant",
+        "model": "gemini-2.5-pro",
+        "effort": "model-defined",
+        "assignment": "Explore alternative constructions."
+      },
+      {
+        "id": "grok",
+        "provider": "grok",
+        "role": "assistant",
+        "model": "grok-4.6",
+        "effort": "high",
+        "assignment": "Check edge cases and assumptions."
+      },
+      {
+        "id": "cursor",
+        "provider": "cursor",
+        "role": "assistant",
+        "model": "auto",
+        "effort": "model-defined",
+        "assignment": "Implement and test computational examples."
+      }
+    ]
+  },
+  "task_budget": {
+    "cost_microusd": {
+      "kind": "LIMITED",
+      "value": 20000000
+    },
+    "input_tokens": {
+      "kind": "LIMITED",
+      "value": 2000000
+    },
+    "output_tokens": {
+      "kind": "LIMITED",
+      "value": 400000
+    },
+    "reasoning_tokens": {
+      "kind": "LIMITED",
+      "value": 1000000
+    },
+    "cached_tokens": {
+      "kind": "LIMITED",
+      "value": 2000000
+    },
+    "wall_ms": {
+      "kind": "LIMITED",
+      "value": 28800000
+    },
+    "tool_cpu_ms": {
+      "kind": "LIMITED",
+      "value": 3600000
+    },
+    "tool_gpu_ms": {
+      "kind": "LIMITED",
+      "value": 0
+    },
+    "max_reasoning_slots": 2,
+    "max_compute_slots": 1,
+    "max_retrieval_slots": 1,
+    "max_verifier_slots": 1,
+    "final_audit_reserve_bp": 0,
+    "exploration_reserve_bp": 0,
+    "deadline_utc": null,
+    "on_deadline": "REJECT_NORMAL",
+    "on_stagnation": "CONTINUE"
+  },
+  "workbench": {
+    "host": "127.0.0.1",
+    "port": 8130
+  }
+}

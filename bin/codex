@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# codex worker-binary wrapper. The codex *binary* is @openai/codex, provisioned
+# by scripts/bootstrap.sh; its exact path is written to runtime/runtime.env as
+# EULER_NODE / EULER_CODEX_JS. This wrapper keeps a single codex version on the
+# workers' PATH regardless of where it landed.
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$HERE/../scripts/env.sh" >/dev/null 2>&1
+# Defense in depth after env.sh: worker children drop Sol consult secrets.
+if [ "${EULER_ROLE:-}" = "worker" ]; then
+  unset SOL_GATE_TOKEN EULER_CONSULT_API_KEY SOL_CODEX_HOME SOL_CODEX_BIN
+fi
+if [ -z "${EULER_NODE:-}" ] || [ -z "${EULER_CODEX_JS:-}" ]; then
+  echo "codex not provisioned — run scripts/bootstrap.sh (sets EULER_NODE/EULER_CODEX_JS)" >&2
+  exit 127
+fi
+exec "$EULER_NODE" "$EULER_CODEX_JS" "$@"

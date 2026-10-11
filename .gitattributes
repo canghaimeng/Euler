@@ -1,0 +1,2 @@
+# Historical research campaigns remain in Git, outside the framework release.
+snapshots/ export-ignore

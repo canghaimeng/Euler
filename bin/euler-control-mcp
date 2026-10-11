@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# euler-control-mcp — launches the Euler control MCP (role=main only).
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$HERE/../scripts/env.sh" >/dev/null 2>&1
+export EULER_ROLE="${EULER_ROLE:-main}"
+export EULER_AUTHOR="${EULER_AUTHOR:-main_agent}"
+exec "$EULER_PY" -m euler.control.mcp "$@"

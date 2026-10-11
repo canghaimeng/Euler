@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# euler-mcp — launches the euler gateway MCP server (role=main by default) for
+# Claude Code (.mcp.json) or any MCP client. Sources env so EULER_AGENTS_ROOT
+# etc. are set.
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$HERE/../scripts/env.sh" >/dev/null 2>&1
+export EULER_ROLE="${EULER_ROLE:-main}"
+export EULER_AUTHOR="${EULER_AUTHOR:-main_agent}"
+exec "$EULER_PY" -m euler.gateway "$@"

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use Euler, please cite this software."
+title: "Euler: Human-Centered Mathematical Research with Frontier-Driven Agents"
+license: Apache-2.0
+authors:
+  - family-names: Chen
+    given-names: Qiuyu
+    affiliation: Shanghai Jiao Tong University
+repository-code: "https://github.com/canghaimeng/Euler"
+preferred-citation:
+  type: software
+  title: "Euler: Human-Centered Mathematical Research with Frontier-Driven Agents"
+  authors:
+    - family-names: Chen
+      given-names: Qiuyu
+      affiliation: Shanghai Jiao Tong University

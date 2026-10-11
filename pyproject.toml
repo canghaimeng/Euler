@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "euler-math-research"
+version = "0.3.0.dev0"
+description = "Euler — human-centered mathematical research with frontier-driven agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Qiuyu Chen" }]
+maintainers = [{ name = "canghaimeng" }]
+keywords = ["mathematics", "proof-search", "multi-agent", "llm", "orchestration"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS :: MacOS X",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+# The truth layer (euler.core) is pure standard library. Per-module third-party
+# deps are declared as optional extras below and pulled in as each module lands
+# (see ARCHITECTURE.md).
+dependencies = ["tomli>=2; python_version < '3.11'"]
+
+[project.optional-dependencies]
+gateway = ["mcp"]                                   # euler.gateway — role-gated MCP server
+write-paper = ["mcp"]                                     # euler.write_paper   — write-paper MCP service
+human-summary = ["mcp"]                                   # euler.human_summary — human-summary MCP service
+verify = ["fastapi", "uvicorn", "pydantic"]         # euler.verify  — cold-start verifier HTTP service
+observability = ["fastapi", "uvicorn", "pydantic"]  # euler.observability — observation and opt-in researcher controls
+strategy = ["openai", "anthropic"]                  # euler.strategy — API consult transports
+demo = ["mcp", "fastapi", "uvicorn", "pydantic"]
+dev = ["pytest", "mcp", "fastapi", "uvicorn", "pydantic", "openai", "anthropic"]  # full test suite (all modules)
+
+[project.scripts]
+euler = "euler.orchestration.cli:main"
+euler-dashboard = "euler.observability.app:main"
+euler-dashboard-demo = "euler.observability.demo:main"
+euler-human-demo = "euler.observability.human_demo:main"
+euler-milestones = "euler.workspace.milestones:main"
+euler-team = "euler.workspace.team:main"
+
+[tool.setuptools.packages.find]
+include = ["euler*"]
+
+[tool.setuptools.package-data]
+"euler.core" = ["*.json"]
+"euler.observability" = ["proof_guides.json", "static/*", "static/vendor/*", "static/vendor/**/*"]

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# write-paper-mcp — launches the write-paper MCP service (role=main)
+# for Claude Code (.mcp.json) or any MCP client. Sources env so EULER_AGENTS_ROOT
+# etc. are set, and exports EULER_WRITE_PAPER_SKILL_DIR so the assembler finds the
+# operator-editable fixed files (role prompts / style / boilerplate).
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$HERE/../scripts/env.sh" >/dev/null 2>&1
+export EULER_ROLE="${EULER_ROLE:-main}"
+export EULER_AUTHOR="${EULER_AUTHOR:-main_agent}"
+export EULER_WRITE_PAPER_SKILL_DIR="${EULER_WRITE_PAPER_SKILL_DIR:-$EULER_ROOT/agents/skills/write-paper}"
+exec "$EULER_PY" -m euler.write_paper "$@"

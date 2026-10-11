@@ -1,0 +1,11 @@
+FROM python:3.12-slim
+WORKDIR /app
+COPY pyproject.toml README.md LICENSE NOTICE CREDITS.md ./
+COPY euler ./euler
+RUN pip install --no-cache-dir '.[observability]' \
+    && useradd --uid 10001 --create-home euler-viewer
+USER euler-viewer
+ENV EULER_DASHBOARD_PID_MODE=metadata
+EXPOSE 8099
+ENTRYPOINT ["euler-dashboard"]
+CMD ["--project", "/data/project", "--host", "0.0.0.0", "--port", "8099"]

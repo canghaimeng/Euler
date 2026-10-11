@@ -1,0 +1,20 @@
+[
+  {
+    "name": "cytoscape",
+    "version": "3.34.3",
+    "url": "https://registry.npmjs.org/cytoscape/-/cytoscape-3.34.3.tgz",
+    "archive_sha256": "5d9e479216ed58a5f1ac639e746fd7d9770c4393f8c355dd133abc90bcc9ff3f"
+  },
+  {
+    "name": "markdown-it",
+    "version": "14.1.0",
+    "url": "https://registry.npmjs.org/markdown-it/-/markdown-it-14.1.0.tgz",
+    "archive_sha256": "7c4fab4d4d39fe98206a7fbbed4b1e3578f2b70b6b69d309413e33eec140e19f"
+  },
+  {
+    "name": "katex",
+    "version": "0.16.11",
+    "url": "https://registry.npmjs.org/katex/-/katex-0.16.11.tgz",
+    "archive_sha256": "8c5494c5f7d8e8bf73ff3fe64d4bd09a340e4878b7eec9bbd9ef8d8f3e24193f"
+  }
+]

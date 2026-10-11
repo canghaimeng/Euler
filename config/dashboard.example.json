@@ -1,0 +1,8 @@
+{
+  "name": "My mathematical research project",
+  "description": "Proof exploration, dependencies and explicit acceptance evidence.",
+  "teams": [
+    {"id": "research", "name": "Research", "workers": ["codex", "grok"]},
+    {"id": "review", "name": "Independent review", "workers": ["reviewer"]}
+  ]
+}

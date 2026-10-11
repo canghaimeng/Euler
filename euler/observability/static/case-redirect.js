@@ -1,0 +1,1 @@
+const p=new URLSearchParams(location.search);const id=p.get('case')||'nikoghosyan';const q=new URLSearchParams({project:id});if(p.get('lang'))q.set('lang',p.get('lang'));location.replace('/?'+q.toString()+(p.get('mode')==='proof'?'#map':'#overview'));

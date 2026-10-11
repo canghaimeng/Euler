@@ -1,0 +1,14 @@
+include LICENSE NOTICE CREDITS.md CONTRIBUTING.md ARCHITECTURE.md
+include Dockerfile.dashboard .dockerignore
+recursive-include docs *.md
+recursive-include scripts *.sh *.py *.mjs
+recursive-include bin *
+recursive-include config *.example *.json
+recursive-include agents *.md *.json *.toml *.yaml *.yml *.py *.sh *.js *.css *.tex *.bib *.bst *.cls *.sty
+recursive-include examples *.md *.json *.py
+recursive-include euler/observability/static *
+include euler/observability/proof_guides.json
+global-exclude *.py[cod] .DS_Store
+prune runtime
+prune .venv
+prune agents/skills/human-summary/node_modules

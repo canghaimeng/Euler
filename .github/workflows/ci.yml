@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+name: tests
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # the supported floor and the current ceiling (requires-python >= 3.10)
+        python-version: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pinned Lean for kernel integration tests
+        shell: bash
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain leanprover/lean4:v4.34.1
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/lean" --version
+          "$HOME/.elan/bin/lake" --version
+      - name: Install (all extras)
+        run: pip install -e ".[dev]"
+      - name: Run the offline test suite
+        run: python -m pytest euler/ -q
+
+  wheel-and-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build distribution
+        run: |
+          python -m pip install build
+          python -m build
+      - name: Install wheel in isolated environment
+        run: |
+          python -m venv /tmp/euler-wheel
+          /tmp/euler-wheel/bin/pip install "$(echo dist/*.whl)[demo,observability]"
+      - name: Browser dependency
+        run: |
+          npm install --prefix /tmp/euler-dashboard-browser playwright@1.58.2
+          /tmp/euler-dashboard-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Run packaged workbench in a real browser
+        env:
+          EULER_BROWSER_PYTHON: /tmp/euler-wheel/bin/python
+          EULER_BROWSER_ARTIFACTS: /tmp/euler-release-ui
+        run: node scripts/check-release-ui.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: workbench-browser-evidence
+          path: /tmp/euler-release-ui

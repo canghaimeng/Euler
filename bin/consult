@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# consult — strategic consult (gpt_pro | claude | off transport per config).
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Wrapper guard, not an OS sandbox: workers must not invoke consult.
+if [ "${EULER_ROLE:-}" = "worker" ]; then
+  echo "consult refused for EULER_ROLE=worker (wrapper guard, not an OS sandbox)" >&2
+  exit 4
+fi
+. "$HERE/../scripts/env.sh"
+exec "$EULER_PY" -m euler.strategy "$@"

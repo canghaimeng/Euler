@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng.
+# euler CLI — the main agent's control surface over codex workers.
+# Self-locates the repo and sources the env, so it works without setup.
+# Must not be a symlink: Codex resolves dirname(symlink) to ~/.local/bin and
+# then cannot find euler/scripts/env.sh.
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$HERE/../scripts/env.sh"
+exec "$EULER_PY" -m euler.orchestration "$@"

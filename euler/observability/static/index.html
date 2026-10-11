@@ -1,0 +1,133 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- Adapted from Danus/Rethlas; modified for Euler Agent by canghaimeng. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#f6f4ef" />
+<title>Euler</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231c3a3f'/%3E%3Ctext x='11' y='29' fill='%23f3e3b0' font-size='32' font-family='Georgia'%3Ee%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="/static/vendor/katex.min.css" /><link rel="stylesheet" href="/static/style.css?v=branch-chat-final-20261011" />
+<script defer src="/static/vendor/cytoscape.min.js"></script><script defer src="/static/vendor/markdown-it.min.js"></script><script defer src="/static/vendor/katex.min.js"></script><script defer src="/static/i18n.js?v=acceptance-status-20261011"></script><script defer src="/static/app.js?v=acceptance-status-20261011"></script>
+<link rel="stylesheet" href="/static/reader-entry.css?v=toolbar-20261007" /><script defer src="/static/reader-entry.js?v=human-centered-guide-20261011"></script><link rel="stylesheet" href="/static/human.css?v=project-create-20261012" /><script defer src="/static/human.js?v=branch-chat-final-20261011"></script><script defer src="/static/milestones.js?v=branch-chat-final-20261011"></script><script defer src="/static/team.js?v=project-create-20261012"></script><script defer src="/static/creation.js?v=project-create-20261012"></script></head>
+<body>
+<svg class="icon-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="i-graph" viewBox="0 0 24 24"><path d="m7 7 10 3M7 7l3 11m7-8-7 8"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="10" r="3"/><circle cx="10" cy="19" r="3"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7"/><path d="m16 16 5 5"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5m10-4A8 8 0 0 0 5 5L4 7m16 10-1 2A8 8 0 0 1 5 16"/></symbol>
+<symbol id="i-fit" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><rect x="8" y="8" width="8" height="8" rx="1"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5zM4 21.5V5.5M8 7h8"/></symbol>
+<symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h5l3-8 4 16 3-8h5"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5zm-9 9 9 5 9-5M3 16l9 5 9-5"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0M12 18l4-6"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zM8 8h8M8 12h5"/></symbol>
+<symbol id="i-history" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6L3.5 8.5M3.5 4v4.5H8M12 7.5V12l3 2"/></symbol>
+</defs></svg>
+<a class="skip-link" href="#main" data-i18n="skip">跳至主要内容</a>
+<header class="masthead">
+<div class="masthead-row">
+<a class="brand" href="#overview" data-i18n-attr="aria-label:brand.aria"><span class="brand-mark" aria-hidden="true">e<span>·</span></span><span class="brand-name">Euler<small data-i18n="brand.sub">证明全景</small></span></a>
+<div class="project-picker"><label for="project-selector" data-i18n="nav.project">研究项目</label><select id="project-selector" data-i18n-attr="aria-label:nav.switchProject"><option data-i18n="nav.loadingProjects">正在读取项目…</option></select></div>
+<div class="sync-controls">
+<span class="sync-time" id="refresh-note">等待首次同步</span>
+<a class="euler-reader-link" href="/static/help.html" data-entry-page="help" data-entry-copy="help">Reader’s guide</a>
+<div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.aria"><button type="button" data-lang="zh" lang="zh-CN" data-lang-name aria-pressed="false">中文</button><button type="button" data-lang="en" lang="en" data-lang-name aria-pressed="true">EN</button></div>
+<button class="live-button" id="live-toggle" aria-pressed="true" data-i18n-attr="title:sync.liveTitle"><span class="status-dot"></span><span>实时同步</span></button>
+<button class="icon-button" id="refresh-button" data-i18n-attr="aria-label:sync.refresh,title:sync.refresh"><svg><use href="#i-refresh"/></svg></button>
+</div>
+</div>
+<nav class="view-tabs" data-i18n-attr="aria-label:tabs.aria">
+<a href="#overview" data-view="overview" class="view-tab" aria-current="page"><svg><use href="#i-layers"/></svg><span data-i18n="tab.overview">概览</span></a>
+<a href="#reader" data-view="reader" class="view-tab"><svg><use href="#i-book"/></svg><span data-i18n="tab.reader">证明阅读</span></a>
+<a href="#explore" data-view="explore" class="view-tab"><svg><use href="#i-pulse"/></svg><span data-i18n="tab.explore">研究现场</span><span class="tab-live" id="explore-live-dot" hidden></span></a>
+<a href="#map" data-view="map" class="view-tab"><svg><use href="#i-graph"/></svg><span data-i18n="tab.map">关系图</span></a>
+<a href="#ops" data-view="ops" class="view-tab"><svg><use href="#i-gauge"/></svg><span data-i18n="tab.ops">运行诊断</span><span class="tab-alert" id="ops-alert" hidden>!</span></a>
+<a href="#team" data-view="team" class="view-tab"><svg><use href="#i-chat"/></svg><span data-i18n="tab.team">团队交互</span><span class="tab-dot" id="team-tab-dot" hidden></span></a>
+</nav>
+</header>
+<main id="main" tabindex="-1">
+<div id="connection-banner" class="notice error" role="status" hidden></div>
+
+<section id="overview-view" class="view" data-panel="overview" data-i18n-attr="aria-label:overview.aria">
+<header class="hero" id="overview-hero" data-scroll-key="hero">
+<div class="hero-main">
+<div class="hero-kicker"><span id="project-name">连接研究工作区</span><span class="hero-kicker-sep" aria-hidden="true">·</span><span id="project-description">正在读取项目与证明结构</span></div>
+<h1 id="hero-title">正在读取研究问题…</h1>
+<div id="hero-statement" class="hero-statement"></div>
+</div>
+<aside class="verdict" id="verdict" aria-live="polite"><div class="verdict-loading" data-i18n="verdict.loading">正在读取主目标状态…</div></aside>
+</header>
+<details class="euler-reader-entry" data-scroll-key="reader-entry"><summary data-entry-copy="title">New to this project? Start with the question and the current gap.</summary><p data-entry-copy="body">Read the goal, follow current work, and open the evidence you need.</p><div class="entry-links"><a href="/static/help.html" data-entry-page="help" data-entry-copy="help">Reader’s guide</a></div></details>
+<section class="architecture" id="architecture" aria-labelledby="architecture-title" data-scroll-key="architecture">
+<div class="section-head"><div><h2 id="architecture-title" data-i18n="arch.title">证明结构</h2><p id="architecture-caption" data-i18n="arch.loading">正在整理已记录的证明模块…</p></div><div class="arch-tools" id="arch-tools"></div></div>
+<div class="arch-body">
+<div class="arch-canvas" id="arch-canvas"><svg class="arch-edges" id="arch-edges" aria-hidden="true"></svg><div class="arch-labels" id="arch-labels" aria-hidden="true"></div><div class="arch-columns" id="arch-columns"></div></div>
+<aside class="module-panel" id="module-panel" aria-live="polite" data-i18n-attr="aria-label:module.aria"></aside>
+</div>
+<div class="arch-legend" id="arch-legend"></div>
+</section>
+<details class="ladder-section" id="ladder-section" data-scroll-key="ladder">
+<summary><span class="ladder-summary-title" data-i18n="ladder.title">证据层级</span><span class="ladder-summary" id="ladder-summary">正在读取…</span><span class="ladder-summary-hint" aria-hidden="true"><span class="when-closed" data-i18n="ladder.hintClosed">展开五个层级 ▾</span><span class="when-open" data-i18n="ladder.hintOpen">收起 ▴</span></span></summary>
+<p class="ladder-caption" data-i18n="ladder.caption">从提出路线到主目标闭合，每一层分别记录、互不替代。</p>
+<ol class="ladder" id="evidence-ladder"></ol>
+</details>
+<div class="overview-split">
+<section class="overview-card" id="overview-routes" aria-labelledby="routes-title" data-scroll-key="routes"><div class="section-head compact"><h2 id="routes-title" data-i18n="routes.title">证明路线</h2><p data-i18n="routes.caption">路线记录证明方法与所需前提；路线完成不等于主目标闭合。</p></div><div id="route-list"></div></section>
+<section class="overview-card" id="overview-live" aria-labelledby="live-title" data-scroll-key="live"><div class="section-head compact"><div><h2 id="live-title" data-i18n="live.title">研究现场 · 正在发生</h2><p data-i18n="live.caption">团队当前任务与最新公开记录，包括失败与反例。</p></div><a class="text-link" href="#explore" data-view-link="explore"><span data-i18n="live.all">全部动态</span> <svg><use href="#i-arrow"/></svg></a></div><div id="live-summary"><div class="empty-inline" data-i18n="live.loading">正在读取研究现场…</div></div></section>
+</div>
+<section class="overview-card" id="overview-path" aria-labelledby="path-title" data-scroll-key="path"><div class="section-head compact"><h2 id="path-title" data-i18n="path.title">从这里开始读</h2><p id="path-caption" data-i18n="path.caption">按顺序打开每一步，查看前提、原始论证与证据。</p></div><ol class="reading-path" id="reading-path"></ol></section>
+<footer class="basis" id="overview-basis"></footer>
+</section>
+
+<section id="reader-view" class="view" data-panel="reader" data-i18n-attr="aria-label:reader.title" hidden>
+<div class="view-bar"><div class="view-bar-title"><h1 data-i18n="reader.title">证明阅读</h1><p data-i18n="reader.caption">一次只读一个结论。</p></div><div class="view-bar-tools"><div class="segmented" role="group" data-i18n-attr="aria-label:layer.aria"><button data-layer="research" class="selected" aria-pressed="true" data-i18n="layer.research">研究记录</button><button data-layer="facts" aria-pressed="false" data-i18n="layer.facts">入库事实</button></div><button class="button secondary" id="reader-to-map"><svg><use href="#i-graph"/></svg><span data-i18n="reader.toMap">在关系图中查看</span></button></div></div>
+<div class="proof-guide" id="proof-guide">
+<aside class="proof-outline" data-i18n-attr="aria-label:reader.outlineAria"><button id="guide-root" class="guide-root" data-i18n="reader.root">回到主目标</button><label class="search-box small"><svg><use href="#i-search"/></svg><input id="outline-search" type="search" data-i18n-attr="placeholder:reader.filter,aria-label:reader.filterAria" autocomplete="off"/></label><div class="proof-outline-heading"><span data-i18n="reader.contents">目录</span> <span id="proof-outline-count"></span></div><div id="proof-outline-items"></div></aside>
+<article class="proof-reader"><nav id="proof-breadcrumb" data-i18n-attr="aria-label:reader.pathAria"></nav><div id="proof-reading" aria-live="polite"><div class="empty-inline" data-i18n="reader.loading">正在加载证明阅读…</div></div></article>
+</div>
+</section>
+
+<section id="explore-view" class="view" data-panel="explore" data-i18n-attr="aria-label:explore.aria" hidden>
+<section id="exploration-live" class="exploration-live" data-i18n-attr="aria-label:explore.aria"><div class="empty-inline" data-i18n="explore.loading">正在读取公开研究进展…</div></section>
+</section>
+
+<section id="map-view" class="view" data-panel="map" data-i18n-attr="aria-label:map.title" hidden>
+<div class="view-bar"><div class="view-bar-title"><h1 data-i18n="map.title">关系图</h1><p data-i18n="map.caption">全部已记录的节点与关联。</p></div></div>
+<section class="panel graph-panel" id="graph-panel" data-i18n-attr="aria-label:map.aria">
+<div class="graph-toolbar"><div class="segmented map-views" role="group" data-i18n-attr="aria-label:map.viewAria"><button data-map-view="mainline" aria-pressed="false" data-i18n="map.view.mainline">主线</button><button data-map-view="frontier" aria-pressed="false" data-i18n="map.view.frontier">前沿</button><button data-map-view="all" aria-pressed="false" data-i18n="map.view.all">全部记录</button></div><div class="segmented" role="group" data-i18n-attr="aria-label:map.typeAria"><button class="selected" data-layer="research" aria-pressed="true" data-i18n="layer.research">研究记录</button><button data-layer="facts" aria-pressed="false" data-i18n="layer.facts">入库事实</button></div><label class="search-box"><svg><use href="#i-search"/></svg><input id="graph-search" type="search" data-i18n-attr="placeholder:map.search,aria-label:map.searchAria" autocomplete="off"/><kbd>/</kbd></label><button class="icon-button" id="list-toggle" aria-pressed="true" aria-controls="map-side" data-i18n-attr="aria-label:map.listToggle,title:map.listTitle"><svg><use href="#i-list"/></svg></button></div>
+<div class="graph-filters"><label><span data-i18n="map.team">团队</span><select id="graph-team" data-i18n-attr="aria-label:map.byTeam"><option value="" data-i18n="map.allTeams">全部团队</option></select></label><label><span data-i18n="map.author">作者</span><select id="graph-author" data-i18n-attr="aria-label:map.byAuthor"><option value="" data-i18n="map.allAuthors">全部作者</option></select></label><label><span data-i18n="map.status">状态</span><select id="graph-status" data-i18n-attr="aria-label:map.byStatus"><option value="" data-i18n="map.allStatuses">全部状态</option></select></label><label><span data-i18n="map.depth">深度</span><select id="graph-depth" data-i18n-attr="aria-label:map.byDepth"><option value="" data-i18n="map.allDepths">全部层级</option></select></label><label class="map-check"><input type="checkbox" id="show-evidence"/><span data-i18n="map.showEvidence">显示验收证据</span></label><label class="map-check" id="show-alternatives-wrap"><input type="checkbox" id="show-alternatives"/><span data-i18n="map.showAlternatives">显示搁置与被否定的路线</span></label><button id="clear-filters" class="text-button subtle" data-i18n="map.clear" hidden>清除筛选</button></div>
+<div id="map-phase" class="map-phase" aria-live="polite"></div>
+<div id="graph-notice" class="graph-notice" role="status" hidden></div>
+<div class="graph-body" id="graph-map"><aside class="map-side" id="map-side" data-i18n-attr="aria-label:map.sideAria"><div class="map-side-tabs" role="tablist"><button role="tab" data-side="focus" aria-selected="true" data-i18n="map.side.focus">导读</button><button role="tab" data-side="relations" aria-selected="false"><span data-i18n="map.side.relations">关系</span> <span class="tab-count" id="relation-list-count"></span></button><button role="tab" data-side="nodes" aria-selected="false"><span data-i18n="map.side.nodes">节点</span> <span class="tab-count" id="node-list-count"></span></button></div><div class="map-side-pane" id="map-focus" data-pane="focus" role="tabpanel"></div><div class="map-side-pane" id="relation-list" data-pane="relations" role="tabpanel" hidden><p class="side-note" data-i18n="map.relList.note">用 ↑↓ 浏览，回车选中。</p><div id="relation-list-items"></div></div><div class="map-side-pane node-list" id="node-list" data-pane="nodes" role="tabpanel" hidden><div id="node-list-items"></div></div></aside><div class="graph-stage"><div id="graph-edge-tooltip" class="graph-edge-tooltip" role="tooltip" hidden></div><div id="edge-chooser" class="edge-chooser" role="dialog" data-i18n-attr="aria-label:map.chooser.aria" hidden></div><div class="graph-hover-hint" data-i18n="map.hoverHint"></div><div id="graph-canvas" role="img" tabindex="-1" data-i18n-attr="aria-label:map.canvasAria"></div><div class="graph-empty" id="graph-empty"><span class="graph-empty-icon"><svg><use href="#i-graph"/></svg></span><strong data-i18n="map.emptyLoading">正在整理研究图谱</strong><span data-i18n="map.emptyLoadingDesc">加载真实节点与依赖关系…</span></div><div class="graph-corner-label" id="graph-corner-label">RESEARCH GRAPH</div><div class="graph-controls"><button id="zoom-in" class="icon-button" data-i18n-attr="aria-label:map.zoomIn,title:map.zoomInTitle">+</button><button id="zoom-out" class="icon-button" data-i18n-attr="aria-label:map.zoomOut,title:map.zoomOutTitle">−</button><span class="control-divider"></span><button id="graph-fit" class="icon-button" data-i18n-attr="aria-label:map.fit,title:map.fit"><svg><use href="#i-fit"/></svg></button><button id="graph-export" class="icon-button" data-i18n-attr="aria-label:map.export,title:map.exportTitle"><svg><use href="#i-download"/></svg></button></div><div class="layout-control"><label class="sr-only" for="graph-layout" data-i18n="map.layout">图谱布局</label><select id="graph-layout"><option value="layers" data-i18n="map.layoutLayers">依赖层级</option><option value="network" data-i18n="map.layoutNetwork">网络布局</option><option value="circle" data-i18n="map.layoutCircle">环形布局</option></select></div></div><aside class="graph-detail" id="graph-detail" data-i18n-attr="aria-label:map.detail" hidden><div class="detail-header"><span id="detail-kind">节点详情</span><button id="close-detail" class="icon-button" data-i18n-attr="aria-label:map.closeDetail"><svg><use href="#i-close"/></svg></button></div><div id="detail-body"></div></aside></div>
+<footer class="graph-footer"><span id="graph-stat" aria-live="polite" data-i18n="map.loadingStat">正在加载…</span><div class="graph-legend" id="graph-edge-legend"></div><div class="graph-legend" id="graph-legend"></div><button class="text-button subtle" id="graph-help" aria-expanded="false"><span data-i18n="map.help">使用说明</span> <svg><use href="#i-info"/></svg></button></footer><div class="graph-help" id="graph-help-text" data-i18n="map.helpText" hidden></div>
+</section>
+</section>
+
+<section id="ops-view" class="view" data-panel="ops" data-i18n-attr="aria-label:ops.aria" hidden>
+<div class="view-bar"><div class="view-bar-title"><h1 data-i18n="ops.title">运行诊断</h1><p data-i18n="ops.caption">团队进程、额度保护、验收报告与原始运行记录。</p></div></div>
+<div id="workspace-warnings" class="warning-stack" aria-live="polite"></div>
+<section id="quota-banner" class="quota-banner" data-i18n-attr="aria-label:ops.quotaAria" aria-live="polite" hidden></section>
+<section id="acceptance-panel" class="acceptance-panel" hidden></section>
+<section id="lead-panel" class="lead-panel" data-i18n-attr="aria-label:ops.leadAria" hidden></section>
+<section class="ops-section" aria-labelledby="teams-title" data-scroll-key="teams"><div class="section-head compact"><div><h2 id="teams-title" data-i18n="teams.title">团队与成员</h2><p id="teams-summary" class="muted"></p></div><div class="segmented" id="team-filters" role="group" data-i18n-attr="aria-label:teams.filterAria"><button data-team-filter="all" class="selected" aria-pressed="true" data-i18n="teams.all">全部团队</button><button data-team-filter="active" aria-pressed="false" data-i18n="teams.active">运行中</button><button data-team-filter="attention" aria-pressed="false" data-i18n="teams.attention">需关注</button></div></div><div id="teams-grid" class="teams-grid"></div></section>
+<section class="ops-section" id="activity-view" aria-labelledby="records-title" data-scroll-key="records"><div class="section-head compact"><div><h2 id="records-title" data-i18n="records.title">运行动态与研究记录</h2><p data-i18n="records.caption">运行动态来自控制事件；研究记录是团队发布的公开条目，未经验收。</p></div></div><div class="view-toolbar activity-toolbar"><div class="segmented" role="group" data-i18n-attr="aria-label:records.typeAria"><button data-record-view="activity" class="selected" aria-pressed="true" data-i18n="records.activity">运行动态</button><button data-record-view="memory" aria-pressed="false" data-i18n="records.memory">研究记录</button></div><label class="search-box"><svg><use href="#i-search"/></svg><input id="activity-search" type="search" data-i18n-attr="placeholder:records.search,aria-label:records.searchAria"/></label></div><div id="channel-tabs" class="channel-tabs" hidden></div><div id="activity-list" class="activity-list"></div></section>
+<div class="ops-footer"><span class="read-only-label"><svg><use href="#i-check"/></svg><span data-i18n="ops.readOnly">浏览不会启动推理 · 点击发送或启动后才执行研究</span></span><button id="logout-button" class="text-button subtle" data-i18n="ops.logout" hidden>断开访问令牌</button></div>
+</section>
+
+<section id="team-view" class="view" data-panel="team" data-i18n-attr="aria-label:team.title" hidden>
+<div class="view-bar"><div class="view-bar-title"><h1 data-i18n="team.title">团队交互</h1><p data-i18n="team.caption">选择分支与成员，阅读其对话记录并继续交流。阅读不会运行模型；只有点击发送才开始一轮。</p></div></div>
+<div class="team-layout" id="team-layout" data-mode="loading"></div>
+</section>
+
+<div id="project-loading" role="status" data-i18n="loading.project" hidden>正在切换项目，读取对应的证明结构与研究记录…</div>
+<footer class="page-footer"><span>Euler <span class="footer-dot">·</span> <span data-i18n="footer.brand">只读研究观测</span></span><span id="data-note" data-i18n="footer.note">内容来自所选项目已公开的记录；页面不重新验证证明。</span></footer>
+</main>
+<dialog id="auth-dialog" class="auth-dialog"><form id="auth-form"><div class="brand-mark">e<span>·</span></div><h2 data-i18n="auth.title">连接研究工作区</h2><p data-i18n="auth.text">此工作区启用了访问令牌。</p><label for="access-token" data-i18n="auth.label">访问令牌</label><input id="access-token" type="password" autocomplete="off" required/><p id="auth-error" class="auth-error" role="status"></p><div class="auth-actions"><button type="button" class="button secondary" id="auth-cancel" data-i18n="auth.cancel">取消</button><button type="submit" class="button primary" data-i18n="auth.submit">连接工作区</button></div></form></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+</body></html>

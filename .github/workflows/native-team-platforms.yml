@@ -1,0 +1,29 @@
+name: native team platforms
+on:
+  push:
+    branches: [main, feature/v12-human-intervention]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  native-protocol-and-isolation:
+    name: Native protocol doubles and OS isolation (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-14]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -e '.[dev]'
+      - run: python -m euler.workspace.team doctor
+      - name: Exercise real isolation and synthetic CLI sessions (no model calls)
+        run: python -m pytest euler/workspace/tests euler/providers/tests/test_providers.py --junitxml=native-team-tests.xml -q
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-team-${{ matrix.os }}
+          path: native-team-tests.xml
