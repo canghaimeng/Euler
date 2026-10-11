@@ -6,7 +6,9 @@ Affiliation: Shanghai Jiao Tong University
 
 This distribution includes work adapted from Danus and Rethlas.
 Copyright 2026 FrenzyMath. Both upstream projects are distributed under the
-Apache License 2.0. See CREDITS.md for project links, papers, and author lists.
+Apache License 2.0.
+Danus: https://github.com/frenzymath/Danus
+Rethlas: https://github.com/frenzymath/Rethlas
 
 Euler-original material and modifications in this distribution are offered under
 PolyForm Noncommercial 1.0.0. Upstream portions retain Apache-2.0 and bundled

@@ -92,7 +92,6 @@ def _is_current_surface(path: Path) -> bool:
         if top in {
             "README.md",
             "ARCHITECTURE.md",
-            "CREDITS.md",
             "NOTICE",
             "OPERATOR.md",
             "EULER_DISTRIBUTION.md",
@@ -180,7 +179,6 @@ def test_release_attribution_is_canonical() -> None:
     readme = (_REPO_ROOT / "README.md").read_text(encoding="utf-8")
     license_text = (_REPO_ROOT / "LICENSE").read_text(encoding="utf-8")
     notice = (_REPO_ROOT / "NOTICE").read_text(encoding="utf-8")
-    credits = (_REPO_ROOT / "CREDITS.md").read_text(encoding="utf-8")
 
     assert "family-names: Chen" in citation
     assert "given-names: Qiuyu" in citation
@@ -197,10 +195,8 @@ def test_release_attribution_is_canonical() -> None:
     assert (_REPO_ROOT / "LICENSING.md").is_file()
     assert "By canghaimeng" in notice
     assert "Affiliation: Shanghai Jiao Tong University" in notice
-    assert "Danus" in credits and "Rethlas" in credits
-    assert "FrenzyMath" in credits
-    assert "arXiv:2607.06447" in credits
-    assert "arXiv:2604.03789" in credits
+    assert "Danus" in notice and "Rethlas" in notice
+    assert "FrenzyMath" in notice
     assert "Bin Wu" not in citation
     assert "FrenzyMath" not in citation
     assert "Bin Wu" not in package

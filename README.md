@@ -18,7 +18,7 @@ Euler is a mathematical research agent system built to help researchers follow a
 <br>
 
 <p align="center">
-  <img src="docs/assets/euler-shared-state.svg" width="100%" alt="Conceptual diagram: researchers and an agent team read and extend one shared research state, whose frontier is its active projection. Proposals reach the Fact Graph only through the required evidence, and whole-team Git milestones can be restored into independent branches.">
+  <img src="docs/assets/euler-frontier-loop.png" width="100%" alt="Euler’s frontier-driven research loop: the problem contract and research memory inform the active frontier; agents receive bounded context to prove, refute, retrieve, or compute; verification and reconciliation update the frontier and Fact Graph.">
 </p>
 
 A mathematical investigation is much more than its final proof. Statements are sharpened, routes are proposed and abandoned, lemmas pick up dependencies, and checks pass or fail. Euler organizes these records into a **shared research state**: exact statements and scope, goals and steps, proof routes, dependencies, failed attempts, and the evidence registered for each record. That one structure serves two purposes.

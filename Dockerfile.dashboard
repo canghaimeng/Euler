@@ -1,6 +1,7 @@
 FROM python:3.12-slim
 WORKDIR /app
-COPY pyproject.toml README.md LICENSE NOTICE CREDITS.md ./
+COPY pyproject.toml README.md LICENSE LICENSING.md NOTICE ./
+COPY LICENSES ./LICENSES
 COPY euler ./euler
 RUN pip install --no-cache-dir '.[observability]' \
     && useradd --uid 10001 --create-home euler-viewer

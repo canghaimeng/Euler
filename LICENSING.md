@@ -25,7 +25,7 @@ release.
 Third-party portions retain their original licenses, including
 [Apache-2.0](LICENSES/Apache-2.0.txt) for upstream-derived code identified in the
 source notices. Provenance and required attributions are recorded in
-[CREDITS.md](CREDITS.md) and [NOTICE](NOTICE). Licenses for bundled frontend
+[NOTICE](NOTICE). Licenses for bundled frontend
 libraries and fonts are preserved under `euler/observability/static/vendor/`.
 Euler's noncommercial terms do not replace those component licenses.
 

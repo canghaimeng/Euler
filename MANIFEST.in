@@ -1,4 +1,4 @@
-include LICENSE LICENSING.md NOTICE CREDITS.md CONTRIBUTING.md ARCHITECTURE.md
+include LICENSE LICENSING.md NOTICE CONTRIBUTING.md ARCHITECTURE.md
 include Dockerfile.dashboard .dockerignore
 recursive-include docs *.md
 recursive-include scripts *.sh *.py *.mjs
@@ -14,4 +14,4 @@ prune .venv
 prune agents/skills/human-summary/node_modules
 
 recursive-include LICENSES *.txt
-recursive-include docs/assets *.svg
+recursive-include docs/assets *.svg *.png
