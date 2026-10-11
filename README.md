@@ -112,6 +112,4 @@ Euler is **source-available for noncommercial use**. Euler-original work and mod
 
 ## Acknowledgments
 
-We thank the authors and developers of [Danus](https://github.com/frenzymath/Danus) and [Rethlas](https://github.com/frenzymath/Rethlas) for their earlier explorations of AI-assisted mathematical research and for sharing their research and software with the community. Their work on mathematical memory, agent coordination, and proof verification provides valuable prior work for this field.
-
-Detailed references and software attributions are recorded in [CREDITS.md](CREDITS.md) and [NOTICE](NOTICE).
+Euler’s graph design draws on [Danus](https://github.com/frenzymath/Danus), and we consulted the [Rethlas](https://github.com/frenzymath/Rethlas) implementation during development. We thank the authors and contributors of both projects for sharing their work.
