@@ -34,9 +34,9 @@ Researchers and agents work on the same records, making the evolving investigati
 
 ## Core contributions
 
-### 1. Visualization that makes mathematical research understandable
+### 1. Hierarchical graphs that make reasoning easy to follow
 
-Euler makes the evolving investigation visible through **mathematical objects and their relationships**: the original question, assumptions, intermediate claims, proof dependencies, competing routes, failed attempts, open obligations, and verification evidence. Researchers can follow the main proof line and current frontier, select a node to highlight its dependency path, and progressively open its premises, argument, and sources. These views update during exploration, helping readers understand **what has been established, why a route changed, and what remains to be proved**. [Explore the three public cases →](https://canghaimeng.site/euler/cases/)
+Euler uses **hierarchical graphs** to show how premises lead to conclusions. Select any statement in the graph to trace its recorded relationships backward to **the premises it depends on** and forward to **the later conclusions it supports**, then open the corresponding proof steps and evidence. The graph highlights the route to the main conclusion and marks completed, open, and blocked steps. It updates as research progresses, giving readers an overview of the proof structure and current progress before they explore the details that interest them. [Explore the three public cases →](https://canghaimeng.site/euler/cases/)
 
 ### 2. Team milestones for returning, questioning, and branching
 
@@ -44,7 +44,7 @@ Euler lets researchers **return to any saved team milestone**. Each milestone pr
 
 ### 3. Structured representation for sustained mathematical reasoning
 
-Euler's **structured research-state representation** gives the team a persistent foundation for planning, context retrieval, collaboration, and verification. The full research history survives across sessions, while each task receives relevant statements, dependencies, prior failures, and evidence. This allows investigations to continue across successive context windows and resumable sessions, with explicit obligations guiding the next step. The design aims to strengthen mathematical reasoning through accumulated knowledge, coordinated exploration, and independent checks—supporting problems that demand sustained work beyond a single model response. [Read the architecture →](ARCHITECTURE.md)
+Euler's **structured research-state representation** gives the team a persistent foundation for planning, context retrieval, collaboration, and verification. The full research history survives across sessions, while each task receives relevant statements, dependencies, prior failures, and evidence. This allows investigations to continue across successive context windows and resumable sessions, with explicit obligations guiding the next step. The design aims to strengthen mathematical reasoning through accumulated knowledge, coordinated exploration, and independent checks—supporting problems that demand sustained work beyond a single model response. Separating unverified ideas from admitted conclusions, checking premise dependencies, and requiring independent verification also provide safeguards against hallucinations and accumulating errors in long-running single-agent reasoning, reducing the risk of carrying unsupported assertions forward as premises. [Read the architecture →](ARCHITECTURE.md)
 
 ## Highlights
 
