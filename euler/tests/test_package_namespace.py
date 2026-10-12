@@ -192,7 +192,7 @@ def test_release_attribution_is_canonical() -> None:
     metadata = tomllib.loads(package)["project"]
     assert [author["name"] for author in metadata["authors"]] == expected_names
     assert metadata["maintainers"] == [{"name": "Qiuyu Chen"}]
-    author_section = readme.split("## Authors and citation", 1)[1].split("## ", 1)[0]
+    author_section = readme.split("## 👥 Authors and citation", 1)[1].split("## ", 1)[0]
     displayed_names = [
         line.split("|")[1].strip().split("](", 1)[0].removeprefix("[")
         for line in author_section.splitlines()
