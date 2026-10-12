@@ -147,11 +147,6 @@ python -m pytest euler/ -q
 
 The suite runs offline, with local protocol doubles standing in for the provider CLIs. CI runs it on Python 3.10 and 3.13 and checks the packaged workbench in a real browser. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-<a id="license"></a>
-## 📄 License
-
-Euler's original work and modifications use the **[PolyForm Noncommercial License 1.0.0](LICENSE)**, which permits noncommercial use, modification, and redistribution under its terms. See [Licensing](LICENSING.md) for the licenses of included code, libraries, and papers.
-
 ## 👥 Authors and citation
 
 | Author | Affiliation |
@@ -164,6 +159,11 @@ Euler's original work and modifications use the **[PolyForm Noncommercial Licens
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
 
 To cite Euler, use [CITATION.cff](CITATION.cff).
+
+<a id="license"></a>
+## 📄 License
+
+Euler's original work and modifications use the **[PolyForm Noncommercial License 1.0.0](LICENSE)**, which permits noncommercial use, modification, and redistribution under its terms. See [Licensing](LICENSING.md) for the licenses of included code, libraries, and papers.
 
 ## 🙏 Acknowledgments
 

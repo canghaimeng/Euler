@@ -147,11 +147,6 @@ python -m pytest euler/ -q
 
 测试离线运行，使用本地协议模拟程序代替服务商 CLI。CI 覆盖 Python 3.10 和 3.13，并在真实浏览器中检查打包后的工作台。提交改动前请阅读 [贡献指南](CONTRIBUTING.zh.md)。
 
-<a id="许可"></a>
-## 📄 许可
-
-Euler 的原创工作与修改采用 **[PolyForm Noncommercial License 1.0.0](LICENSE)**，允许在协议条款下进行非商业使用、修改和再分发。所包含代码、库和论文的许可见[许可说明](LICENSING.zh.md)。
-
 ## 👥 作者与引用
 
 | 作者 | 单位 |
@@ -164,6 +159,11 @@ Euler 的原创工作与修改采用 **[PolyForm Noncommercial License 1.0.0](LI
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
 
 引用 Euler 请使用 [CITATION.cff](CITATION.cff)。
+
+<a id="许可"></a>
+## 📄 许可
+
+Euler 的原创工作与修改采用 **[PolyForm Noncommercial License 1.0.0](LICENSE)**，允许在协议条款下进行非商业使用、修改和再分发。所包含代码、库和论文的许可见[许可说明](LICENSING.zh.md)。
 
 ## 🙏 致谢
 
