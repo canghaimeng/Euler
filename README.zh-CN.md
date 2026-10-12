@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/euler-logo.svg" width="112" height="112" alt="Euler 标志">
-
-# Euler
+# <img src="docs/assets/euler-logo.svg" width="44" height="44" alt="Euler 标志"> Euler
 
 Euler 是一个帮助研究者理解和把握完整推导过程的数学研究智能体系统。团队成员共享结构化研究状态，让推导可供检查，并以此支持模型推理与团队协作。
 
