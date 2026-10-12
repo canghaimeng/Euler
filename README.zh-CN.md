@@ -152,12 +152,12 @@ Euler 的原创工作与修改采用 **[PolyForm Noncommercial License 1.0.0](LI
 
 | 作者 | 单位 |
 | --- | --- |
-| Qiuyu Chen | Shanghai Jiao Tong University |
-| Qi Wang | Institute of Automation, Chinese Academy of Sciences |
-| Liang Xu | Zhongguancun Academy, Beijing, China |
-| Xin Jin | Eastern Institute of Technology, Zhejiang, China |
-| Baao Xie | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
-| Wenjun Zeng | Eastern Institute of Technology, Zhejiang, China |
+| [Qiuyu Chen](https://github.com/canghaimeng) | Shanghai Jiao Tong University |
+| [Qi Wang](https://qiwang067.github.io/) | Institute of Automation, Chinese Academy of Sciences |
+| [Liang Xu](https://liangxuy.github.io/) | Zhongguancun Academy, Beijing, China |
+| [Xin Jin](https://jinx-ustc.github.io/jinxin.github.io/) | Eastern Institute of Technology, Zhejiang, China |
+| [Baao Xie](https://openreview.net/profile?id=~Baao_Xie3) | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
+| [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
 
 引用 Euler 请使用 [CITATION.cff](CITATION.cff)。
 

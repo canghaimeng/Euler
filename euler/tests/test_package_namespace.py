@@ -194,12 +194,12 @@ def test_release_attribution_is_canonical() -> None:
     assert metadata["maintainers"] == [{"name": "Qiuyu Chen"}]
     author_section = readme.split("## Authors and citation", 1)[1].split("## ", 1)[0]
     displayed_names = [
-        line.split("|")[1].strip()
+        line.split("|")[1].strip().split("](", 1)[0].removeprefix("[")
         for line in author_section.splitlines()
         if line.startswith("| ")
     ][2:]
     assert displayed_names == expected_names
-    assert "canghaimeng" not in author_section
+    assert "[Qiuyu Chen](https://github.com/canghaimeng)" in author_section
     assert "Copyright 2026 Qiuyu Chen (canghaimeng)" in license_text
     assert "PolyForm Noncommercial License 1.0.0" in license_text
     assert "PolyForm-Noncommercial-1.0.0" in citation
