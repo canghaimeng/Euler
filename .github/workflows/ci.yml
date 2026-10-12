@@ -32,6 +32,8 @@ jobs:
           "$HOME/.elan/bin/lake" --version
       - name: Install (all extras)
         run: pip install -e ".[dev]"
+      - name: Check bilingual documentation links
+        run: python scripts/check-doc-links.py
       - name: Run the offline test suite
         run: python -m pytest euler/ -q
 

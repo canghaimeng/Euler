@@ -1,5 +1,9 @@
 # Contributing to Euler
 
+<!-- language-nav -->
+[English](CONTRIBUTING.md) · [简体中文](CONTRIBUTING.zh.md) · [Back to Euler](README.md)
+<!-- /language-nav -->
+
 Explain the observed behavior, expected behavior, and a minimal reproduction. Use synthetic examples and remove credentials and private research records.
 
 Install with `python -m pip install -e '.[dev]'` and run `python -m pytest euler/ -q`. Subsystem tests live beside their modules. Preserve type annotations, license headers, and the surrounding code style.

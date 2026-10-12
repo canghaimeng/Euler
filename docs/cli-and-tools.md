@@ -1,5 +1,9 @@
 # Euler — CLI & Tools Reference
 
+<!-- language-nav -->
+[English](cli-and-tools.md) · [简体中文](cli-and-tools.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 Euler has two control surfaces:
 
 1. **The `euler` CLI** — lifecycle verbs you (or the main agent on your behalf) run

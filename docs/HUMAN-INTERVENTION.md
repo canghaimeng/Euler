@@ -1,5 +1,9 @@
 # Human research over the same mathematical state
 
+<!-- language-nav -->
+[English](HUMAN-INTERVENTION.md) · [简体中文](HUMAN-INTERVENTION.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 This development snapshot extends the standard Euler workbench. A researcher
 can inspect a real object, preview an exact follow-up statement/scope, confirm
 it, and explicitly start one bounded focused task. Original Facts and the root

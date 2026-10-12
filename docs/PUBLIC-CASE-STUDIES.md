@@ -1,10 +1,14 @@
 # Public case-study visualizations
 
-[Read the three cases](https://canghaimeng.site/euler/cases/) in the Euler workbench:
+<!-- language-nav -->
+[English](PUBLIC-CASE-STUDIES.md) · [简体中文](PUBLIC-CASE-STUDIES.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
 
-- [Lewis–Overton](https://canghaimeng.site/euler/cases/?project=lewis-overton)
-- [Nikoghosyan](https://canghaimeng.site/euler/cases/?project=nikoghosyan)
-- [Jankiewicz–Norin–Wise](https://canghaimeng.site/euler/cases/?project=jnw)
+[Read the three cases](https://canghaimeng.site/euler/cases/?lang=en) in the Euler workbench:
+
+- [Lewis–Overton](https://canghaimeng.site/euler/cases/?project=lewis-overton&lang=en)
+- [Nikoghosyan](https://canghaimeng.site/euler/cases/?project=nikoghosyan&lang=en)
+- [Jankiewicz–Norin–Wise](https://canghaimeng.site/euler/cases/?project=jnw&lang=en)
 
 The archive uses the workbench's overview, proof reader, research history and
 relation map. Readers can switch projects and languages, select nodes, highlight

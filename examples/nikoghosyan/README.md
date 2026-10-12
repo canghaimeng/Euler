@@ -1,8 +1,12 @@
 # Nikoghosyan's Hamiltonicity conjecture
 
+<!-- language-nav -->
+[English](README.md) · [简体中文](README.zh.md) · [Back to Euler](../../README.md)
+<!-- /language-nav -->
+
 **A 13-year-old open problem in Hamiltonian graph theory (2013–2026), completing the single-forbidden-subgraph classification for 1-tough Hamiltonicity.**
 
-[Explore the visualization](https://canghaimeng.site/euler/cases/?project=nikoghosyan) · [Read the paper (PDF)](paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture) · [Back to Euler](../../README.md#mathematical-results)
+[Explore the visualization](https://canghaimeng.site/euler/cases/?project=nikoghosyan&lang=en) · [Read the paper (PDF)](paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture) · [Back to Euler](../../README.md#mathematical-results)
 
 ## The question and why it matters
 
@@ -40,6 +44,6 @@ Understanding proof completeness requires tracing the main theorem back through 
 
 ## Interactive visualization
 
-[Open this case in the Euler workbench](https://canghaimeng.site/euler/cases/?project=nikoghosyan) to explore the main goal, proof dependencies, recorded research routes, and source-linked derivations. Select a graph node to highlight its proof path and open the supporting argument. The interface supports English and Chinese.
+[Open this case in the Euler workbench](https://canghaimeng.site/euler/cases/?project=nikoghosyan&lang=en) to explore the main goal, proof dependencies, recorded research routes, and source-linked derivations. Select a graph node to highlight its proof path and open the supporting argument. The interface supports English and Chinese.
 
 This public archive is a snapshot of the historical investigation. It provides reading and graph navigation; team messaging, project creation, milestone restoration, and model calls are disabled.

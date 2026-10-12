@@ -1,5 +1,9 @@
 # Euler — Operations Runbook
 
+<!-- language-nav -->
+[English](operations.md) · [简体中文](operations.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 Day-to-day operation of a Euler deployment: the persistent services, health checks,
 recovery after a restart, and unattended-operation helpers.
 
@@ -107,7 +111,7 @@ euler stop   <project> --force  # kill the process group now
 
 ## Unattended operation (examples, not core)
 
-Under `examples/ops/` (parameterized; nothing in the engine depends on them):
+Earlier deployments used parameterized scripts under `examples/ops/`. These are deployment helpers; the clean distribution does not include that directory:
 
 - `strategy-loop.sh <project>` — fire a strategy consult on a cadence
   (`EULER_STRATEGY_BEAT`, default ~2h) when an elaboration is present.

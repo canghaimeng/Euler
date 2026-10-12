@@ -1,5 +1,9 @@
 # Euler — Architecture
 
+<!-- language-nav -->
+[English](ARCHITECTURE.md) · [简体中文](ARCHITECTURE.zh.md) · [Back to Euler](README.md)
+<!-- /language-nav -->
+
 Euler's persistent mathematical state is shared by human researchers and
 frontier-driven agents. Exact scoped objects support inspection, task selection,
 bounded recall and verified updates. The main coordinates work; workers use the

@@ -11,15 +11,15 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 **English** · [简体中文](README.zh-CN.md)
 
-[Contributions](#core-contributions) · [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [中文指南](docs/DASHBOARD-GUIDE.zh.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license)
+[Contributions](#core-contributions) · [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license)
 
 </div>
 
 ## 🚀 News
 
-- 🎉 **[Lewis–Overton (2008)](examples/lewis-overton/)** — a conjecture proposed by NYU Silver Professor Michael Overton and Cornell Professor Adrian Lewis. Both of them are SIAM Fellows.
-- 🎉 **[Nikoghosyan (2013)](examples/nikoghosyan/)** — resolving a 13-year-old open problem in Hamiltonian graph theory and completing the single-forbidden-subgraph classification for 1-tough graphs.
-- 🎉 **[Jankiewicz–Norin–Wise (2017)](examples/jnw/)** — a geometric group theory problem co-proposed by James McGill Professor Daniel Wise, a Fellow of the Royal Society.
+- 🎉 **[Lewis–Overton (2008)](examples/lewis-overton/README.md)** — a conjecture proposed by NYU Silver Professor Michael Overton and Cornell Professor Adrian Lewis. Both of them are SIAM Fellows.
+- 🎉 **[Nikoghosyan (2013)](examples/nikoghosyan/README.md)** — resolving a 13-year-old open problem in Hamiltonian graph theory and completing the single-forbidden-subgraph classification for 1-tough graphs.
+- 🎉 **[Jankiewicz–Norin–Wise (2017)](examples/jnw/README.md)** — a geometric group theory problem co-proposed by James McGill Professor Daniel Wise, a Fellow of the Royal Society.
 
 <p align="center">
   <img src="docs/assets/euler-frontier-loop.png" width="100%" alt="Euler’s frontier-driven research loop: the problem contract and research memory inform the active frontier; agents receive bounded context to prove, refute, retrieve, or compute; verification and reconciliation update the frontier and Fact Graph.">
@@ -36,7 +36,7 @@ Researchers and agents work on the same records, making the evolving investigati
 
 ### 1. Hierarchical graphs that make reasoning easy to follow
 
-Euler uses **hierarchical graphs** to show how premises lead to conclusions. Select any statement in the graph to trace its recorded relationships backward to **the premises it depends on** and forward to **the later conclusions it supports**, then open the corresponding proof steps and evidence. The graph highlights the route to the main conclusion and marks completed, open, and blocked steps. It updates as research progresses, giving readers an overview of the proof structure and current progress before they explore the details that interest them. [Explore the three public cases →](https://canghaimeng.site/euler/cases/)
+Euler uses **hierarchical graphs** to show how premises lead to conclusions. Select any statement in the graph to trace its recorded relationships backward to **the premises it depends on** and forward to **the later conclusions it supports**, then open the corresponding proof steps and evidence. The graph highlights the route to the main conclusion and marks completed, open, and blocked steps. It updates as research progresses, giving readers an overview of the proof structure and current progress before they explore the details that interest them. [Explore the three public cases →](https://canghaimeng.site/euler/cases/?lang=en)
 
 ### 2. Team milestones for returning, questioning, and branching
 
@@ -63,7 +63,7 @@ Euler's **structured research-state representation** gives the team a persistent
 > [!NOTE]
 > You need **Python 3.10+** and **Git**; running a team also needs **Linux** with Landlock ABI 3+ or **macOS**. Install from a source checkout, which includes the agent contracts and skills that teams use.
 
-**Local workflow demo (no model account needed).** Built-in scripts use the integer identity `n + 0 = n`, with a preset proof and checker responses, to run Euler's task dispatch, submission, and acceptance-record workflow and display the resulting example in the workbench. An empty exploration project is also included. This makes no model calls and uses no model quota; it helps you check the installation and learn the interface. To read actual research cases, open the [three public visualizations](https://canghaimeng.site/euler/cases/).
+**Local workflow demo (no model account needed).** Built-in scripts use the integer identity `n + 0 = n`, with a preset proof and checker responses, to run Euler's task dispatch, submission, and acceptance-record workflow and display the resulting example in the workbench. An empty exploration project is also included. This makes no model calls and uses no model quota; it helps you check the installation and learn the interface. To read actual research cases, open the [three public visualizations](https://canghaimeng.site/euler/cases/?lang=en).
 
 ```bash
 git clone https://github.com/canghaimeng/Euler.git && cd Euler
@@ -101,7 +101,7 @@ To restore a team from a graph node, choose its associated saved milestone and r
 
 ## Mathematical results
 
-**[Explore the three interactive case studies →](https://canghaimeng.site/euler/cases/)**
+**[Explore the three interactive case studies →](https://canghaimeng.site/euler/cases/?lang=en)**
 
 Browse proof structure, research history, and dependency graphs; select a node to follow its premises, derivation, and sources. The public site displays historical research snapshots with team messaging, restoration, and model calls disabled.
 
@@ -109,25 +109,25 @@ Browse proof structure, research history, and dependency graphs; select a node t
 
 BFGS is a widely used optimization method, yet its behavior on nonsmooth functions remains subtle. A 2008 conjecture of Adrian Lewis and Michael Overton predicted a rate determined by the problem parameter alone. Two executions on the same objective are shown to have different sharp trial-normalized rates throughout an open parameter interval, establishing that initialization can matter even in this simple one-dimensional model.
 
-**[Explore the case →](examples/lewis-overton/)** · [Visualization](https://canghaimeng.site/euler/cases/?project=lewis-overton) · [Paper](examples/lewis-overton/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate)
+**[Explore the case →](examples/lewis-overton/README.md)** · [Visualization](https://canghaimeng.site/euler/cases/?project=lewis-overton&lang=en) · [Paper](examples/lewis-overton/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate)
 
 ### Nikoghosyan: completing a Hamiltonicity classification
 
 A Hamilton cycle visits every vertex exactly once. The relationship between toughness and Hamiltonicity has been studied since the 1970s. The Nikoghosyan result supplies the final missing case in the single-forbidden-subgraph classification: combined with Li, Broersma and Zhang's earlier theorem, it determines exactly which forbidden induced graphs make 1-toughness sufficient for Hamiltonicity. [Classification background](https://ris.utwente.nl/ws/files/253281133/Li2016forbidden.pdf).
 
-**[Explore the case →](examples/nikoghosyan/)** · [Visualization](https://canghaimeng.site/euler/cases/?project=nikoghosyan) · [Paper](examples/nikoghosyan/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture)
+**[Explore the case →](examples/nikoghosyan/README.md)** · [Visualization](https://canghaimeng.site/euler/cases/?project=nikoghosyan&lang=en) · [Paper](examples/nikoghosyan/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture)
 
 ### Jankiewicz–Norin–Wise: the limits of a bridge from graphs to geometry
 
 Legal systems provide combinatorial certificates used in the study of right-angled Coxeter groups. Jankiewicz, Norin, and Wise asked whether a graph could satisfy strong connectivity and curvature conditions while excluding these certificates throughout its four-connected subgraphs. A 33-vertex construction answers that four-connected question, clarifying the limits of this certificate method. The result covers four-connected ordinary subgraphs; the three-connected variant is a separate question.
 
-**[Explore the case →](examples/jnw/)** · [Visualization](https://canghaimeng.site/euler/cases/?project=jnw) · [Paper](examples/jnw/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction)
+**[Explore the case →](examples/jnw/README.md)** · [Visualization](https://canghaimeng.site/euler/cases/?project=jnw&lang=en) · [Paper](examples/jnw/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction)
 
 ## Documentation
 
 | Guide | Covers |
 | --- | --- |
-| [User guide](docs/DASHBOARD-GUIDE.md) · [中文](docs/DASHBOARD-GUIDE.zh.md) | Setup, a first project, the six views, milestones, troubleshooting |
+| [User guide](docs/DASHBOARD-GUIDE.md) | Setup, a first project, the six views, milestones, troubleshooting |
 | [CLI support](docs/CLI-SUPPORT.md) | Providers, OS isolation, native session recovery |
 | [Team recovery](docs/TEAM-RECOVERY.md) · [Milestones](docs/RESEARCH-MILESTONES.md) | What a checkpoint saves and how restoration works |
 | [Human intervention](docs/HUMAN-INTERVENTION.md) | Optional bounded single tasks |

@@ -1,5 +1,9 @@
 # Euler — Getting Started
 
+<!-- language-nav -->
+[English](getting-started.md) · [简体中文](getting-started.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 For the current personal Codex/Grok team, visualization and state-recovery workflow,
 start with the [user guide](DASHBOARD-GUIDE.md). This page documents the lower-level
 worker and verifier deployment.
@@ -16,7 +20,7 @@ state. Read `concepts.md` first for the mental model; after this, see
   everything else (Node, a venv, the codex CLI) into `runtime/` — no system-wide
   installs.
 - Authenticated CLIs for the selected components: the active verifier defaults to
-  `cursor-agent`; Codex-backed renderers or legacy workers still require either
+  Grok Build; Codex-backed renderers or legacy workers still require either
   an OpenAI-compatible API key or a ChatGPT Pro/Plus subscription.
 - *(Only for `write-paper`)* a LaTeX engine on `PATH` (`pdflatex`, or `tectonic` via
   `scripts/install-tex.sh`). Not needed for proving.

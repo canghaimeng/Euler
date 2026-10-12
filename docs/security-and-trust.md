@@ -1,5 +1,9 @@
 # Euler — Verification and access controls
 
+<!-- language-nav -->
+[English](security-and-trust.md) · [简体中文](security-and-trust.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 This guide describes how Euler checks mathematical results, controls access to shared records, and runs provider processes.
 
 ## 1. Verification evidence

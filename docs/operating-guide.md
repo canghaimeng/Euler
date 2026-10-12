@@ -1,5 +1,9 @@
 # Euler — Operating Guide
 
+<!-- language-nav -->
+[English](operating-guide.md) · [简体中文](operating-guide.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 How to run a project end to end, from the operator's seat. You do this by **talking
 to the main agent** (codex) in natural language; it runs the CLI verbs and
 tools for you. Read `concepts.md` first; set up with `getting-started.md`.

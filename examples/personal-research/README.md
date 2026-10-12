@@ -1,5 +1,9 @@
 # Research workspace setup example
 
+<!-- language-nav -->
+[English](README.md) · [简体中文](README.zh.md) · [Back to Euler](../../README.md)
+<!-- /language-nav -->
+
 This initializer turns an editable research definition into a ready-to-connect workspace using Euler's public setup functions. Setup runs locally; provider sessions are connected in a separate step.
 
 ```bash

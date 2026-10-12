@@ -1,8 +1,12 @@
 # The Jankiewicz–Norin–Wise legal-system problem
 
+<!-- language-nav -->
+[English](README.md) · [简体中文](README.zh.md) · [Back to Euler](../../README.md)
+<!-- /language-nav -->
+
 **An explicit solution of the four-connected form of Jankiewicz–Norin–Wise Problem 5.2.**
 
-[Explore the visualization](https://canghaimeng.site/euler/cases/?project=jnw) · [Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.13419) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction) · [Back to Euler](../../README.md#mathematical-results)
+[Explore the visualization](https://canghaimeng.site/euler/cases/?project=jnw&lang=en) · [Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.13419) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction) · [Back to Euler](../../README.md#mathematical-results)
 
 ## The question and why it matters
 
@@ -42,6 +46,6 @@ Ruling out individual candidates can motivate a change of construction strategy 
 
 ## Interactive visualization
 
-[Open this case in the Euler workbench](https://canghaimeng.site/euler/cases/?project=jnw) to explore the main goal, proof dependencies, recorded research routes, and source-linked derivations. Select a graph node to highlight its proof path and open the supporting argument. The interface supports English and Chinese.
+[Open this case in the Euler workbench](https://canghaimeng.site/euler/cases/?project=jnw&lang=en) to explore the main goal, proof dependencies, recorded research routes, and source-linked derivations. Select a graph node to highlight its proof path and open the supporting argument. The interface supports English and Chinese.
 
 This public archive is a snapshot of the historical investigation. It provides reading and graph navigation; team messaging, project creation, milestone restoration, and model calls are disabled.

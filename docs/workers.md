@@ -1,5 +1,9 @@
 # Worker launch examples
 
+<!-- language-nav -->
+[English](workers.md) · [简体中文](workers.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 Portable relative paths only. From the repo root:
 
 ```bash

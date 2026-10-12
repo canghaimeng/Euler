@@ -1,5 +1,9 @@
 # Euler 项目工作台
 
+<!-- language-nav -->
+[English](DASHBOARD.md) · [简体中文](DASHBOARD.zh.md) · [返回 Euler](../README.zh-CN.md)
+<!-- /language-nav -->
+
 网页集中展示一个 Euler 项目的团队运行状态、Fact Graph、Research Graph 和公开研究记录。
 它使用原项目的数据；打开网页不会运行模型。配置好的个人项目可以通过明确的发送、保存、恢复或启动操作继续研究，无需额外的网页控制令牌。
 
@@ -62,7 +66,7 @@ ssh -N -L 8099:127.0.0.1:8099 user@research-host
 
 然后在 Mac 打开 `http://127.0.0.1:8099`。模型登录、文件和团队都位于研究主机，
 浏览器只是你的操作入口。单用户工作流无需再次填写网页控制令牌。
-团队与恢复配置见[团队恢复](TEAM-RECOVERY.md)，完整入门顺序见[使用指南](DASHBOARD-GUIDE.zh.md)。
+团队与恢复配置见[团队恢复](TEAM-RECOVERY.zh.md)，完整入门顺序见[使用指南](DASHBOARD-GUIDE.zh.md)。
 
 ## 团队交互
 
@@ -95,4 +99,4 @@ BASE_URL=http://127.0.0.1:8099 node scripts/check-release-ui.mjs
 它检查实际导航、筛选、图交互及移动端，并保存截图。API 测试覆盖多团队、状态来源、
 损坏/缺失记录、只读访问和可选口令；安装包另需检查静态资源是否齐全。
 
-验证命令与提交要求见[贡献指南](../CONTRIBUTING.md)。
+验证命令与提交要求见[贡献指南](../CONTRIBUTING.zh.md)。

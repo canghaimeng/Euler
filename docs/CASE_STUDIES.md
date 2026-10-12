@@ -1,5 +1,9 @@
 # Historical projects in the standard Euler workbench
 
+<!-- language-nav -->
+[English](CASE_STUDIES.md) · [简体中文](CASE_STUDIES.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 Historical projects use the same overview, proof reader, live-research view,
 relation map and diagnostics as native Euler projects. They are selected through
 the existing project catalog. The cases share the standard workbench layout.

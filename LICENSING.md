@@ -1,5 +1,9 @@
 # Licensing
 
+<!-- language-nav -->
+[English](LICENSING.md) · [简体中文](LICENSING.zh.md) · [Back to Euler](README.md)
+<!-- /language-nav -->
+
 Euler's original work and modifications use the **[PolyForm Noncommercial License 1.0.0](LICENSE)**. The license permits use, modification, and redistribution for noncommercial purposes, including the research, educational, and personal uses defined in its terms.
 
 ## Licenses by material

@@ -1,5 +1,9 @@
 # Euler — Configuration Reference
 
+<!-- language-nav -->
+[English](configuration.md) · [简体中文](configuration.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 All host- and account-specific configuration lives in gitignored `config/*.env`
 files; **no path or secret is hardcoded** elsewhere. `scripts/env.sh` sources the
 chain and fills defaults:

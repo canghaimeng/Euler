@@ -1,5 +1,9 @@
 # Euler user guide: start research, understand progress, and continue exploring
 
+<!-- language-nav -->
+[English](DASHBOARD-GUIDE.md) · [简体中文](DASHBOARD-GUIDE.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 Euler is a mathematical research agent system designed to help researchers follow and understand the entire mathematical reasoning process. It preserves statements, assumptions, proof dependencies, candidate routes, failed approaches, and verification evidence in a shared, structured research state. Researchers can use that state to see what has been established, which premises remain unresolved, why a route is blocked, and how each step is supported. The same representation supplies the agent team with explicit dependencies, relevant context, and evidence boundaries, and is designed to strengthen its reasoning and coordination. Through the visual workbench, researchers can trace the agents’ research paths and key changes of direction, ask questions about specific mathematical objects, and restore a node’s associated saved team state into an independent workspace for further investigation. Even before the main problem is solved, partial results, failed attempts, and open questions remain available for understanding, inspection, and continued research.
 
 This guide explains how to configure and start a team, understand research progress in the browser, and continue through conversation and milestone recovery. Its example uses Codex as the lead for planning and coordination, and Grok as an assistant for checking and exploration; this is one team configuration.
@@ -49,7 +53,7 @@ Install and sign in to the CLIs you plan to use:
 | `grok` | `grok` | `grok login` |
 | `cursor` | `cursor-agent` | `cursor-agent login` |
 
-Installation references: [Codex](https://github.com/openai/codex), [Claude Code](https://code.claude.com/docs/en/setup), [Gemini CLI](https://geminicli.com/docs/get-started/installation/), Grok, and [Cursor](https://cursor.com/docs/cli/installation). The Gemini team adapter targets the 0.63 ACP and session-storage interfaces; Cursor must expose ACP with `session/load`. See `docs/CLI-SUPPORT.md` for the implementation and validation matrix.
+Installation references: [Codex](https://github.com/openai/codex), [Claude Code](https://code.claude.com/docs/en/setup), [Gemini CLI](https://geminicli.com/docs/get-started/installation/), Grok, and [Cursor](https://cursor.com/docs/cli/installation). The Gemini team adapter targets the 0.63 ACP and session-storage interfaces; Cursor must expose ACP with `session/load`. See [CLI support](CLI-SUPPORT.md) for the implementation and validation matrix.
 
 On a remote host without a browser, use the CLI's device sign-in where available, such as `codex login --device-auth`. Credentials stay in local provider configuration, private member runtime directories, or the OS Keychain; they are excluded from milestones and browser responses.
 
@@ -227,7 +231,7 @@ Assess progress through the main goal and its outstanding prerequisites. A singl
 
 ## 10. How a step becomes Closed
 
-Team members write drafts, review arguments, and record proposed steps. A step becomes **Closed** when Euler registers evidence meeting your contract's required level. For `LLM_CHECKED_PROOF` that means an independent proof check through Euler's verification service; for `KERNEL_CHECKED_PROOF`, a Lean kernel check. These verification tools are set up separately from this guide's first path; `docs/cli-and-tools.md` lists the commands (`euler kernel-check`, `euler admit-fact`).
+Team members write drafts, review arguments, and record proposed steps. A step becomes **Closed** when Euler registers evidence meeting your contract's required level. For `LLM_CHECKED_PROOF` that means an independent proof check through Euler's verification service; for `KERNEL_CHECKED_PROOF`, a Lean kernel check. These verification tools are set up separately from this guide's first path; [CLI and tools](cli-and-tools.md) lists the commands (`euler kernel-check`, `euler admit-fact`).
 
 Until then, read the team's drafts yourself. Members write files inside the project folder; for example, the lead's working folder is `projects/euclid-primes/workers/codex/`. Milestones save these files. The workbench displays registered Euler records and their verification results. Open the project folder to read other files.
 
@@ -301,7 +305,7 @@ If restoring with a selected step fails with "selected object does not exist in 
 | What starts work | **Send** | Recover sessions, then **Send** | Read-only inspection; configured single tasks have a separate Start action |
 | Use it to | Push the current line of work forward | Explore an alternative, or keep going after the turn allowance is used | Check precisely what a step says and depends on |
 
-When single tasks are configured, the third entry reads **Inspect object · single task**. It can then prepare one bounded task for a separately configured worker; that task is previewed and starts only when you press its own Start button. It is off in the example workspace; see `docs/HUMAN-INTERVENTION.md` to set it up.
+When single tasks are configured, the third entry reads **Inspect object · single task**. It can then prepare one bounded task for a separately configured worker; that task is previewed and starts only when you press its own Start button. It is off in the example workspace; see [Human intervention](HUMAN-INTERVENTION.md) to set it up.
 
 ## 17. Pausing, quotas and limits
 
@@ -368,7 +372,7 @@ Restore milestones from the browser: it registers the new workspace in the proje
 
 ## Further reading
 
-- `docs/TEAM-RECOVERY.md`: how native sessions are saved, forked and isolated.
-- `docs/RESEARCH-MILESTONES.md`: what a milestone contains and excludes.
-- `docs/cli-and-tools.md`: verification commands that register checked evidence.
-- `docs/HUMAN-INTERVENTION.md`: optional single tasks.
+- [Team recovery](TEAM-RECOVERY.md): how native sessions are saved, forked and isolated.
+- [Research milestones](RESEARCH-MILESTONES.md): what a milestone contains and excludes.
+- [CLI and tools](cli-and-tools.md): verification commands that register checked evidence.
+- [Human intervention](HUMAN-INTERVENTION.md): optional single tasks.

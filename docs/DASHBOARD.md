@@ -1,5 +1,9 @@
 # Visual research workbench
 
+<!-- language-nav -->
+[English](DASHBOARD.md) · [简体中文](DASHBOARD.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 The personal workbench presents projects, teams, proof dependencies and ongoing exploration.
 Opening a page only reads records. Configured projects also support explicit team
 questions, local checkpoints, independent restoration and focused tasks, without
@@ -102,4 +106,4 @@ See [Contributing](../CONTRIBUTING.md) for validation commands.
 The guide/story sources are `docs/DASHBOARD-GUIDE{,.zh}.md` and
 the build script copies the user guides into packaged static assets.
 
-[Reader's guide](DASHBOARD-GUIDE.md) · [中文部署说明](DASHBOARD.zh.md)
+[Reader's guide](DASHBOARD-GUIDE.md)

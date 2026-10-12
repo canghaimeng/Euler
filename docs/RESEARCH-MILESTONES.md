@@ -1,5 +1,9 @@
 # Git research milestones and restored questions
 
+<!-- language-nav -->
+[English](RESEARCH-MILESTONES.md) · [简体中文](RESEARCH-MILESTONES.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 The normal workbench opens real projects with their full graphs. Use a separate catalog for the small `euler-human-demo` projects, which exercise the intervention protocol.
 
 ## Save a complete team workspace

@@ -1,8 +1,12 @@
 # The Lewis–Overton BFGS rate conjecture
 
+<!-- language-nav -->
+[English](README.md) · [简体中文](README.zh.md) · [Back to Euler](../../README.md)
+<!-- /language-nav -->
+
 **Initialization-dependent sharp rates for a classical BFGS model studied by Lewis and Overton.**
 
-[Explore the visualization](https://canghaimeng.site/euler/cases/?project=lewis-overton) · [Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.09872) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate) · [Back to Euler](../../README.md#mathematical-results)
+[Explore the visualization](https://canghaimeng.site/euler/cases/?project=lewis-overton&lang=en) · [Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.09872) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate) · [Back to Euler](../../README.md#mathematical-results)
 
 ## The question and why it matters
 
@@ -34,6 +38,6 @@ A counterexample is meaningful only against the exact conjectured assertion. Eul
 
 ## Interactive visualization
 
-[Open this case in the Euler workbench](https://canghaimeng.site/euler/cases/?project=lewis-overton) to explore the main goal, proof dependencies, recorded research routes, and source-linked derivations. Select a graph node to highlight its proof path and open the supporting argument. The interface supports English and Chinese.
+[Open this case in the Euler workbench](https://canghaimeng.site/euler/cases/?project=lewis-overton&lang=en) to explore the main goal, proof dependencies, recorded research routes, and source-linked derivations. Select a graph node to highlight its proof path and open the supporting argument. The interface supports English and Chinese.
 
 This public archive is a snapshot of the historical investigation. It provides reading and graph navigation; team messaging, project creation, milestone restoration, and model calls are disabled.

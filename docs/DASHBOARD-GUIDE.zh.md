@@ -1,5 +1,9 @@
 # Euler 使用指南：启动研究、理解进展与继续探索
 
+<!-- language-nav -->
+[English](DASHBOARD-GUIDE.md) · [简体中文](DASHBOARD-GUIDE.zh.md) · [返回 Euler](../README.zh-CN.md)
+<!-- /language-nav -->
+
 Euler 是一个旨在增进研究者对数学研究与推导全过程的把握和理解的智能体系统。它将命题、假设、证明依赖、候选路线、失败路径与验证证据保存在团队共享的结构化研究状态中，使研究者能够看清已经建立了什么、仍缺少哪些前提、某条路线为何受阻，以及每一步结论由哪些依据支持。同一结构化表征也为 Agent 团队提供明确的依赖关系、相关上下文与证据边界，旨在增强模型的推理能力和团队协作效果。通过可视化工作台，研究者可以快速梳理 Agent 的研究路线和关键转折，针对具体数学对象追问，也可以将团队恢复到某个节点关联的已保存状态，在独立工作区开展人工干预与后续探索。即使最终问题尚未解决，局部结论、失败记录和未解决问题仍可供理解、检查与继续研究使用。
 
 本指南介绍如何配置并启动团队、理解网页中的研究进展，以及通过对话和里程碑恢复继续研究。示例使用 Codex 作为主 Agent 负责规划与协调，Grok 作为助手负责核查与探索；这是本指南采用的一种团队配置。
@@ -35,7 +39,7 @@ source .venv/bin/activate
 python -m pip install -e '.[gateway,observability]'
 ```
 
-这会安装后面要用的命令：`euler`、`euler-team`、`euler-milestones`，以及工作台服务。每打开一个新终端，都要先进入 `Euler-Agent` 文件夹并运行 `source .venv/bin/activate`，再使用这些命令。
+这会安装后面要用的命令：`euler`、`euler-team`、`euler-milestones`，以及工作台服务。每打开一个新终端，都要先进入 `Euler` 文件夹并运行 `source .venv/bin/activate`，再使用这些命令。
 
 ## 3. 登录模型命令行工具
 
@@ -49,7 +53,7 @@ python -m pip install -e '.[gateway,observability]'
 | `grok` | `grok` | `grok login` |
 | `cursor` | `cursor-agent` | `cursor-agent login` |
 
-安装说明见 [Codex](https://github.com/openai/codex)、[Claude Code](https://code.claude.com/docs/en/setup)、[Gemini CLI](https://geminicli.com/docs/get-started/installation/)、Grok、[Cursor](https://cursor.com/docs/cli/installation)。Gemini 团队适配使用 0.63 的 ACP 与会话存储接口；Cursor 需提供 `acp` 与 `session/load` 接口。Euler 的适配与验证范围见 `docs/CLI-SUPPORT.md`。
+安装说明见 [Codex](https://github.com/openai/codex)、[Claude Code](https://code.claude.com/docs/en/setup)、[Gemini CLI](https://geminicli.com/docs/get-started/installation/)、Grok、[Cursor](https://cursor.com/docs/cli/installation)。Gemini 团队适配使用 0.63 的 ACP 与会话存储接口；Cursor 需提供 `acp` 与 `session/load` 接口。Euler 的适配与验证范围见 [CLI 与平台支持](CLI-SUPPORT.zh.md)。
 
 无本地浏览器的远程机器可使用相应 CLI 的设备登录流程，例如 `codex login --device-auth`。凭据保存在本机服务商配置中，按需提供给成员私有运行目录或系统 Keychain，不进入里程碑或网页。
 
@@ -57,7 +61,7 @@ python -m pip install -e '.[gateway,observability]'
 
 ## 4. 描述你的问题和团队
 
-一个项目的一切都从一个定义文件开始。在 `Euler-Agent` 文件夹中复制示例，然后编辑副本：
+一个项目的一切都从一个定义文件开始。在 `Euler` 文件夹中复制示例，然后编辑副本：
 
 ```bash
 mkdir -p ~/euler-research
@@ -228,7 +232,7 @@ ssh -N -L 8130:127.0.0.1:8130 you@your-linux-computer
 
 ## 10. 一个步骤怎样变成“已闭合”
 
-团队成员负责编写草稿、审阅论证并记录提议。Euler 登记了满足问题契约所要求级别的验证证据后，步骤会更新为**已闭合**。对 `LLM_CHECKED_PROOF` 来说，这意味着通过 Euler 验证服务做一次独立的证明检查；对 `KERNEL_CHECKED_PROOF` 来说，意味着一次 Lean 内核检查。这些验证工具需要单独配置，不在本指南的第一条路径之内；相关命令（`euler kernel-check`、`euler admit-fact`）见 `docs/cli-and-tools.md`。
+团队成员负责编写草稿、审阅论证并记录提议。Euler 登记了满足问题契约所要求级别的验证证据后，步骤会更新为**已闭合**。对 `LLM_CHECKED_PROOF` 来说，这意味着通过 Euler 验证服务做一次独立的证明检查；对 `KERNEL_CHECKED_PROOF` 来说，意味着一次 Lean 内核检查。这些验证工具需要单独配置，不在本指南的第一条路径之内；相关命令（`euler kernel-check`、`euler admit-fact`）见 [命令行与工具](cli-and-tools.zh.md)。
 
 在那之前，请你自己阅读团队写的草稿。成员把文件写在项目文件夹里，例如主 Agent 的工作文件夹是 `projects/euclid-primes/workers/codex/`。里程碑会保存这些文件。工作台展示已登记的 Euler 记录及其验证结果；其他文件可以在项目文件夹中查阅。
 
@@ -302,7 +306,7 @@ ssh -N -L 8130:127.0.0.1:8130 you@your-linux-computer
 | 什么会启动工作 | **发送** | 恢复会话后点击**发送** | 查看记录；配置单项任务后可另行启动 |
 | 用来做什么 | 推进当前这条研究线 | 探索另一种思路，或在轮次额度用完后继续 | 准确核对一个步骤说了什么、依赖什么 |
 
-配置了单项任务时，第三项会显示为**查看对象 · 单项任务**。这时它可以为一个单独配置的 worker 准备一次受限任务：任务要先预览，只有按下它自己的启动按钮才会开始。示例工作区没有启用这一功能；如需设置，见 `docs/HUMAN-INTERVENTION.md`。
+配置了单项任务时，第三项会显示为**查看对象 · 单项任务**。这时它可以为一个单独配置的 worker 准备一次受限任务：任务要先预览，只有按下它自己的启动按钮才会开始。示例工作区没有启用这一功能；如需设置，见 [研究干预](HUMAN-INTERVENTION.zh.md)。
 
 ## 17. 暂停、额度与上限
 
@@ -369,7 +373,7 @@ Euler 从不用摘要或一个新的 Agent 冒充缺失的成员对话。这类�
 
 ## 延伸阅读
 
-- `docs/TEAM-RECOVERY.md`：原生会话如何保存、分叉和隔离。
-- `docs/RESEARCH-MILESTONES.md`：里程碑包含什么、排除什么。
-- `docs/cli-and-tools.md`：登记检查证据的验证命令。
-- `docs/HUMAN-INTERVENTION.md`：可选的单项任务。
+- [团队恢复](TEAM-RECOVERY.zh.md)：原生会话如何保存、分叉和隔离。
+- [研究里程碑](RESEARCH-MILESTONES.zh.md)：里程碑包含什么、排除什么。
+- [命令行与工具](cli-and-tools.zh.md)：登记检查证据的验证命令。
+- [研究干预](HUMAN-INTERVENTION.zh.md)：可选的单项任务。

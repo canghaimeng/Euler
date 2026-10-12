@@ -1,5 +1,9 @@
 # CLI and platform support
 
+<!-- language-nav -->
+[English](CLI-SUPPORT.md) · [简体中文](CLI-SUPPORT.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 Euler's persistent teams accept `codex`, `claude-code` (alias `claude`), `gemini`,
 `grok`, and `cursor` (alias `cursor-agent`). A team has one lead and any chosen
 assistants or reviewers. A Codex member is optional. The independent worker

@@ -1,5 +1,9 @@
 # Restore a whole research team
 
+<!-- language-nav -->
+[English](TEAM-RECOVERY.md) · [简体中文](TEAM-RECOVERY.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 A team checkpoint combines two things in one private Git commit:
 
 - Project files, mathematical state, dependencies, assignments and receipts.

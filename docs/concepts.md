@@ -1,5 +1,9 @@
 # Euler — Concepts
 
+<!-- language-nav -->
+[English](concepts.md) · [简体中文](concepts.zh.md) · [Back to Euler](../README.md)
+<!-- /language-nav -->
+
 A human's mental model of Euler: the actors, the memory layers, the one truth
 boundary, and the lifecycle of a project. Read this before the operating guide.
 For the design map and module index see `../ARCHITECTURE.md`; for the trust model
