@@ -28,7 +28,7 @@ Original question: Nikoghosyan, _Disconnected Forbidden Subgraphs, Toughness and
 
 ## Lean formalization
 
-The [separate Lean repository](https://github.com/canghaimeng/Nikoghosyan-conjecture) contains the complete development and build instructions. It currently requires repository access.
+The [separate Lean repository](https://github.com/canghaimeng/Nikoghosyan-conjecture) contains the complete development and build instructions. It is publicly accessible.
 
 The [main declarations](https://github.com/canghaimeng/Nikoghosyan-conjecture/blob/69f3a96df66dd425db33353f2a0bdaa235862050/Nikoghosyan/Main.lean) produce an original-edge spanning cycle and a `SimpleGraph.IsHamiltonian` corollary. The project uses Lean/mathlib 4.34.1; its recorded axiom audit lists only `propext`, `Classical.choice`, and `Quot.sound` for the two exported targets.
 
