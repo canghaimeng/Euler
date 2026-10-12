@@ -2,7 +2,7 @@
 
 **Initialization-dependent sharp rates for a classical BFGS model studied by Lewis and Overton.**
 
-[Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.09872) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate) · [Back to Euler](../../README.md#mathematical-results)
+[Explore the visualization](https://canghaimeng.site/euler/cases/?project=lewis-overton) · [Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.09872) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate) · [Back to Euler](../../README.md#mathematical-results)
 
 ## The question and why it matters
 
@@ -31,3 +31,9 @@ Start with [OpenIntervalFamily.lean](https://github.com/canghaimeng/lewis-overto
 ## What this case illustrates
 
 A counterexample is meaningful only against the exact conjectured assertion. Euler's scope and dependency views help readers distinguish the two executions, their assumptions, and the precise rate comparison they establish.
+
+## Interactive visualization
+
+[Open this case in the Euler workbench](https://canghaimeng.site/euler/cases/?project=lewis-overton) to explore the main goal, proof dependencies, recorded research routes, and source-linked derivations. Select a graph node to highlight its proof path and open the supporting argument. The interface supports English and Chinese.
+
+This public archive is a snapshot of the historical investigation. It provides reading and graph navigation; team messaging, project creation, milestone restoration, and model calls are disabled.

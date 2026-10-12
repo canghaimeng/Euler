@@ -2,7 +2,7 @@
 
 **An explicit solution of the four-connected form of Jankiewicz–Norin–Wise Problem 5.2.**
 
-[Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.13419) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction) · [Back to Euler](../../README.md#mathematical-results)
+[Explore the visualization](https://canghaimeng.site/euler/cases/?project=jnw) · [Read the paper (PDF)](paper.pdf) · [arXiv](https://arxiv.org/abs/2609.13419) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction) · [Back to Euler](../../README.md#mathematical-results)
 
 ## The question and why it matters
 
@@ -39,3 +39,9 @@ General obstruction arguments are structural proofs; several finite graph certif
 ## What this case illustrates
 
 Ruling out individual candidates can motivate a change of construction strategy without ruling out an entire graph class. Euler records these local failures and route changes so that researchers can understand what each unsuccessful attempt actually establishes.
+
+## Interactive visualization
+
+[Open this case in the Euler workbench](https://canghaimeng.site/euler/cases/?project=jnw) to explore the main goal, proof dependencies, recorded research routes, and source-linked derivations. Select a graph node to highlight its proof path and open the supporting argument. The interface supports English and Chinese.
+
+This public archive is a snapshot of the historical investigation. It provides reading and graph navigation; team messaging, project creation, milestone restoration, and model calls are disabled.

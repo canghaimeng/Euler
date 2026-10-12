@@ -2,7 +2,7 @@
 
 **A 13-year-old open problem in Hamiltonian graph theory (2013–2026), completing the single-forbidden-subgraph classification for 1-tough Hamiltonicity.**
 
-[Read the paper (PDF)](paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture) · [Back to Euler](../../README.md#mathematical-results)
+[Explore the visualization](https://canghaimeng.site/euler/cases/?project=nikoghosyan) · [Read the paper (PDF)](paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture) · [Back to Euler](../../README.md#mathematical-results)
 
 ## The question and why it matters
 
@@ -37,3 +37,9 @@ The [main declarations](https://github.com/canghaimeng/Nikoghosyan-conjecture/bl
 ## What this case illustrates
 
 Understanding proof completeness requires tracing the main theorem back through all its prerequisites and checking that no extra assumptions entered the final statement. This is the kind of dependency and evidence boundary that Euler makes inspectable.
+
+## Interactive visualization
+
+[Open this case in the Euler workbench](https://canghaimeng.site/euler/cases/?project=nikoghosyan) to explore the main goal, proof dependencies, recorded research routes, and source-linked derivations. Select a graph node to highlight its proof path and open the supporting argument. The interface supports English and Chinese.
+
+This public archive is a snapshot of the historical investigation. It provides reading and graph navigation; team messaging, project creation, milestone restoration, and model calls are disabled.

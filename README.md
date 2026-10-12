@@ -9,6 +9,8 @@ Euler is a mathematical research agent system built to help researchers follow a
 [![Linux | macOS](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-57606A)](docs/CLI-SUPPORT.md)
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-8250DF)](LICENSING.md)
 
+**English** · [简体中文](README.zh-CN.md)
+
 [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [中文指南](docs/DASHBOARD-GUIDE.zh.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license)
 
 </div>
@@ -85,23 +87,27 @@ To restore a team from a graph node, choose its associated saved milestone and r
 
 ## Mathematical results
 
+**[Explore the three interactive case studies →](https://canghaimeng.site/euler/cases/)**
+
+Browse proof structure, research history, and dependency graphs; select a node to follow its premises, derivation, and sources. The public site displays historical research snapshots with team messaging, restoration, and model calls disabled.
+
 ### Lewis–Overton: initialization changes the asymptotic rate
 
 BFGS is a widely used optimization method, yet its behavior on nonsmooth functions remains subtle. A 2008 conjecture of Adrian Lewis and Michael Overton predicted a rate determined by the problem parameter alone. Two executions on the same objective are shown to have different sharp trial-normalized rates throughout an open parameter interval, establishing that initialization can matter even in this simple one-dimensional model.
 
-**[Explore the case →](examples/lewis-overton/)** · [Paper](examples/lewis-overton/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate)
+**[Explore the case →](examples/lewis-overton/)** · [Visualization](https://canghaimeng.site/euler/cases/?project=lewis-overton) · [Paper](examples/lewis-overton/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate)
 
 ### Nikoghosyan: completing a Hamiltonicity classification
 
 A Hamilton cycle visits every vertex exactly once. The relationship between toughness and Hamiltonicity has been studied since the 1970s. The Nikoghosyan result supplies the final missing case in the single-forbidden-subgraph classification: combined with Li, Broersma and Zhang's earlier theorem, it determines exactly which forbidden induced graphs make 1-toughness sufficient for Hamiltonicity. [Classification background](https://ris.utwente.nl/ws/files/253281133/Li2016forbidden.pdf).
 
-**[Explore the case →](examples/nikoghosyan/)** · [Paper](examples/nikoghosyan/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture)
+**[Explore the case →](examples/nikoghosyan/)** · [Visualization](https://canghaimeng.site/euler/cases/?project=nikoghosyan) · [Paper](examples/nikoghosyan/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture)
 
 ### Jankiewicz–Norin–Wise: the limits of a bridge from graphs to geometry
 
 Legal systems provide combinatorial certificates used in the study of right-angled Coxeter groups. Jankiewicz, Norin, and Wise asked whether a graph could satisfy strong connectivity and curvature conditions while excluding these certificates throughout its four-connected subgraphs. A 33-vertex construction answers that four-connected question, clarifying the limits of this certificate method. The result covers four-connected ordinary subgraphs; the three-connected variant is a separate question.
 
-**[Explore the case →](examples/jnw/)** · [Paper](examples/jnw/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction)
+**[Explore the case →](examples/jnw/)** · [Visualization](https://canghaimeng.site/euler/cases/?project=jnw) · [Paper](examples/jnw/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/JNWLegalSystemObstruction)
 
 ## Documentation
 

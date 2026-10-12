@@ -1,4 +1,5 @@
 include LICENSE LICENSING.md NOTICE CONTRIBUTING.md ARCHITECTURE.md
+include README.zh-CN.md
 include Dockerfile.dashboard .dockerignore
 recursive-include docs *.md
 recursive-include scripts *.sh *.py *.mjs
