@@ -108,19 +108,19 @@ To restore a team from a graph node, choose its associated saved milestone and r
 
 Browse proof structure, research history, and dependency graphs; select a node to follow its premises, derivation, and sources. The public site displays historical research snapshots with team messaging, restoration, and model calls disabled.
 
-### 🔬 Lewis–Overton: initialization changes the asymptotic rate
+### Lewis–Overton: initialization changes the asymptotic rate
 
 BFGS is a widely used optimization method, yet its behavior on nonsmooth functions remains subtle. A 2008 conjecture of Adrian Lewis and Michael Overton predicted a rate determined by the problem parameter alone. Two executions on the same objective are shown to have different sharp trial-normalized rates throughout an open parameter interval, establishing that initialization can matter even in this simple one-dimensional model.
 
 **[Explore the case →](examples/lewis-overton/README.md)** · [Visualization](https://canghaimeng.site/euler/cases/?project=lewis-overton&lang=en) · [Paper](examples/lewis-overton/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/lewis-overton-bfgs-rate)
 
-### 🧭 Nikoghosyan: completing a Hamiltonicity classification
+### Nikoghosyan: completing a Hamiltonicity classification
 
 A Hamilton cycle visits every vertex exactly once. The relationship between toughness and Hamiltonicity has been studied since the 1970s. The Nikoghosyan result supplies the final missing case in the single-forbidden-subgraph classification: combined with Li, Broersma and Zhang's earlier theorem, it determines exactly which forbidden induced graphs make 1-toughness sufficient for Hamiltonicity. [Classification background](https://ris.utwente.nl/ws/files/253281133/Li2016forbidden.pdf).
 
 **[Explore the case →](examples/nikoghosyan/README.md)** · [Visualization](https://canghaimeng.site/euler/cases/?project=nikoghosyan&lang=en) · [Paper](examples/nikoghosyan/paper.pdf) · [Lean formalization](https://github.com/canghaimeng/Nikoghosyan-conjecture)
 
-### 🌉 Jankiewicz–Norin–Wise: the limits of a bridge from graphs to geometry
+### Jankiewicz–Norin–Wise: the limits of a bridge from graphs to geometry
 
 Legal systems provide combinatorial certificates used in the study of right-angled Coxeter groups. Jankiewicz, Norin, and Wise asked whether a graph could satisfy strong connectivity and curvature conditions while excluding these certificates throughout its four-connected subgraphs. A 33-vertex construction answers that four-connected question, clarifying the limits of this certificate method. The result covers four-connected ordinary subgraphs; the three-connected variant is a separate question.
 

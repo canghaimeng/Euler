@@ -108,19 +108,19 @@ python examples/personal-research/create_workspace.py \
 
 公开展示提供项目切换、证明阅读、研究历史和交互式依赖图。可点击节点查看前提、推导及来源，或突出其证明路径。展示使用历史研究快照，团队调用、发送消息和恢复研究功能均已关闭。
 
-### 🔬 Lewis–Overton：初始化如何影响渐近速率
+### Lewis–Overton：初始化如何影响渐近速率
 
 BFGS 是广泛使用的优化方法，其在非光滑问题上的行为仍有许多值得研究之处。Adrian Lewis 与 Michael Overton 于 2008 年提出一个猜想，预期收敛速率只由问题参数决定。同一目标函数的两种初始化，在一个开放参数区间内产生不同的精确 trial-normalized 渐近速率，表明即使在这个简单的一维模型中，初始化也会影响速率。
 
 **[了解案例 →](examples/lewis-overton/README.zh.md)** · [可视化](https://canghaimeng.site/euler/cases/?project=lewis-overton&lang=zh) · [论文](examples/lewis-overton/paper.pdf) · [Lean 形式化](https://github.com/canghaimeng/lewis-overton-bfgs-rate)
 
-### 🧭 Nikoghosyan：补齐 Hamilton 性分类
+### Nikoghosyan：补齐 Hamilton 性分类
 
 Hamilton 圈恰好经过图的每个顶点一次。图的韧性与 Hamilton 性之间的关系自 20 世纪 70 年代起持续受到研究。Nikoghosyan 猜想的证明补齐了单一禁用诱导子图分类的最后一种情况：结合 Li–Broersma–Zhang 的已有结果，可以确定哪些禁用诱导子图条件使 1-toughness 足以保证 Hamilton 性。[分类背景](https://ris.utwente.nl/ws/files/253281133/Li2016forbidden.pdf)。
 
 **[了解案例 →](examples/nikoghosyan/README.zh.md)** · [可视化](https://canghaimeng.site/euler/cases/?project=nikoghosyan&lang=zh) · [论文](examples/nikoghosyan/paper.pdf) · [Lean 形式化](https://github.com/canghaimeng/Nikoghosyan-conjecture)
 
-### 🌉 Jankiewicz–Norin–Wise：图与几何之间一种证书方法的边界
+### Jankiewicz–Norin–Wise：图与几何之间一种证书方法的边界
 
 Legal systems 是研究直角 Coxeter 群时使用的组合证书。Jankiewicz、Norin 与 Wise 询问，是否存在满足强连通性与曲率条件，却在所有四连通普通子图中都没有 legal system 的图。一个 33 顶点构造回答了这个四连通问题，说明该证书方法的适用边界。更强的三连通变体是另一个问题。
 
