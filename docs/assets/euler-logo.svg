@@ -1,29 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">Euler logo</title>
-  <desc id="desc">A connected mathematical reasoning graph with a highlighted path</desc>
-  <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#182B50"/>
-      <stop offset="1" stop-color="#0B1731"/>
-    </linearGradient>
-    <linearGradient id="path" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#45D8C1"/>
-      <stop offset="1" stop-color="#F3C969"/>
-    </linearGradient>
-  </defs>
-  <rect x="4" y="4" width="120" height="120" rx="26" fill="url(#background)"/>
-  <rect x="4.5" y="4.5" width="119" height="119" rx="25.5" fill="none" stroke="#6B83A9" stroke-opacity=".45"/>
-  <g fill="none" stroke="#718CB5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".58">
-    <path d="M27 34 51 24 78 38 103 27M27 34 37 72 24 99M27 34 78 38 61 64 37 72M51 24 61 64 92 82 103 27M37 72 61 64 92 82 104 103M24 99 37 72 92 82 104 103"/>
+  <title id="title">Euler seven bridges logo</title>
+  <desc id="desc">Four land areas joined by seven bridges in the Königsberg bridge graph</desc>
+  <g fill="none" stroke="#4774C8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M27 30 C46 6 101 10 106 64"/>
+    <path d="M27 98 C46 122 101 118 106 64"/>
+    <path d="M27 30 Q47 28 66 64"/>
+    <path d="M27 30 Q32 51 66 64"/>
+    <path d="M27 98 Q32 77 66 64"/>
+    <path d="M27 98 Q47 100 66 64"/>
+    <path d="M66 64 H106" stroke="#E9A463"/>
   </g>
-  <path d="M24 99 37 72 61 64 78 38 103 27" fill="none" stroke="url(#path)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <g fill="#D7E5F6">
-    <circle cx="27" cy="34" r="5"/><circle cx="51" cy="24" r="5"/>
-    <circle cx="92" cy="82" r="5"/><circle cx="104" cy="103" r="5"/>
+  <g fill="#FFFFFF" stroke="#315CA9" stroke-width="4">
+    <circle cx="27" cy="30" r="8"/>
+    <circle cx="27" cy="98" r="8"/>
+    <circle cx="66" cy="64" r="10"/>
+    <circle cx="106" cy="64" r="8"/>
   </g>
-  <g fill="#F3C969" stroke="#0B1731" stroke-width="2">
-    <circle cx="24" cy="99" r="7"/><circle cx="37" cy="72" r="7"/>
-    <circle cx="61" cy="64" r="7"/><circle cx="78" cy="38" r="7"/>
-    <circle cx="103" cy="27" r="7"/>
-  </g>
+  <circle cx="66" cy="64" r="3" fill="#E9A463"/>
 </svg>

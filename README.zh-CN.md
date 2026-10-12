@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/euler-logo.svg" width="112" height="112" alt="Euler 标志：相互连接的数学推理关系图">
+<img src="docs/assets/euler-logo.svg" width="112" height="112" alt="Euler 标志：柯尼斯堡七桥问题的关系图">
 
 # Euler
 
