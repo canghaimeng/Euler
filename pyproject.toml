@@ -12,8 +12,14 @@ description = "Euler — structured research state for understanding mathematica
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "PolyForm-Noncommercial-1.0.0; third-party components retain their licenses" }
-authors = [{ name = "Qiuyu Chen" }]
-maintainers = [{ name = "canghaimeng" }]
+authors = [
+    { name = "Qiuyu Chen" },
+    { name = "Qi Wang" },
+    { name = "Liang Xu" },
+    { name = "Baao Xie" },
+    { name = "Wenjun Zeng" },
+]
+maintainers = [{ name = "Qiuyu Chen" }]
 keywords = ["mathematics", "proof-search", "multi-agent", "llm", "orchestration"]
 classifiers = [
     "Development Status :: 3 - Alpha",

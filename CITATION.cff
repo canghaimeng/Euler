@@ -6,6 +6,18 @@ authors:
   - family-names: Chen
     given-names: Qiuyu
     affiliation: Shanghai Jiao Tong University
+  - family-names: Wang
+    given-names: Qi
+    affiliation: Institute of Automation, Chinese Academy of Sciences
+  - family-names: Xu
+    given-names: Liang
+    affiliation: Zhongguancun Academy, Beijing, China
+  - family-names: Xie
+    given-names: Baao
+    affiliation: Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China
+  - family-names: Zeng
+    given-names: Wenjun
+    affiliation: Eastern Institute of Technology, Zhejiang, China
 repository-code: "https://github.com/canghaimeng/Euler"
 preferred-citation:
   type: software
@@ -14,3 +26,15 @@ preferred-citation:
     - family-names: Chen
       given-names: Qiuyu
       affiliation: Shanghai Jiao Tong University
+    - family-names: Wang
+      given-names: Qi
+      affiliation: Institute of Automation, Chinese Academy of Sciences
+    - family-names: Xu
+      given-names: Liang
+      affiliation: Zhongguancun Academy, Beijing, China
+    - family-names: Xie
+      given-names: Baao
+      affiliation: Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China
+    - family-names: Zeng
+      given-names: Wenjun
+      affiliation: Eastern Institute of Technology, Zhejiang, China

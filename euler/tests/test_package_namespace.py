@@ -9,6 +9,11 @@ import ast
 import re
 from pathlib import Path
 
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python 3.10
+    import tomli as tomllib
+
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _PACKAGE_ROOT = _REPO_ROOT / "euler"
 _THIS_FILE = Path(__file__).resolve()
@@ -183,9 +188,18 @@ def test_release_attribution_is_canonical() -> None:
     assert "family-names: Chen" in citation
     assert "given-names: Qiuyu" in citation
     assert citation.count("affiliation: Shanghai Jiao Tong University") == 2
-    assert 'authors = [{ name = "Qiuyu Chen" }]' in package
-    assert 'maintainers = [{ name = "canghaimeng" }]' in package
-    assert "**By canghaimeng**" in readme
+    expected_names = ["Qiuyu Chen", "Qi Wang", "Liang Xu", "Baao Xie", "Wenjun Zeng"]
+    metadata = tomllib.loads(package)["project"]
+    assert [author["name"] for author in metadata["authors"]] == expected_names
+    assert metadata["maintainers"] == [{"name": "Qiuyu Chen"}]
+    author_section = readme.split("## Authors and citation", 1)[1].split("## ", 1)[0]
+    displayed_names = [
+        line.split("|")[1].strip()
+        for line in author_section.splitlines()
+        if line.startswith("| ")
+    ][2:]
+    assert displayed_names == expected_names
+    assert "canghaimeng" not in author_section
     assert "Copyright 2026 Qiuyu Chen (canghaimeng)" in license_text
     assert "PolyForm Noncommercial License 1.0.0" in license_text
     assert "PolyForm-Noncommercial-1.0.0" in citation

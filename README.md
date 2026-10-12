@@ -128,9 +128,17 @@ The suite runs offline, with local protocol doubles standing in for the provider
 
 Euler's original work and modifications use the **[PolyForm Noncommercial License 1.0.0](LICENSE)**, which permits noncommercial use, modification, and redistribution under its terms. See [Licensing](LICENSING.md) for the licenses of included code, libraries, and papers.
 
-## Author and citation
+## Authors and citation
 
-**By canghaimeng** (Qiuyu Chen, 陈秋宇), Shanghai Jiao Tong University. To cite the software, use [CITATION.cff](CITATION.cff).
+| Author | Affiliation |
+| --- | --- |
+| Qiuyu Chen | Shanghai Jiao Tong University |
+| Qi Wang | Institute of Automation, Chinese Academy of Sciences |
+| Liang Xu | Zhongguancun Academy, Beijing, China |
+| Baao Xie | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
+| Wenjun Zeng | Eastern Institute of Technology, Zhejiang, China |
+
+To cite Euler, use [CITATION.cff](CITATION.cff).
 
 ## Acknowledgments
 
