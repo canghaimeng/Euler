@@ -1,4 +1,5 @@
 include LICENSE LICENSING.md NOTICE CONTRIBUTING.md ARCHITECTURE.md
+include CITATION.cff uv.lock
 include README.zh-CN.md ARCHITECTURE.zh.md CONTRIBUTING.zh.md LICENSING.zh.md
 include Dockerfile.dashboard .dockerignore
 recursive-include docs *.md

@@ -17,7 +17,7 @@ Only `*.env.example` templates are committed; copy them to the real names and ed
 The `bin/` wrappers source `env.sh` for you. Values below are the defaults from
 `scripts/env.sh` / `config/euler.env.example`.
 
-## Frontier v0.2 checks and audits
+## Frontier checks and audits
 
 | Variable | Purpose |
 |---|---|
@@ -27,8 +27,8 @@ The `bin/` wrappers source `env.sh` for you. Values below are the defaults from
 | `EULER_VERIFY_CONFIG_ID` | Operator version identifier for a changed verifier deployment at the same endpoint |
 | `EULER_GROK_AUTH_FILE` | Source auth file linked into isolated Grok homes |
 
-See [Frontier v0.2](../ARCHITECTURE.md) for complete JSON examples, isolated
-Grok configuration and legacy-artifact migration limits.
+See [Architecture](../ARCHITECTURE.md) for the control-layer interfaces and
+verification boundaries.
 
 ## Codex backend (workers + verifier)
 

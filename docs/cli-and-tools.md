@@ -15,8 +15,8 @@ Euler has two control surfaces:
 You mostly talk to the main agent in natural language; it runs the CLI verbs and
 calls the tools. This page is the reference for what exists.
 
-For constructor-valid frontier, kernel and compute JSON examples, see
-[Frontier v0.2](../ARCHITECTURE.md).
+For the frontier, kernel and computation architecture, see
+[Architecture](../ARCHITECTURE.md).
 
 ---
 

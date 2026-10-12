@@ -1,2 +1,2 @@
-# Historical research campaigns remain in Git, outside the framework release.
+# Keep local research snapshots out of exported source archives.
 snapshots/ export-ignore

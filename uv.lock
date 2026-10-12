@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -266,13 +266,19 @@ wheels = [
 
 [[package]]
 name = "euler-math-research"
-version = "0.1.0"
+version = "0.3.0.dev0"
 source = { editable = "." }
 dependencies = [
     { name = "tomli", marker = "python_full_version < '3.11'" },
 ]
 
 [package.optional-dependencies]
+demo = [
+    { name = "fastapi" },
+    { name = "mcp" },
+    { name = "pydantic" },
+    { name = "uvicorn" },
+]
 dev = [
     { name = "anthropic" },
     { name = "fastapi" },
@@ -310,25 +316,29 @@ write-paper = [
 requires-dist = [
     { name = "anthropic", marker = "extra == 'dev'" },
     { name = "anthropic", marker = "extra == 'strategy'" },
+    { name = "fastapi", marker = "extra == 'demo'" },
     { name = "fastapi", marker = "extra == 'dev'" },
     { name = "fastapi", marker = "extra == 'observability'" },
     { name = "fastapi", marker = "extra == 'verify'" },
+    { name = "mcp", marker = "extra == 'demo'" },
     { name = "mcp", marker = "extra == 'dev'" },
     { name = "mcp", marker = "extra == 'gateway'" },
     { name = "mcp", marker = "extra == 'human-summary'" },
     { name = "mcp", marker = "extra == 'write-paper'" },
     { name = "openai", marker = "extra == 'dev'" },
     { name = "openai", marker = "extra == 'strategy'" },
+    { name = "pydantic", marker = "extra == 'demo'" },
     { name = "pydantic", marker = "extra == 'dev'" },
     { name = "pydantic", marker = "extra == 'observability'" },
     { name = "pydantic", marker = "extra == 'verify'" },
     { name = "pytest", marker = "extra == 'dev'" },
     { name = "tomli", marker = "python_full_version < '3.11'", specifier = ">=2" },
+    { name = "uvicorn", marker = "extra == 'demo'" },
     { name = "uvicorn", marker = "extra == 'dev'" },
     { name = "uvicorn", marker = "extra == 'observability'" },
     { name = "uvicorn", marker = "extra == 'verify'" },
 ]
-provides-extras = ["gateway", "write-paper", "human-summary", "verify", "observability", "strategy", "dev"]
+provides-extras = ["gateway", "write-paper", "human-summary", "verify", "observability", "strategy", "demo", "dev"]
 
 [[package]]
 name = "exceptiongroup"
