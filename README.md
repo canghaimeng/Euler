@@ -1,6 +1,8 @@
 <div align="center">
 
-# <img src="docs/assets/euler-logo.svg" width="112" height="112" alt="Euler logo">
+<img src="docs/assets/euler-logo.svg" width="112" height="112" alt="Euler logo">
+
+# Euler
 
 Euler is a mathematical research agent system built to help researchers follow and understand the entire reasoning process. Its agent teams share a structured research state that makes derivations inspectable and is designed to strengthen model reasoning and team coordination.
 
