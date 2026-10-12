@@ -11,7 +11,7 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 **English** · [简体中文](README.zh-CN.md)
 
-[Contributions](#core-contributions) · [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license)
+[Contributions](#core-contributions) · [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license) · [Community](#community)
 
 </div>
 
@@ -179,3 +179,23 @@ Euler's original work and modifications use the **[PolyForm Noncommercial Licens
 ## 🙏 Acknowledgments
 
 Euler’s graph design draws on [Danus](https://github.com/frenzymath/Danus), and we consulted the [Rethlas](https://github.com/frenzymath/Rethlas) implementation during development. We thank the authors and contributors of both projects for sharing their work.
+
+<a id="community"></a>
+## 💬 Community
+
+Join the discussion to ask questions, share research experiences, and suggest improvements to Euler.
+
+<table>
+  <tr>
+    <th align="center">Discord</th>
+    <th align="center">WeChat</th>
+  </tr>
+  <tr>
+    <td align="center" valign="middle"><a href="https://discord.gg/gPmE4kzqC"><img src="docs/assets/discord-community.png" width="280" alt="QR code to join the Euler Discord community"></a></td>
+    <td align="center" valign="middle"><a href="docs/assets/wechat-community.png"><img src="docs/assets/wechat-community.png" width="280" alt="QR code to join the Euler WeChat group"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://discord.gg/gPmE4kzqC">Join Discord</a> · click or scan</td>
+    <td align="center">Scan with WeChat · valid through October 19</td>
+  </tr>
+</table>

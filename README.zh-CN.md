@@ -11,7 +11,7 @@ Euler 是一个帮助研究者理解和把握完整推导过程的数学研究�
 
 [English](README.md) · **简体中文**
 
-[核心贡献](#核心贡献) · [数学成果](#数学成果) · [快速开始](#快速开始) · [使用指南](docs/DASHBOARD-GUIDE.zh.md) · [架构](ARCHITECTURE.zh.md) · [CLI 支持](docs/CLI-SUPPORT.zh.md) · [许可](#许可)
+[核心贡献](#核心贡献) · [数学成果](#数学成果) · [快速开始](#快速开始) · [使用指南](docs/DASHBOARD-GUIDE.zh.md) · [架构](ARCHITECTURE.zh.md) · [CLI 支持](docs/CLI-SUPPORT.zh.md) · [许可](#许可) · [讨论社群](#讨论社群)
 
 </div>
 
@@ -179,3 +179,23 @@ Euler 的原创工作与修改采用 **[PolyForm Noncommercial License 1.0.0](LI
 ## 🙏 致谢
 
 Euler 的图结构设计参考了 [Danus](https://github.com/frenzymath/Danus)，开发中查阅了 [Rethlas](https://github.com/frenzymath/Rethlas) 的实现。感谢这两个项目的作者与贡献者分享他们的工作。
+
+<a id="讨论社群"></a>
+## 💬 讨论社群
+
+欢迎加入社群，交流数学研究与 Euler 使用经验，提出问题和改进建议。
+
+<table>
+  <tr>
+    <th align="center">Discord 社区</th>
+    <th align="center">微信交流群</th>
+  </tr>
+  <tr>
+    <td align="center" valign="middle"><a href="https://discord.gg/gPmE4kzqC"><img src="docs/assets/discord-community.png" width="280" alt="Euler Discord 社区邀请二维码"></a></td>
+    <td align="center" valign="middle"><a href="docs/assets/wechat-community.png"><img src="docs/assets/wechat-community.png" width="280" alt="Euler 微信交流群邀请二维码"></a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://discord.gg/gPmE4kzqC">点击加入 Discord</a>，也可扫码加入</td>
+    <td align="center">使用微信扫码加入 · 有效期至 10 月 19 日</td>
+  </tr>
+</table>
