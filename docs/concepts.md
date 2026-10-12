@@ -51,7 +51,7 @@ the verifier accepts becomes a **fact**. Crucially:
 
 ## The fact graph
 
-The fact graph is the crown jewel. Each **fact** is one node — a human-readable file
+Each **fact** is one node — a human-readable file
 with a statement, a proof, optional intuition, the ids of the facts it depends on
 (`predecessors`), the symbols it defines (`glossary_introduces`), and its external
 citations (`external_refs`).

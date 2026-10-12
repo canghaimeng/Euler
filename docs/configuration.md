@@ -43,7 +43,7 @@ verification boundaries.
 These live in `config/providers.env`. See `getting-started.md` §2 and
 `scripts/setup-codex.sh`.
 
-## Strategy consult (the system's brain)
+## Strategy consult
 
 | variable | default | meaning |
 |---|---|---|

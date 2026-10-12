@@ -1,4 +1,4 @@
-# euler/strategy — the consult gateway (the system's brain)
+# euler/strategy — the consult gateway
 
 The main agent's high-intelligence step: send the current **elaboration** to a strong
 reasoning model, take its reply as the next `master_guidance`. Transport-abstracted

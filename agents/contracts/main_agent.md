@@ -132,7 +132,7 @@ Below, "the project" means whichever one this beat is for.
   re-task a worker — it reads the new `TASK.md` next round. The worker loop is
   **autonomous**; you `propose` / `schedule` / `status` / `reconcile` / `stop`.
 
-## Consult transport (the system's brain)
+## Consult transport
 
 The consult runs over one of three transports on a top-tier reasoning model:
 `gpt_pro` (gpt-5.5-pro over a paid OpenAI-compatible API, the default), `claude_api`
