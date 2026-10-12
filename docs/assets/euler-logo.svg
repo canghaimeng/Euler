@@ -1,20 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">Euler seven bridges logo</title>
-  <desc id="desc">Four land areas joined by seven bridges in the Königsberg bridge graph</desc>
-  <g fill="none" stroke="#4774C8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M27 30 C46 6 101 10 106 64"/>
-    <path d="M27 98 C46 122 101 118 106 64"/>
-    <path d="M27 30 Q47 28 66 64"/>
-    <path d="M27 30 Q32 51 66 64"/>
-    <path d="M27 98 Q32 77 66 64"/>
-    <path d="M27 98 Q47 100 66 64"/>
-    <path d="M66 64 H106" stroke="#E9A463"/>
+  <title id="title">Euler logo</title>
+  <desc id="desc">A minimal geometric letter E drawn with a continuous outer stroke and a central bar</desc>
+  <defs>
+    <linearGradient id="euler-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4E71DC"/>
+      <stop offset="1" stop-color="#1C9AAE"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#euler-blue)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M99 27H44c-10 0-16 6-16 16v42c0 10 6 16 16 16h55"/>
+    <path d="M29 64h58"/>
   </g>
-  <g fill="#FFFFFF" stroke="#315CA9" stroke-width="4">
-    <circle cx="27" cy="30" r="8"/>
-    <circle cx="27" cy="98" r="8"/>
-    <circle cx="66" cy="64" r="10"/>
-    <circle cx="106" cy="64" r="8"/>
-  </g>
-  <circle cx="66" cy="64" r="3" fill="#E9A463"/>
 </svg>

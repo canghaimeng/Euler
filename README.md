@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/euler-logo.svg" width="112" height="112" alt="Euler logo: the seven bridges of Königsberg graph">
+<img src="docs/assets/euler-logo.svg" width="112" height="112" alt="Euler logo: a geometric letter E">
 
 # Euler
 
