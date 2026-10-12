@@ -141,6 +141,7 @@ Euler 的原创工作与修改采用 **[PolyForm Noncommercial License 1.0.0](LI
 | Qiuyu Chen | Shanghai Jiao Tong University |
 | Qi Wang | Institute of Automation, Chinese Academy of Sciences |
 | Liang Xu | Zhongguancun Academy, Beijing, China |
+| Xin Jin | Eastern Institute of Technology, Zhejiang, China |
 | Baao Xie | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
 | Wenjun Zeng | Eastern Institute of Technology, Zhejiang, China |
 

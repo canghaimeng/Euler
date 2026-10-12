@@ -12,6 +12,9 @@ authors:
   - family-names: Xu
     given-names: Liang
     affiliation: Zhongguancun Academy, Beijing, China
+  - family-names: Jin
+    given-names: Xin
+    affiliation: Eastern Institute of Technology, Zhejiang, China
   - family-names: Xie
     given-names: Baao
     affiliation: Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China
@@ -32,6 +35,9 @@ preferred-citation:
     - family-names: Xu
       given-names: Liang
       affiliation: Zhongguancun Academy, Beijing, China
+    - family-names: Jin
+      given-names: Xin
+      affiliation: Eastern Institute of Technology, Zhejiang, China
     - family-names: Xie
       given-names: Baao
       affiliation: Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China

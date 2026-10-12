@@ -141,6 +141,7 @@ Euler's original work and modifications use the **[PolyForm Noncommercial Licens
 | Qiuyu Chen | Shanghai Jiao Tong University |
 | Qi Wang | Institute of Automation, Chinese Academy of Sciences |
 | Liang Xu | Zhongguancun Academy, Beijing, China |
+| Xin Jin | Eastern Institute of Technology, Zhejiang, China |
 | Baao Xie | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
 | Wenjun Zeng | Eastern Institute of Technology, Zhejiang, China |
 

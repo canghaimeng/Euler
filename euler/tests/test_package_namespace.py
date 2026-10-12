@@ -188,7 +188,7 @@ def test_release_attribution_is_canonical() -> None:
     assert "family-names: Chen" in citation
     assert "given-names: Qiuyu" in citation
     assert citation.count("affiliation: Shanghai Jiao Tong University") == 2
-    expected_names = ["Qiuyu Chen", "Qi Wang", "Liang Xu", "Baao Xie", "Wenjun Zeng"]
+    expected_names = ["Qiuyu Chen", "Qi Wang", "Liang Xu", "Xin Jin", "Baao Xie", "Wenjun Zeng"]
     metadata = tomllib.loads(package)["project"]
     assert [author["name"] for author in metadata["authors"]] == expected_names
     assert metadata["maintainers"] == [{"name": "Qiuyu Chen"}]
