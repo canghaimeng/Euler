@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/assets/euler-logo.svg" width="112" height="112" alt="Euler 标志：相互连接的数学推理关系图">
+
 # Euler
 
 Euler 是一个帮助研究者理解和把握完整推导过程的数学研究智能体系统。团队成员共享结构化研究状态，让推导可供检查，并以此支持模型推理与团队协作。
@@ -159,6 +161,17 @@ python -m pytest euler/ -q
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
 
 引用 Euler 请使用 [CITATION.cff](CITATION.cff)。
+
+```bibtex
+@software{euler2026,
+  title        = {Euler: Human-Centered Mathematical Research with Frontier-Driven Agents},
+  author       = {Chen, Qiuyu and Wang, Qi and Xu, Liang and Jin, Xin and Xie, Baao and Zeng, Wenjun},
+  year         = {2026},
+  version      = {0.3.0.dev0},
+  url          = {https://github.com/canghaimeng/Euler},
+  institution  = {Shanghai Jiao Tong University; Institute of Automation, Chinese Academy of Sciences; Zhongguancun Academy, Beijing, China; Eastern Institute of Technology, Zhejiang, China; Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China}
+}
+```
 
 <a id="许可"></a>
 ## 📄 许可

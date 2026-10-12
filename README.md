@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/assets/euler-logo.svg" width="112" height="112" alt="Euler logo: a connected mathematical reasoning graph">
+
 # Euler
 
 Euler is a mathematical research agent system built to help researchers follow and understand the entire reasoning process. Its agent teams share a structured research state that makes derivations inspectable and is designed to strengthen model reasoning and team coordination.
@@ -159,6 +161,17 @@ The suite runs offline, with local protocol doubles standing in for the provider
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
 
 To cite Euler, use [CITATION.cff](CITATION.cff).
+
+```bibtex
+@software{euler2026,
+  title        = {Euler: Human-Centered Mathematical Research with Frontier-Driven Agents},
+  author       = {Chen, Qiuyu and Wang, Qi and Xu, Liang and Jin, Xin and Xie, Baao and Zeng, Wenjun},
+  year         = {2026},
+  version      = {0.3.0.dev0},
+  url          = {https://github.com/canghaimeng/Euler},
+  institution  = {Shanghai Jiao Tong University; Institute of Automation, Chinese Academy of Sciences; Zhongguancun Academy, Beijing, China; Eastern Institute of Technology, Zhejiang, China; Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China}
+}
+```
 
 <a id="license"></a>
 ## 📄 License
