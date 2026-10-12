@@ -11,7 +11,7 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 **English** · [简体中文](README.zh-CN.md)
 
-[Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [中文指南](docs/DASHBOARD-GUIDE.zh.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license)
+[Contributions](#core-contributions) · [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [中文指南](docs/DASHBOARD-GUIDE.zh.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license)
 
 </div>
 
@@ -31,6 +31,20 @@ A mathematical investigation is much more than its final proof. Statements are s
 - **It gives the agent team a common working structure.** Agents plan against explicit open records, refer to exact statements instead of paraphrasing a conversation, and coordinate around the same goals and routes. The representation is designed to improve how agents reason and coordinate across a long investigation.
 
 Researchers and agents work on the same records, making the evolving investigation available for inspection as it happens. The **frontier** (open goals, live routes, blockers, and their evidence) is the active projection of that state, showing both sides where the work stands now.
+
+## Core contributions
+
+### 1. Visualization that makes mathematical research understandable
+
+Euler makes the evolving investigation visible through **mathematical objects and their relationships**: the original question, assumptions, intermediate claims, proof dependencies, competing routes, failed attempts, open obligations, and verification evidence. Researchers can follow the main proof line and current frontier, select a node to highlight its dependency path, and progressively open its premises, argument, and sources. These views update during exploration, helping readers understand **what has been established, why a route changed, and what remains to be proved**. [Explore the three public cases →](https://canghaimeng.site/euler/cases/)
+
+### 2. Team milestones for returning, questioning, and branching
+
+Euler lets researchers **return to any saved team milestone**. Each milestone preserves project files, the research graph, evidence, and supported native member conversations. From a graph node, researchers can select its associated milestone and restore the captured team state into an independent workspace. They can then ask members to explain the recorded approach and its mathematical rationale, examine a questionable step, or pursue a new research direction from that point. The original investigation remains available alongside the new branch. [How team recovery works →](docs/TEAM-RECOVERY.md)
+
+### 3. Structured representation for sustained mathematical reasoning
+
+Euler's **structured research-state representation** gives the team a persistent foundation for planning, context retrieval, collaboration, and verification. The full research history survives across sessions, while each task receives relevant statements, dependencies, prior failures, and evidence. This allows investigations to continue across successive context windows and resumable sessions, with explicit obligations guiding the next step. The design aims to strengthen mathematical reasoning through accumulated knowledge, coordinated exploration, and independent checks—supporting problems that demand sustained work beyond a single model response. [Read the architecture →](ARCHITECTURE.md)
 
 ## Highlights
 
