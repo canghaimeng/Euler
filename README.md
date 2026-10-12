@@ -63,7 +63,7 @@ Euler's **structured research-state representation** gives the team a persistent
 > [!NOTE]
 > You need **Python 3.10+** and **Git**; running a team also needs **Linux** with Landlock ABI 3+ or **macOS**. Install from a source checkout, which includes the agent contracts and skills that teams use.
 
-**Tour the workbench without model accounts.** The demo serves a small project produced offline by deterministic mock models.
+**Local workflow demo (no model account needed).** Built-in scripts use the integer identity `n + 0 = n`, with a preset proof and checker responses, to run Euler's task dispatch, submission, and acceptance-record workflow and display the resulting example in the workbench. An empty exploration project is also included. This makes no model calls and uses no model quota; it helps you check the installation and learn the interface. To read actual research cases, open the [three public visualizations](https://canghaimeng.site/euler/cases/).
 
 ```bash
 git clone https://github.com/canghaimeng/Euler.git && cd Euler
