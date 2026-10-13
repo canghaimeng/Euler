@@ -17,7 +17,7 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 ## 🚀 News
 
-- 🎉 **[Lewis–Overton (2008)](examples/lewis-overton/README.md)** — a conjecture proposed by NYU Silver Professor Michael Overton and Cornell Professor Adrian Lewis. Both of them are SIAM Fellows.
+- 🎉 **[Lewis–Overton (2008)](examples/lewis-overton/README.md)** — a conjecture proposed by NYU Silver Professor Michael Overton and Cornell Professor Adrian Lewis. Both are SIAM Fellows and have reviewed our argument concerning their conjecture, confirming its correctness.
 - 🎉 **[Nikoghosyan (2013)](examples/nikoghosyan/README.md)** — resolving a 13-year-old open problem in Hamiltonian graph theory and completing the single-forbidden-subgraph classification for 1-tough graphs.
 - 🎉 **[Jankiewicz–Norin–Wise (2017)](examples/jnw/README.md)** — a geometric group theory problem co-proposed by James McGill Professor Daniel Wise, a Fellow of the Royal Society.
 
@@ -179,6 +179,8 @@ Euler's original work and modifications use the **[PolyForm Noncommercial Licens
 ## 🙏 Acknowledgments
 
 Euler’s graph design draws on [Danus](https://github.com/frenzymath/Danus), and we consulted the [Rethlas](https://github.com/frenzymath/Rethlas) implementation during development. We thank the authors and contributors of both projects for sharing their work.
+
+We thank Professor Michael Overton and Professor Adrian Lewis for the time and care they devoted to reviewing our argument concerning the Lewis–Overton conjecture, and for confirming its correctness.
 
 <a id="community"></a>
 ## 💬 Community

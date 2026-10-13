@@ -17,7 +17,7 @@ Euler 是一个帮助研究者理解和把握完整推导过程的数学研究�
 
 ## 🚀 News
 
-- 🎉 **[Lewis–Overton（2008）](examples/lewis-overton/README.zh.md)** — 由纽约大学 Silver Professor Michael Overton 与康奈尔大学教授 Adrian Lewis 提出的猜想，两位提出者均为 SIAM Fellow。
+- 🎉 **[Lewis–Overton（2008）](examples/lewis-overton/README.zh.md)** — 由纽约大学 Silver Professor Michael Overton 与康奈尔大学教授 Adrian Lewis 提出的猜想，两位提出者均为 SIAM Fellow，并已审阅我们针对该猜想的论证，确认了其正确性。
 - 🎉 **[Nikoghosyan（2013）](examples/nikoghosyan/README.zh.md)** — 解决 Hamilton 图论中一个历时 13 年的开放问题，补齐 1-tough 图的单一禁用诱导子图 Hamilton 性分类。
 - 🎉 **[Jankiewicz–Norin–Wise（2017）](examples/jnw/README.zh.md)** — 由几何群论学者共同提出的问题，提出者之一 Daniel Wise 是 James McGill Professor、英国皇家学会会士。
 
@@ -179,6 +179,8 @@ Euler 的原创工作与修改采用 **[PolyForm Noncommercial License 1.0.0](LI
 ## 🙏 致谢
 
 Euler 的图结构设计参考了 [Danus](https://github.com/frenzymath/Danus)，开发中查阅了 [Rethlas](https://github.com/frenzymath/Rethlas) 的实现。感谢这两个项目的作者与贡献者分享他们的工作。
+
+感谢 Michael Overton 教授和 Adrian Lewis 教授投入时间，仔细审阅我们针对 Lewis–Overton 猜想的论证，并确认其正确性。
 
 <a id="讨论社群"></a>
 ## 💬 讨论社群
