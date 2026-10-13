@@ -180,7 +180,7 @@ Euler's original work and modifications use the **[PolyForm Noncommercial Licens
 
 Euler’s graph design draws on [Danus](https://github.com/frenzymath/Danus), and we consulted the [Rethlas](https://github.com/frenzymath/Rethlas) implementation during development. We thank the authors and contributors of both projects for sharing their work.
 
-We thank Professor Michael Overton and Professor Adrian Lewis for the time and care they devoted to reviewing our argument concerning the Lewis–Overton conjecture, and for confirming its correctness.
+We thank Professor Michael Overton and Professor Adrian Lewis for the time and care they devoted to reviewing our argument concerning the Lewis–Overton conjecture.
 
 <a id="community"></a>
 ## 💬 Community

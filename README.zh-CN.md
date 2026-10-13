@@ -180,7 +180,7 @@ Euler 的原创工作与修改采用 **[PolyForm Noncommercial License 1.0.0](LI
 
 Euler 的图结构设计参考了 [Danus](https://github.com/frenzymath/Danus)，开发中查阅了 [Rethlas](https://github.com/frenzymath/Rethlas) 的实现。感谢这两个项目的作者与贡献者分享他们的工作。
 
-感谢 Michael Overton 教授和 Adrian Lewis 教授投入时间，仔细审阅我们针对 Lewis–Overton 猜想的论证，并确认其正确性。
+感谢 Michael Overton 教授和 Adrian Lewis 教授投入时间，仔细审阅我们针对 Lewis–Overton 猜想的论证。
 
 <a id="讨论社群"></a>
 ## 💬 讨论社群
