@@ -182,6 +182,13 @@ Euler’s graph design draws on [Danus](https://github.com/frenzymath/Danus), an
 
 We thank Professor Michael Overton and Professor Adrian Lewis for the time and care they devoted to reviewing our argument concerning the Lewis–Overton conjecture.
 
+<a id="contact"></a>
+## ✉️ Collaboration & Contact
+
+We welcome collaborations in mathematical research, Euler development, and academic exchange.
+
+**Email:** [canghaimeng@sjtu.edu.cn](mailto:canghaimeng@sjtu.edu.cn)
+
 <a id="community"></a>
 ## 💬 Community
 

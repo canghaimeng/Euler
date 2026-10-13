@@ -182,6 +182,13 @@ Euler 的图结构设计参考了 [Danus](https://github.com/frenzymath/Danus)�
 
 感谢 Michael Overton 教授和 Adrian Lewis 教授投入时间，仔细审阅我们针对 Lewis–Overton 猜想的论证。
 
+<a id="合作联系"></a>
+## ✉️ 合作联系
+
+欢迎就数学研究、Euler 系统开发及学术交流与我们开展合作。
+
+**联系邮箱：** [canghaimeng@sjtu.edu.cn](mailto:canghaimeng@sjtu.edu.cn)
+
 <a id="讨论社群"></a>
 ## 💬 讨论社群
 
