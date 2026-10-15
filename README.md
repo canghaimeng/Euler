@@ -5,6 +5,7 @@
 Euler is a mathematical research agent system built to help researchers follow and understand the entire reasoning process. Its agent teams share a structured research state that makes derivations inspectable and is designed to strengthen model reasoning and team coordination.
 
 [![Project Page](https://img.shields.io/badge/Project%20Page-Euler-285f58)](https://canghaimeng.site/euler/?lang=en)
+[![arXiv:2610.19864](https://img.shields.io/badge/arXiv-2610.19864-B31B1B)](https://arxiv.org/abs/2610.19864)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![Linux | macOS](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-57606A)](docs/CLI-SUPPORT.md)
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-8250DF)](LICENSING.md)
@@ -158,16 +159,17 @@ The suite runs offline, with local protocol doubles standing in for the provider
 | [Baao Xie](https://openreview.net/profile?id=~Baao_Xie3) | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
 
-To cite Euler, use [CITATION.cff](CITATION.cff).
+Read the [Euler paper on arXiv](https://arxiv.org/abs/2610.19864). To cite Euler, use the paper citation below or [CITATION.cff](CITATION.cff).
 
 ```bibtex
-@software{euler2026,
-  title        = {Euler: Human-Centered Mathematical Research with Frontier-Driven Agents},
-  author       = {Chen, Qiuyu and Wang, Qi and Xu, Liang and Jin, Xin and Xie, Baao and Zeng, Wenjun},
-  year         = {2026},
-  version      = {0.3.0.dev0},
-  url          = {https://github.com/canghaimeng/Euler},
-  institution  = {Shanghai Jiao Tong University; Institute of Automation, Chinese Academy of Sciences; Zhongguancun Academy, Beijing, China; Eastern Institute of Technology, Zhejiang, China; Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China}
+@misc{chen2026eulerhumancenteredmultiagentmathematical,
+  title={Euler: Towards Human-Centered Multi-Agent Mathematical Discovery},
+  author={Qiuyu Chen and Qi Wang and Liang Xu and Xin Jin and Baao Xie and Wenjun Zeng},
+  year={2026},
+  eprint={2610.19864},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2610.19864},
 }
 ```
 

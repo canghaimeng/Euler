@@ -5,6 +5,7 @@
 Euler 是一个帮助研究者理解和把握完整推导过程的数学研究智能体系统。团队成员共享结构化研究状态，让推导可供检查，并以此支持模型推理与团队协作。
 
 [![项目主页](https://img.shields.io/badge/%E9%A1%B9%E7%9B%AE%E4%B8%BB%E9%A1%B5-Euler-285f58)](https://canghaimeng.site/euler/?lang=zh)
+[![arXiv:2610.19864](https://img.shields.io/badge/arXiv-2610.19864-B31B1B)](https://arxiv.org/abs/2610.19864)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![Linux | macOS](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-57606A)](docs/CLI-SUPPORT.zh.md)
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-8250DF)](LICENSING.zh.md)
@@ -158,16 +159,17 @@ python -m pytest euler/ -q
 | [Baao Xie](https://openreview.net/profile?id=~Baao_Xie3) | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
 
-引用 Euler 请使用 [CITATION.cff](CITATION.cff)。
+阅读 [Euler 论文（arXiv）](https://arxiv.org/abs/2610.19864)。引用 Euler 请使用以下论文条目或 [CITATION.cff](CITATION.cff)。
 
 ```bibtex
-@software{euler2026,
-  title        = {Euler: Human-Centered Mathematical Research with Frontier-Driven Agents},
-  author       = {Chen, Qiuyu and Wang, Qi and Xu, Liang and Jin, Xin and Xie, Baao and Zeng, Wenjun},
-  year         = {2026},
-  version      = {0.3.0.dev0},
-  url          = {https://github.com/canghaimeng/Euler},
-  institution  = {Shanghai Jiao Tong University; Institute of Automation, Chinese Academy of Sciences; Zhongguancun Academy, Beijing, China; Eastern Institute of Technology, Zhejiang, China; Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China}
+@misc{chen2026eulerhumancenteredmultiagentmathematical,
+  title={Euler: Towards Human-Centered Multi-Agent Mathematical Discovery},
+  author={Qiuyu Chen and Qi Wang and Liang Xu and Xin Jin and Baao Xie and Wenjun Zeng},
+  year={2026},
+  eprint={2610.19864},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2610.19864},
 }
 ```
 

@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use Euler, please cite this software."
+message: "If you use Euler, please cite the arXiv paper."
 title: "Euler: Human-Centered Mathematical Research with Frontier-Driven Agents"
 version: 0.3.0.dev0
 license: PolyForm-Noncommercial-1.0.0
@@ -24,11 +24,11 @@ authors:
     affiliation: Eastern Institute of Technology, Zhejiang, China
 repository-code: "https://github.com/canghaimeng/Euler"
 preferred-citation:
-  type: software
-  title: "Euler: Human-Centered Mathematical Research with Frontier-Driven Agents"
-  version: 0.3.0.dev0
+  type: article
+  title: "Euler: Towards Human-Centered Multi-Agent Mathematical Discovery"
+  journal: arXiv
   year: 2026
-  url: "https://github.com/canghaimeng/Euler"
+  url: "https://arxiv.org/abs/2610.19864"
   authors:
     - family-names: Chen
       given-names: Qiuyu
