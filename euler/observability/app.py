@@ -110,11 +110,29 @@ def _parse_fact(text: str) -> Dict[str, Any]:
                 fm[k] = v
     secs = {"statement": "", "proof": "", "intuition": ""}
     cur: Optional[str] = None
+    fence = None
     for line in body.splitlines():
-        h = re.match(r"^##\s+(\w+)", line)
-        if h and h.group(1).lower() in secs:
-            cur = h.group(1).lower()
-            continue
+        stripped = line.strip()
+        if fence is None and stripped.startswith(("```", "~~~")):
+            char = stripped[0]
+            fence = (char, len(stripped) - len(stripped.lstrip(char)))
+        elif fence is not None:
+            char, length = fence
+            if stripped and set(stripped) == {char} and len(stripped) >= length:
+                fence = None
+        else:
+            heading = stripped.lower()
+            # Metadata sections are ordered. A quoted lemma's headings inside
+            # the proof must never overwrite the Fact's original statement.
+            if cur is None and heading == '## statement':
+                cur = 'statement'
+                continue
+            if cur in {None, 'statement'} and heading == '## proof':
+                cur = 'proof'
+                continue
+            if cur == 'proof' and heading == '## intuition':
+                cur = 'intuition'
+                continue
         if cur:
             secs[cur] += line + "\n"
     return {

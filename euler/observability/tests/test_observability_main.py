@@ -177,3 +177,33 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+def test_fact_parser_preserves_quoted_headers_inside_proof():
+    from euler.observability.app import _parse_fact
+    text = '''---
+fact_id: 1234567890abcdef
+predecessors: []
+---
+## statement
+Original root statement.
+## proof
+First part of the proof.
+## statement
+A quoted prerequisite statement.
+## proof
+A quoted prerequisite proof.
+```markdown
+## intuition
+This is literal quoted source.
+```
+Final root argument.
+## intuition
+Optional intuition metadata.
+'''
+    result = _parse_fact(text)
+    assert result['statement'] == 'Original root statement.'
+    assert '## statement\nA quoted prerequisite statement.' in result['proof']
+    assert 'Final root argument.' in result['proof']
+    assert 'This is literal quoted source.' in result['proof']
+    assert result['intuition'] == 'Optional intuition metadata.'
