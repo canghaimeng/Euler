@@ -17,7 +17,9 @@ from __future__ import annotations
 
 try:  # mcp 1.x
     from mcp.server.fastmcp import FastMCP
+    from mcp.server.fastmcp.exceptions import ToolError
 except ImportError:  # mcp 2.x
     from mcp.server.mcpserver import MCPServer as FastMCP
+    from mcp.server.mcpserver.exceptions import ToolError
 
-__all__ = ["FastMCP"]
+__all__ = ["FastMCP", "ToolError"]

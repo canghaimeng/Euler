@@ -414,17 +414,11 @@ def test_hardlink_copy_is_rejected(monkeypatch: pytest.MonkeyPatch, tmp_path: Pa
     orig = subprocess.run
 
     def _hardlink_cp(cmd, **kwargs):
-        if cmd and cmd[0] == "cp" and (
-            "--reflink=never" in cmd or "--reflink=auto" in cmd
-        ):
+        if cmd and cmd[0] == "cp" and "-a" in cmd:
             src, dest = cmd[-2], cmd[-1]
-            linked = orig(
-                ["cp", "-a", "--link", src, dest],
-                capture_output=True,
-                text=True,
-                check=False,
-            )
-            return subprocess.CompletedProcess(cmd, linked.returncode, linked.stdout, linked.stderr)
+            # Inject the forbidden inode sharing on GNU and BSD hosts alike.
+            shutil.copytree(src, dest, copy_function=os.link, symlinks=True)
+            return subprocess.CompletedProcess(cmd, 0, "", "")
         return orig(cmd, **kwargs)
 
     monkeypatch.setattr(subprocess, "run", _hardlink_cp)

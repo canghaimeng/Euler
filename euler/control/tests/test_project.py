@@ -197,7 +197,7 @@ def test_initialize_open_reopen_is_idempotent():
         )
         try:
             assert is_euler_project(root)
-            assert first.control_dir == root / "control"
+            assert first.control_dir == root.resolve() / "control"
             assert (root / "control" / "control.sqlite3").is_file()
             assert (root / "control" / "artifacts").is_dir()
             assert (root / "control" / "dispatch").is_dir()

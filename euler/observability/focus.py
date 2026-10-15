@@ -284,7 +284,12 @@ def phase(research: dict, workspace: dict) -> dict:
                 "controller_closed":original_closed,"target_state":state,"target_status":control.get("target_status"),
                 "recorded_outcome":control.get("outcome"),"formal_acceptance":acceptance.get("status"),
                 "formal_available":acceptance.get("available") is True,"formal_passed":formal,"formal_current":formal_current}
-    return {"complete": closed or formal_current, "controller_closed": closed,
+    awaiting_audit = (closed and control.get("available") is True
+                      and control.get("outcome") not in {"SOLVED", "REFUTED"}
+                      and not formal_current)
+    return {"complete": (closed and not awaiting_audit) or formal_current,
+            "controller_closed": closed and not awaiting_audit,
+            "proof_closed": closed, "awaiting_final_audit": awaiting_audit,
             "target_state": state, "target_status": control.get("target_status"),
             "recorded_outcome": control.get("outcome"), "formal_acceptance": acceptance.get("status") or None,
             "formal_available": acceptance.get("available") is True,

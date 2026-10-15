@@ -17,6 +17,8 @@ under pytest.
 
 from __future__ import annotations
 
+import sys
+
 import io
 import json
 import os
@@ -322,6 +324,8 @@ def test_alive_zombie_is_dead():
         # wait for the kernel to mark it Z (exited, unreaped)
         pid = proc.pid
         def is_zombie():
+            if sys.platform == 'darwin':
+                return subprocess.check_output(['/bin/ps', '-p', str(pid), '-o', 'stat='], text=True).strip().startswith('Z')
             try:
                 stat = Path(f"/proc/{pid}/stat").read_text()
                 return stat.rsplit(")", 1)[1].split()[0] == "Z"

@@ -47,6 +47,8 @@ def team_environment(project, member, home, state=None):
 def _mcp(project,member):
     env={'EULER_TEAM_PROJECT':str(project),'EULER_TEAM_MEMBER':member['id'],
          'PYTHONPATH':str(Path(__file__).resolve().parents[2])}
+    for key in ['EULER_VERIFY_URL', 'EULER_VERIFY_TIMEOUT', 'EULER_FINAL_AUDIT_RESOURCES']:
+        if key in os.environ:env[key]=os.environ[key]
     return {'command':sys.executable,'args':['-m','euler.workspace.team_mcp'],'env':env}
 
 
@@ -60,7 +62,24 @@ def _instructions(project,member,state):
         "Team replies are research discussion, not admitted Facts; verified results must still use the normal Euler truth gateway. "
         "The old campaign's paths are unavailable. All files and assignments to use are in this workspace. "
         "Do not launch independent model CLIs, spawn replacement agents or access the original campaign. "
-        "Keep user-visible replies concise; write proof/code artifacts inside this workspace when useful.")
+        "Keep user-visible replies concise; write proof/code artifacts inside this workspace when useful. "
+        "At the start of research, use euler_team_research_state to read the exact target and current evidence. "
+        "When the researcher requests sustained investigation, the lead enables euler_team_continue_research. "
+        "For a short explanation or a bounded review, do not enable continued research. "
+        "Record mathematically meaningful prerequisites and alternative routes with euler_team_propose_steps; "
+        "refine an existing obligation using parent_obligation_id. Small direct proofs need not be split. "
+        "Record genuine obstacles with euler_team_record_obstacle, including what could unblock them. "
+        "Use euler_team_set_route_status to resume a blocked route as ACTIVE or to park it. "
+        "Use euler_team_update_research for other typed changes, never edit graph stores manually. "
+        "The lead coordinates and delegates proofs to an assistant using euler_team_ask with the exact obligation ID. "
+        "An assistant submits its self-contained proof via euler_team_submit_proof; this invokes an independent verifier "
+        "and writes accepted evidence to both graphs. Report the actual fact/evidence IDs or repair hints. "
+        "A verifier member only reviews; its conversation alone cannot admit a Fact. "
+        "If no assistant exists, the lead may add an assistant with an available configured CLI/model, or ask for configuration. "
+        "After the root proof is admitted, the lead must call euler_team_final_audit before reporting the problem solved. "
+        "Read budget_policy in the research state; limited resource dimensions require an explicit audit reservation. "
+        "If a service or required premise is missing, record the obstacle and ask for the necessary input. "
+        "Do not repeatedly rephrase an unchanged proof; reuse recorded results and failures to select the next action.")
 
 
 def isolation_policy(project,state):
@@ -98,8 +117,9 @@ def runtime_launch(project,member,state,home,env,command):
 
 
 @contextmanager
-def connection(project,member,state,callback=None):
-    root=Path(project).resolve();home=_home(root,member)
+def connection(project,member,state,callback=None,account_only=False):
+    root=Path(project).resolve();member_home=_home(root,member)
+    home=_home(root, {**member, 'id': '.quota-observers/' + member['id']}) if account_only else member_home
     try:home.resolve().relative_to(root)
     except ValueError:raise TeamError('provider home escapes the current workspace') from None
     home.mkdir(parents=True,exist_ok=True,mode=0o700)
@@ -108,6 +128,8 @@ def connection(project,member,state,callback=None):
     auth=None
     if member['provider']=='codex':
         auth=Path(os.environ.get('EULER_TEAM_CODEX_AUTH',str(Path.home()/'.codex/auth.json')))
+        if account_only and (member_home/'auth.json').is_file() and not (member_home/'auth.json').is_symlink():
+            auth=member_home/'auth.json'
         env['CODEX_HOME']=str(home)
         binary=os.environ.get('EULER_TEAM_CODEX_BIN') or shutil.which('codex')
         config={'mcp_servers':{'euler_team':mcp},'model_reasoning_effort':member['effort'],
@@ -150,7 +172,9 @@ def require_quota(rpc, stop_percent):
     try:
         account=rpc.request('account/read',{'refreshToken':False})
         data=rpc.request('account/rateLimits/read')
-    except Exception:raise TeamError('QUOTA: current included-usage permission is unavailable') from None
+    except Exception as exc:
+        diagnostic = ' (' + str(exc) + ')' if isinstance(exc, RpcError) else ''
+        raise TeamError('QUOTA: current included-usage permission is unavailable' + diagnostic) from None
     if (account.get('account') or {}).get('type')!='chatgpt':raise TeamError('QUOTA: ChatGPT included-account login required; no API-key fallback')
     if data.get('ordinaryUsageAllowed') is not True:raise TeamError('QUOTA: ordinary included usage not confirmed')
     left=[]
@@ -250,7 +274,7 @@ def run_turn(project,member,state,question,cancelled):
     if member['provider']=='claude-code':
         from .team_claude import run_turn as claude_turn
         return claude_turn(project,member,state,question,cancelled)
-    answer=[];done=[];turn_id=[None];accept=[False]
+    answer=[];done=[];turn_id=[None];accept=[False];transport_retries=[0]
     def event(message):
         method=message.get('method');params=message.get('params',{})
         if not accept[0]:return  # Loading a session may replay old history.
@@ -262,6 +286,10 @@ def run_turn(project,member,state,question,cancelled):
             if method=='turn/completed':done.append(params.get('turn',{}))
         elif method=='session/update':
             update=params.get('update',{})
+            if update.get('sessionUpdate') == 'retry_state' and update.get('type') == 'retrying':
+                transport_retries[0] += 1
+            elif update.get('sessionUpdate') in {'agent_message_chunk', 'agent_thought_chunk', 'tool_call', 'tool_call_update'}:
+                transport_retries[0] = 0
             if update.get('sessionUpdate')=='agent_message_chunk':
                 content=update.get('content',{})
                 if content.get('type')=='text':answer.append(content.get('text',''))
@@ -269,7 +297,7 @@ def run_turn(project,member,state,question,cancelled):
     with connection(project,member,state,callback=event) as (rpc,home,config):
         sid=member['session_id'];deadline=time.monotonic()+state['policy']['turn_seconds']
         if member['provider']=='codex':
-            threshold=quota_threshold(state)
+            threshold=None if state.get('_external_quota_guard') else quota_threshold(state)
             quota=require_quota(rpc,threshold) if threshold is not None else None
             params=_codex_params(project,member,state,config)
             rpc.request('thread/resume',{**params,'threadId':sid,'excludeTurns':True})
@@ -288,7 +316,13 @@ def run_turn(project,member,state,question,cancelled):
                     except Exception as exc:reason=str(exc)
                     next_quota=time.monotonic()+15
                 if reason:
-                    rpc.request('turn/interrupt',{'threadId':sid,'turnId':turn_id[0]},timeout=10)
+                    try:
+                        rpc.request('turn/interrupt',{'threadId':sid,'turnId':turn_id[0]},timeout=10)
+                    except RpcError:
+                        if done and done[-1].get('status') == 'completed':
+                            break
+                        # An already-ended turn can reject interruption. Preserve
+                        # the original quota/control/timeout reason for recovery.
                     raise TeamError(reason)
                 time.sleep(.1)
             if done[-1].get('status')!='completed':raise TeamError('native Codex turn did not complete')
@@ -316,6 +350,10 @@ def run_turn(project,member,state,question,cancelled):
             except Exception as exc:output.append(exc)
         thread=threading.Thread(target=prompt,daemon=True);thread.start()
         while thread.is_alive():
+            if transport_retries[0] >= 5:
+                rpc.notify('session/cancel', {'sessionId': sid})
+                thread.join(timeout=10)
+                raise TeamError(member['provider'] + ' reported five consecutive transport retries; check the CLI network/proxy and resume. No mathematical verdict was produced.')
             if cancelled():
                 rpc.notify('session/cancel',{'sessionId':sid});thread.join(timeout=10);raise TeamError(member['provider']+' turn interrupted by team control or quota guard')
             if member['provider']!='grok' and time.monotonic()>deadline:

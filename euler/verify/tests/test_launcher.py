@@ -275,7 +275,7 @@ def test_subprocess_env_prepends_dir_for_concrete_path():
     with tempfile.TemporaryDirectory() as tmp:
         binp = str(Path(tmp) / "codex")
         env = codex.subprocess_env(binp)
-        assert env["PATH"].split(os.pathsep)[0] == str(Path(tmp).resolve())
+        assert Path(env["PATH"].split(os.pathsep)[0]).resolve() == Path(tmp).resolve()
 
 
 def test_subprocess_env_no_cwd_injection_for_bare_name():

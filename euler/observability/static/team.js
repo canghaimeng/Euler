@@ -352,6 +352,11 @@
 
   function renderNotices(c, d) {
     const items = [];
+    if (d.research_campaign?.status === 'NEEDS_INPUT') {
+      const reasons = { unchanged_frontier: tr('Three lead turns left the frontier unchanged. Review the obstacles or try another approach.', '主 Agent 连续三轮未改变研究前沿，请检查障碍或调整路线。'), provider_failure: tr('A provider call failed. Check the failed message before resuming.', '服务商调用失败，请查看失败消息后再继续。'), missing_target: tr('The research target is no longer available.', '当前研究目标已不可用。') };
+      items.push(['warn', tr('Research is paused for review: ', '研究已暂停，等待调整：') + (reasons[d.research_campaign.reason_code] || d.research_campaign.reason || '')]);
+    }
+    if (d.research_campaign?.enabled && d.state === 'RUNNING') items.push(['info', tr('The team is continuing from the research frontier. Proofs close only after verification.', '团队正根据研究前沿继续推进；证明步骤经验证后才会闭合。')]);
     if (c.error) items.push(['error', tr(`Could not refresh: ${c.error}. Showing the reading from ${c.at ? fmtTime(new Date(c.at)) : '—'}.`, `刷新失败：${c.error}。显示 ${c.at ? fmtTime(new Date(c.at)) : '—'} 的读取结果。`), true]);
     if (d.complete_native_recovery) {
       if (d.state === 'PAUSED' || d.state === 'PAUSING') items.push(['warn', tr('The team is paused. Queued messages wait until you resume it under Run controls.', '团队已暂停。排队的消息会等到你在“运行控制”中继续。')]);

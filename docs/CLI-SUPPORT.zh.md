@@ -43,3 +43,11 @@ Codex、Claude、Grok 支持原生 effort 配置。Gemini、Cursor 使用 `effor
 `euler/workspace/tests/test_cli_adapters.py` 使用**本地协议模拟程序**，检查真实子进程、系统隔离、公开输出过滤、原生存储保留、分支独立性和恢复。账号访问与模型可用性在部署主机另行检查。
 
 接口参考：[Claude CLI](https://code.claude.com/docs/en/cli-reference)、[Gemini 会话](https://geminicli.com/docs/cli/session-management/)、[Gemini 配置](https://geminicli.com/docs/reference/configuration/)、[Cursor CLI](https://cursor.com/docs/cli/overview)。开发时也检查了本机 CLI 帮助和服务商代码；Cursor 的 ACP 接口可能随版本变化。
+
+## 运行中的研究工具
+
+原生团队获得研究状态查询、分层证明计划、有范围的障碍记录和类型化状态更新工具。助手提交证明时经过真实的 worker MCP 网关及独立验证服务，主 Agent 和 verifier 角色不能提交 Fact。原始目标需要单独的最终审计。研究事件直接驱动现有工作台，无需事后导出图谱。
+
+运行器可以根据团队中的 Grok、Codex 或 Cursor 成员启动回环地址验证服务；显式设置的 `EULER_VERIFY_URL` 优先。Claude Code 与 Gemini 团队也能使用该服务，但这两种 CLI 尚不是现有验证服务的冷启动后端。所选验证者需在本机完成登录。运行器优先复用所选原生成员已刷新的有效登录，凭证仍排除在里程碑之外。连续五次服务商传输重试通知会结束当前轮并报告基础设施错误；这不会给 Grok 增加整轮时间上限。
+
+持续研究由主 Agent 针对研究请求明确启用。每轮编译当前目标的上下文，连续三轮没有研究前沿变化时暂停待检查。恢复后的分支默认不启动持续研究，用户提问与后续探索均留在该分支。

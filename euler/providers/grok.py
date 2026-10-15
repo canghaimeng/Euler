@@ -196,7 +196,7 @@ def resolve_grok_auth_source(
     default = host / ".grok" / "auth.json"
     if isolated_home is not None:
         try:
-            if default.resolve() == (isolated_home / "auth.json").resolve():
+            if default.resolve() == isolated_home.resolve() / "auth.json":
                 return None
         except OSError:
             pass

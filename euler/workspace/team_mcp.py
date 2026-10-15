@@ -2,11 +2,34 @@
 # Copyright 2026 Qiuyu Chen (canghaimeng).
 """Restored-team mailbox; no admission of mathematical facts or checker verdicts."""
 import hashlib,json,os
+import functools
+import inspect
 from pathlib import Path
-from euler._mcp import FastMCP
+from euler._mcp import FastMCP, ToolError
+from euler.control.views import ResearchViewError
 from .team import load,public_state,queue_question,add_member
 
 app=FastMCP('euler-team')
+
+def public_tool(fn):
+    """Return actionable validation failures across both MCP SDK generations."""
+    if inspect.iscoroutinefunction(fn):
+        @functools.wraps(fn)
+        async def wrapped(*args, **kwargs):
+            try:
+                return await fn(*args, **kwargs)
+            except (ValueError, KeyError, TypeError, ResearchViewError) as exc:
+                raise ToolError(str(exc)) from exc
+    else:
+        @functools.wraps(fn)
+        def wrapped(*args, **kwargs):
+            try:
+                return fn(*args, **kwargs)
+            except (ValueError, KeyError, TypeError, ResearchViewError) as exc:
+                raise ToolError(str(exc)) from exc
+    wrapped.__signature__ = inspect.signature(fn, eval_str=True)
+    return wrapped
+
 
 
 def identity():
@@ -15,7 +38,6 @@ def identity():
     return root,member,s
 
 
-@app.tool()
 def euler_team_members() -> dict:
     """List this team's roles, assignments and restored session identities."""
     root,_,_=identity();s=public_state(root)
@@ -28,7 +50,6 @@ def euler_team_members() -> dict:
             'available_clis':available}
 
 
-@app.tool()
 def euler_team_create_member(name: str, provider: str, model: str, effort: str,
                              assignment: str, role: str = 'assistant', max_turns: int | None = None) -> dict:
     """Lead only: add a configured member to this branch, then use euler_team_ask.
@@ -49,7 +70,6 @@ def euler_team_create_member(name: str, provider: str, model: str, effort: str,
     return add_member(root,definition,key=key,actor='agent:'+sender)
 
 
-@app.tool()
 def euler_team_ask(member: str, question: str, object_id: str | None = None) -> dict:
     """Delegate a bounded question to another member. Its reply returns to you."""
     root,sender,s=identity()
@@ -63,33 +83,30 @@ def euler_team_ask(member: str, question: str, object_id: str | None = None) -> 
     return {'message_id':result['id'],'state':result['state'],'delivery':'The runner will consult this member and return its reply to your existing conversation.'}
 
 
-@app.tool()
 def euler_team_messages() -> dict:
     """Read public team exchanges and pending requests; no private reasoning."""
     root,member,s=identity()
     return {'messages':[m for m in s['messages'] if member in [m['request']['recipient'],m['request']['sender']] or member==s['lead']]}
 
 
-@app.tool()
-def euler_team_propose_steps(statements: list[str], mechanism: str) -> dict:
-    """Record proposed proof obligations and an AND route; never mark them proved."""
-    root,member,s=identity()
-    if member!=s['lead']:raise ValueError('only the lead records the research plan')
-    if not 1<=len(statements)<=12 or any(not x.strip() or len(x)>4000 for x in statements):raise ValueError('bounded precise statements required')
-    from euler.control.project import open_project
-    from euler.control.obligations import Obligation,Route
-    from euler.control.research_service import ResearchService
-    with open_project(root) as project:
-        contract=project.research_view().get_contract(project.manifest.contract_id)
-        obligations=[Obligation.build(contract_id=contract.contract_id,exact_statement=x,scope=contract.scope,
-            desired_output='A checked proof step',created_by=member,version=1) for x in statements]
-        route=Route.build(target_obligation_id=project.manifest.target_obligation_id,mechanism=mechanism,
-                          required_obligation_ids=[o.obligation_id for o in obligations])
-        ResearchService(project,actor=member).apply([
-            *[{'event_type':'obligation.created','payload':{'obligation':o.to_dict()}} for o in obligations],
-            {'event_type':'route.created','payload':{'route':route.to_dict()}}])
-        return {'target':project.manifest.target_obligation_id,'obligations':[o.obligation_id for o in obligations],
-                'route':route.route_id,'status':'OPEN; proposals only, not Fact admission'}
+def euler_team_propose_steps(statements: list[str], mechanism: str,
+                             parent_obligation_id: str | None = None) -> dict:
+    """Lead: record precise prerequisites and their proposed closing argument.
+
+    Use parent_obligation_id to refine an existing step; omit it for the root.
+    Each step inherits that parent's scope. These are open proposals, not proofs.
+    """
+    root, member, state = identity()
+    if member != state['lead']:
+        raise ValueError('only the lead records the research plan')
+    from .team_research import propose_steps
+    return propose_steps(root, member, statements, mechanism, parent_obligation_id)
 
 
-if __name__=='__main__':app.run()
+from .team_research import TOOLS as RESEARCH_TOOLS
+for tool in [euler_team_members, euler_team_create_member, euler_team_ask,
+             euler_team_messages, euler_team_propose_steps, *RESEARCH_TOOLS]:
+    app.tool()(public_tool(tool))
+
+if __name__ == '__main__':
+    app.run()

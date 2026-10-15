@@ -496,6 +496,14 @@ def _pid_alive(worker: Path, pid: Any, started_at: Any) -> bool | None:
         return False
     proc = Path("/proc") / str(pid)
     if not Path("/proc").is_dir():
+        import platform
+        if platform.system() == 'Darwin':
+            from euler.process_identity import bsd_process_field
+            command = bsd_process_field(pid, 'command')
+            if command and '-m euler.execution' not in command:
+                return False
+            if bsd_process_field(pid, 'stat').startswith('Z'):
+                return False
         return None
     try:
         argv = (proc / "cmdline").read_bytes().split(b"\0")

@@ -7,7 +7,7 @@ on:
 
 jobs:
   native-protocol-and-isolation:
-    name: Native protocol doubles and OS isolation (${{ matrix.os }})
+    name: Full regression and native protocols (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
@@ -18,10 +18,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+      - name: Install pinned Lean for kernel checks
+        shell: bash
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain leanprover/lean4:v4.34.1
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/lean" --version
       - run: python -m pip install -e '.[dev]'
       - run: python -m euler.workspace.team doctor
-      - name: Exercise real isolation and synthetic CLI sessions (no model calls)
-        run: python -m pytest euler/workspace/tests euler/providers/tests/test_providers.py --junitxml=native-team-tests.xml -q
+      - name: Exercise the full suite, real isolation and synthetic CLI sessions
+        run: python -m pytest euler/ --junitxml=native-team-tests.xml -q -rs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

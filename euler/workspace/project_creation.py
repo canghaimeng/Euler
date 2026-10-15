@@ -78,7 +78,8 @@ def create_project(body, settings):
                 obligation=Obligation.build(contract_id=contract.contract_id,exact_statement=contract.exact_statement,
                     scope=scope,desired_output='Clarify and investigate the researcher’s mathematical question.',created_by='human',version=1)
                 budget=BudgetPolicy(**{k:DimensionLimit.unlimited() for k in RESOURCE_DIMENSIONS})
-                with initialize_project(stage,contract,obligation,budget,'human:project-create',team.now()):pass
+                with initialize_project(stage,contract,obligation,budget,'human:project-create',team.now()) as opened:
+                    opened.artifacts.put_text('Initial user request: '+body['question'])
                 enable(stage,store=home/'history'/identifier)
                 lead={**body['lead'],'id':'lead','name':body['lead']['provider'],'role':'lead',
                       'assignment':'Clarify the researcher’s question, coordinate the investigation, and add configured teammates when needed.'}

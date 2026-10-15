@@ -572,6 +572,36 @@ def build_final_audit_identity(
     )
 
 
+def recover_abandoned_final_audits(project, *, timestamp_utc=None):
+    """Release only audits whose recorded local owner has exited; never infer a verdict.
+
+    Ownerless legacy leases remain untouched and require operator inspection.
+    Unknown process identity conservatively keeps the reservation in use.
+    """
+    from .local_actions import owner_is_alive
+    ts = timestamp_utc or _utc_now()
+    recovered = []
+    with project.event_store.transaction(immediate=True):
+        owners = {e.payload.get('lease_id'): e.payload.get('owner')
+                  for _, e in project.event_store.iter_project(project.project_id)
+                  if e.event_type == 'euler.final_audit_owner'}
+        for lease in project.runtime_snapshot().leases:
+            if lease.mechanism != _MECHANISM or lease.status not in {LeaseStatus.ISSUED, LeaseStatus.RUNNING}:
+                continue
+            owner = owners.get(lease.lease_id)
+            if not owner or owner_is_alive(owner):
+                continue
+            ref = project.artifacts.put_bytes(canonical_json({
+                'lease_id': lease.lease_id, 'transport_status': 'interrupted',
+                'verdict': None, 'reason': 'Recorded final-audit owner exited before settlement.'
+            }).encode('utf-8'), media_type='application/json')
+            project.runtime.fail_infrastructure(project.project_id, lease.lease_id,
+                artifact_refs=(ref.content_hash,), actor=_ACTOR, timestamp_utc=ts,
+                reason='final-audit owner exited; outcome unknown, explicit retry permitted')
+            recovered.append(lease.lease_id)
+    return recovered
+
+
 def run_final_audit(
     project: EulerProject,
     *,
@@ -599,6 +629,7 @@ def run_final_audit(
     elif retry_reason is not None and str(retry_reason).strip() == "":
         retry_reason = None
     ts = timestamp_utc or _utc_now()
+    recover_abandoned_final_audits(project, timestamp_utc=ts)
     from .research_service import ResearchService
     ResearchService(project, actor=_ACTOR).sync_fact_dependencies(timestamp_utc=ts)
     view = project.research_view()
@@ -717,38 +748,58 @@ def run_final_audit(
         packet.rendered_utf8(), media_type="text/plain"
     )
     lease_key = f"final-audit-lease:{identity.identity_hash}:attempt:{attempt_index}"
-    lease = project.runtime.issue(
-        project.project_id,
-        candidate,
-        idempotency_key=lease_key,
-        actor=_ACTOR,
-        timestamp_utc=ts,
-        context_cache_key=packet.cache_key.key_id,
-    )
-    current = next(
-        (item for item in project.runtime_snapshot().leases if item.lease_id == lease.lease_id),
-        lease,
-    )
-    if current.status is LeaseStatus.COMPLETED:
-        replayed = _load_matching_success(project, identity)
-        if replayed is not None:
-            _assert_replay_artifacts(project, replayed)
-            return FinalAuditRun.from_dict({**replayed.to_dict(), "replayed": True})
-        raise FinalAuditError("final-audit lease already completed without a stored success")
-    if current.status is LeaseStatus.INFRA_FAILED:
-        if not retry_infra:
-            replayed = _load_matching_infra(project, identity)
+    with project.event_store.transaction(immediate=True):
+        lease = project.runtime.issue(
+            project.project_id,
+            candidate,
+            idempotency_key=lease_key,
+            actor=_ACTOR,
+            timestamp_utc=ts,
+            context_cache_key=packet.cache_key.key_id,
+        )
+        current = next(
+            (item for item in project.runtime_snapshot().leases if item.lease_id == lease.lease_id),
+            lease,
+        )
+        if current.status is LeaseStatus.COMPLETED:
+            replayed = _load_matching_success(project, identity)
             if replayed is not None:
                 _assert_replay_artifacts(project, replayed)
                 return FinalAuditRun.from_dict({**replayed.to_dict(), "replayed": True})
-        raise FinalAuditError("final-audit lease already terminal without a stored run")
-    if current.status is LeaseStatus.ISSUED:
-        lease = project.runtime.mark_running(
-            project.project_id, lease.lease_id, actor=_ACTOR, timestamp_utc=ts
-        )
+            raise FinalAuditError("final-audit lease already completed without a stored success")
+        if current.status is LeaseStatus.INFRA_FAILED:
+            if not retry_infra:
+                replayed = _load_matching_infra(project, identity)
+                if replayed is not None:
+                    _assert_replay_artifacts(project, replayed)
+                    return FinalAuditRun.from_dict({**replayed.to_dict(), "replayed": True})
+            raise FinalAuditError("final-audit lease already terminal without a stored run")
+        if current.status is LeaseStatus.RUNNING:
+            return _finish_run(project, obligation_id=obligation.obligation_id, fact_id=fact.fact_id,
+                status=FinalAuditStatus.DEFERRED, plan_hash=plan_hash, disposition='DEFERRED',
+                reason='final audit already running', lease_id=lease.lease_id,
+                action_id=candidate.action_spec.action_id, replayed=False,
+                **_identity_fields(identity, attempt_index))
+        if current.status is LeaseStatus.ISSUED:
+            lease = project.runtime.mark_running(
+                project.project_id, lease.lease_id, actor=_ACTOR, timestamp_utc=ts
+            )
+
+        from .local_actions import owner_process_identity
+        project.event_store.append(EventEnvelope.build(
+            project_id=project.project_id, actor=_ACTOR,
+            event_type='euler.final_audit_owner', idempotency_key='final-audit-owner:' + lease.lease_id,
+            payload={'lease_id': lease.lease_id, 'owner': owner_process_identity(),
+                     'identity_hash': identity.identity_hash}, timestamp_utc=ts,
+            correlation_id=obligation.obligation_id))
 
     started = time.monotonic()
-    result = bus.verify(contract.exact_statement, proof)
+    try:
+        result = bus.verify(contract.exact_statement, proof)
+    except Exception:
+        project.runtime.fail_infrastructure(project.project_id, lease.lease_id,
+            reason='final-audit transport raised before producing a verdict', actor=_ACTOR)
+        raise
     elapsed_ms = max(0, int((time.monotonic() - started) * 1000))
     verify_ref = project.artifacts.put_bytes(
         canonical_json(result.to_dict()).encode("utf-8"),

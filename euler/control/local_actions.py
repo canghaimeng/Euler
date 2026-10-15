@@ -4,6 +4,8 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
 import os
+import platform
+import subprocess
 import time
 from typing import Any, Callable, Mapping, Optional
 
@@ -49,6 +51,9 @@ def _read_proc(path: str) -> str:
 
 
 def _proc_starttime(pid: int) -> str:
+    if platform.system() == 'Darwin':
+        from euler.process_identity import bsd_process_field
+        return bsd_process_field(pid, 'lstart')
     text = _read_proc(f"/proc/{pid}/stat")
     if not text:
         return ""
@@ -61,12 +66,21 @@ def _proc_starttime(pid: int) -> str:
     return rest[19]
 
 
+def _boot_identity():
+    if platform.system() == 'Darwin':
+        try:
+            return subprocess.check_output(['/usr/sbin/sysctl', '-n', 'kern.boottime'], text=True, timeout=3).strip()
+        except (OSError, subprocess.SubprocessError):
+            return ''
+    return _read_proc('/proc/sys/kernel/random/boot_id')
+
+
 def owner_process_identity() -> dict[str, str]:
     """Durable owner token: PID plus boot/start identity to survive PID reuse."""
     pid = os.getpid()
     return {
         "pid": str(pid),
-        "boot_id": _read_proc("/proc/sys/kernel/random/boot_id"),
+        "boot_id": _boot_identity(),
         "starttime": _proc_starttime(pid),
     }
 
@@ -78,6 +92,27 @@ def owner_is_alive(owner: Mapping[str, Any] | None) -> bool:
         pid = int(str(owner.get("pid") or ""))
     except ValueError:
         return False
+    if pid <= 0:
+        return False
+    if platform.system() == 'Darwin':
+        from euler.process_identity import bsd_process_field
+        try:
+            os.kill(pid, 0)
+        except ProcessLookupError:
+            return False
+        except PermissionError:
+            return True
+        state = bsd_process_field(pid, 'stat')
+        if state.startswith('Z'):
+            return False
+        current_start = _proc_starttime(pid)
+        recorded_start = str(owner.get('starttime') or '')
+        if not current_start or not recorded_start:
+            return True  # Unknown owner identity cannot authorize a duplicate checker.
+        if current_start != recorded_start:
+            return False
+        current_boot = _boot_identity()
+        return not (owner.get('boot_id') and current_boot and owner['boot_id'] != current_boot)
     if not Path(f"/proc/{pid}").exists():
         return False
     recorded_start = str(owner.get("starttime") or "")

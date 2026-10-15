@@ -41,6 +41,8 @@ Notes:
 
 from __future__ import annotations
 
+import sys
+
 import argparse
 import fcntl
 import json
@@ -129,6 +131,9 @@ def _alive(pid: Optional[int]) -> bool:
         state = stat.rsplit(")", 1)[1].split()[0]  # field after "(comm)"
         return state != "Z"
     except (OSError, IndexError):
+        if sys.platform == 'darwin':
+            from euler.process_identity import bsd_process_field
+            return not bsd_process_field(pid, 'stat').startswith('Z')
         return True
 
 

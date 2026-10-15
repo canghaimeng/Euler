@@ -1276,7 +1276,7 @@ function selectionTraceNote(item) {
 
 function mapLabel(item, role, layer) {
   const code = stateOf(item); let meta;
-  if (role.anchor) meta = t(layer === 'facts' ? 'map.lab.conclusion' : 'map.lab.goal') + ' · ' + stateLabel(code, item.kind);
+  if (role.anchor) meta = t(layer === 'facts' ? 'map.lab.conclusion' : 'map.lab.goal') + ' · ' + (currentFocus()?.phase?.awaiting_final_audit ? (state.lang === 'en' ? 'Audit pending' : '待终审') : stateLabel(code, item.kind));
   else if (role.front) meta = role.front.kind === 'ready' ? t('map.lab.ready') : t('map.lab.' + role.front.kind, { time: shortTime(role.front.at) });
   else if (item.kind === 'route') meta = t('map.lab.route') + ' · ' + stateLabel(code, 'route');
   else if (item.kind === 'evidence') meta = t('map.lab.evidence') + ' · ' + stateLabel(code, 'evidence');
@@ -1718,7 +1718,8 @@ function renderPhase(focus) {
   const phase = focus.phase || {}; const label = phase.target_state ? stateLabel(phase.target_state, 'obligation') : t('state.unknown');
   const current = state.lang === 'en' ? label.toLowerCase() : label;
   let main;
-  if (phase.controller_closed) main = t(phase.target_state === 'refuted' ? 'map.phase.completeRefuted' : 'map.phase.complete');
+  if (phase.awaiting_final_audit) main = state.lang === 'en' ? 'Root proof checked · Independent final audit pending.' : '主目标证明已检查 · 独立最终审计尚未完成。';
+  else if (phase.controller_closed) main = t(phase.target_state === 'refuted' ? 'map.phase.completeRefuted' : 'map.phase.complete');
   else if (phase.formal_current) main = t('map.phase.formalCurrent', { state: current });
   else if (phase.target_state) main = phase.recorded_outcome ? t('map.phase.reopened', { outcome: phase.recorded_outcome, state: current }) : t('map.phase.progress', { state: current });
   else main = t('map.phase.noTarget');

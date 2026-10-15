@@ -399,3 +399,15 @@ def test_optional_native_mcp_doctor_euler(tmp_path: Path):
     assert sys.executable in (wl.dir / ".grok" / "config.toml").read_text(encoding="utf-8")
     # Record outcome for the handoff; native doctor may still need host login.
     assert isinstance(result["returncode"], int)
+
+
+def test_default_auth_source_remains_available_after_first_symlink(tmp_path):
+    from euler.providers.grok import resolve_grok_auth_source, link_grok_auth
+    host = tmp_path / 'host'; source = host / '.grok/auth.json'
+    source.parent.mkdir(parents=True); source.write_text('{"fixture":true}')
+    isolated = tmp_path / 'isolated'
+    env = {'HOME': str(host)}
+    assert link_grok_auth(isolated, env).resolve() == source.resolve()
+    assert resolve_grok_auth_source(env, isolated_home=isolated) == source.resolve()
+    assert link_grok_auth(isolated, env).resolve() == source.resolve()
+    assert source.read_text() == '{"fixture":true}'

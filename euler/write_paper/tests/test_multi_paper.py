@@ -255,11 +255,11 @@ def test_finalize_paper_records_per_paper_targets():
         second = _add_second_theorem(pdir)
         # default paper -> legacy <project>/TARGET.md
         rA = cli.do_finalize(project, ["fact_odd_sum_main"])
-        assert rA["target_file"] == str(pdir / "TARGET.md")
+        assert Path(rA["target_file"]).resolve() == (pdir / "TARGET.md").resolve()
         assert (pdir / "TARGET.md").is_file()
         # non-default paper -> <project>/papers/thmB/TARGET.md
         rB = cli.do_finalize(project, [second], paper_id="thmB")
-        assert rB["target_file"] == str(pdir / "papers" / "thmB" / "TARGET.md")
+        assert Path(rB["target_file"]).resolve() == (pdir / "papers" / "thmB" / "TARGET.md").resolve()
         assert (pdir / "papers" / "thmB" / "TARGET.md").is_file()
         # the two targets are independent.
         assert assemble.target_fact_ids(pdir) == ["fact_odd_sum_main"]

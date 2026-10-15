@@ -57,6 +57,8 @@ Installation references: [Codex](https://github.com/openai/codex), [Claude Code]
 
 On a remote host without a browser, use the CLI's device sign-in where available, such as `codex login --device-auth`. Credentials stay in local provider configuration, private member runtime directories, or the OS Keychain; they are excluded from milestones and browser responses.
 
+Run the workbench from the same terminal environment in which the selected CLIs can reach their provider. If your network requires a proxy, configure the CLI's HTTP/HTTPS proxy there; a browser proxy alone may not cover terminal processes. Keep `127.0.0.1` and `localhost` in `NO_PROXY` / `no_proxy` so local verification requests stay on this machine.
+
 Use model IDs available to your account. Codex, Claude, and Grok use their native effort options. For Gemini and Cursor, set `effort` to `model-defined`: the declared model ID and its supported parameters determine those settings. Use `cursor-agent models` to inspect Cursor's model IDs.
 
 ## 4. Describe your problem and your team
@@ -147,19 +149,30 @@ After starting the workbench, choose **Create project** beside **Research milest
 2. Choose the lead (`codex · Lead`) in the member list on the left.
 3. Type a question in **Your question**. For the example:
 
-   > Propose a short proof plan for the main goal. Record its steps with euler_team_propose_steps, then ask grok with euler_team_ask to check the step about a prime divisor of N! + 1. When grok's reply arrives, summarize what it found. Do not claim that any step is verified.
+   > Prove the main goal with the team. Keep the research graph up to date as you work, record obstacles, submit complete proofs for independent checking, and audit the original conclusion before reporting success.
 
 4. Press **Send**.
 
-The work runs on your Mac or Linux research host. The lead takes a turn; when it consults the assistant, the assistant takes a turn, and its reply is delivered back to the lead, who takes another turn. One question like this therefore usually uses three turns. Replies appear in that member’s conversation on the right. Active work is checked every three seconds while this page is open. You can close the browser; the work continues.
+The work runs on your Mac or Linux research host. The lead takes a turn; when it consults the assistant, the assistant takes a turn, and its reply is delivered back to the lead, who takes another turn. A bounded consultation typically uses three turns. When you request sustained research, the lead can enable continued work from the current frontier until the goal is accepted, input is needed, or a run limit is reached. Replies appear in that member’s conversation on the right. Active work is checked every three seconds while this page is open. You can close the browser; the work continues.
 
 Each turn can take several minutes. While the lead works, the member list says **Working** and the newest message is **Working** or **Queued**.
+
+### Live research and checking
+
+The native team receives research tools automatically. The lead records proof routes and can refine individual steps; members record scoped obstacles as they arise. An assistant submits a self-contained proof through the worker MCP gateway. Only a real checker acceptance creates a Fact and links evidence to its exact research obligation. A rejected argument leaves the obligation open and records repair information. The lead then requests a separate, fresh audit of the original goal.
+
+A configured `EULER_VERIFY_URL` selects your verification service. Otherwise the runner starts a private loopback service, preferring a Grok, Codex or Cursor verifier member, then an assistant, then the lead's provider. Each verification uses a fresh verifier process. This service uses the selected CLI's local login and closes when the runner exits. Starting it does not call a model. Teams using only Claude Code or Gemini need a configured verification service or a supported verifier member. A missing service is reported as a blocker, never as a passing proof.
+
+The sample's `task_budget` limits also apply to the final audit. The lead supplies an explicit audit reservation for limited dimensions, or the operator sets `EULER_FINAL_AUDIT_RESOURCES` using the resource-vector fields in [configuration](configuration.md). Native conversation limits count turns, including continued research; they are not provider token or monetary caps.
+
+When sustained research is enabled, each turn receives current scoped context from the research state. Three lead turns without a frontier change pause the campaign for review. The notice appears in Team interaction. An unchanged frontier is an operational signal, not a mathematical impossibility claim. Short explanations do not automatically start a continuing campaign. **Pause team** and **Stop team** remain available.
 
 ## 8. What you will see first
 
 A new project looks almost empty, and that is correct.
 
 - **Before the first plan:** the Overview shows a single **Main goal** card marked **Open**, the summary **Main goal not yet closed**, and every evidence level at zero. Diagnostics lists the events that created the project: the problem contract, the main-goal obligation and the task budget.
+- **After checked work returns:** admitted evidence closes matching steps. The original goal still requires its independent final audit; a discussion reply alone does not close it.
 - **After the lead records a plan:** the main goal gets a **Proof route** (marked **Proposed**) and the route's steps appear as **Proof module** cards marked **Open**. Lines connect each step to the route and the route to the main goal. Live research shows "New research route registered".
 
 These records begin as proposals. Section 10 explains how registered verification evidence changes a step to **Closed**.
@@ -274,7 +287,7 @@ Research runs in a background process on the Mac or Linux host and continues whe
 
 A milestone saves, together, the project files, the research graph, tasks, evidence, and each member's native conversation. It goes into local private Git history in `history/`, outside the project. This history has no remote and records the team's saved state. Mathematical acceptance stays with each goal's evidence records.
 
-- **Automatic milestones.** After sessions are connected, and whenever the team finishes its queued work and is idle, Euler saves a "Team state checkpoint" if anything changed.
+- **Automatic milestones.** After sessions are connected and after each settled team turn, Euler saves a "Team state checkpoint" if anything changed.
 - **Named milestones.** Open **Research milestones**, expand **Save the current team state**, enter a **Milestone label** such as "Plan reviewed by grok", and choose **Create Git milestone**. The team must be idle; if a turn is still running, wait and try again.
 
 The milestone list marks each entry **team state** or **files only**. Only milestones with team state can resume the members' conversations.
@@ -292,7 +305,7 @@ Use this when you want to try a different direction without disturbing current w
 
 Restoration preserves the mathematical state at the selected milestone: open goals remain open, and existing acceptance records are retained. Proof acceptance remains tied to its registered evidence throughout pause and recovery.
 
-A restored workspace starts with a fresh turn allowance and keeps its own milestones. It stays in the project selector after you restart the workbench.
+Continued research is disabled on restoration until the lead explicitly enables it for the new request. A restored workspace starts with a fresh turn allowance and keeps its own milestones. It stays in the project selector after you restart the workbench.
 
 If restoring with a selected step fails with "selected object does not exist in this exact milestone", the step was created after that milestone. Choose a later milestone, or restore without selecting a step.
 

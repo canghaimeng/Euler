@@ -121,6 +121,7 @@ def public_state(project):
     return {'available':True,'instance_id':s['instance_id'],'objective':s['objective'],'state':'RUNNING' if s['state']=='READY' and any(m['status'] in {'RUNNING','CONNECTING'} for m in s['members']) else s['state'],
         'lead':s['lead'],'members':members,'messages':[{**m,'inherited':m['id'] in inherited} for m in s['messages']],'policy':s['policy'],
         'turns_used':s['turns_used'],'source':{k:v for k,v in s['source'].items() if k!='roots'} if s['source'] else None,'node_participants':s['node_participants'],
+        'research_campaign':s.get('research_campaign'),
         'roster_events':s.get('roster_events',[]),'ready_for_conversation':ready_for_conversation(s),
         'complete_native_recovery':all(m['recovery'] in RECOVERED for m in s['members'])}
 
@@ -263,6 +264,9 @@ def command(project, action):
         if action=='resume':
             if not ready_for_conversation(s):raise TeamError('restore all member sessions before resuming')
             s['state']='READY'
+            if s.get('research_campaign', {}).get('enabled'):
+                s['research_campaign'].update(status='RUNNING', unchanged_turns=0)
+                s['research_campaign'].pop('reason', None)
             for message in s['messages']:
                 if message['state']=='SUSPENDED':message['state']='QUEUED'
         else:
@@ -346,6 +350,8 @@ def restore_team(stage, destination, root, commit, manifest):
         'inherited_message_ids':[m['id'] for m in s['messages']],
         'roots':sorted(set(list(manifest['roots'].values())+(s.get('source') or {}).get('roots',[])))}
     s['turns_used']=0;s['state']='RESTORED_PAUSED'
+    if s.get('research_campaign'):
+        s['research_campaign'].update(enabled=False, status='RESTORED_PAUSED', unchanged_turns=0)
     for m in s['members']:
         m['turns_used']=0
         m['restored_from']=m['session_id'];m['session_id']=None;m['status']='FORK_PENDING';m['recovery']='PENDING'
@@ -384,8 +390,9 @@ def _drain(project):
                 if threshold is not None and not codex:
                     raise TeamError('a Codex quota observer must be configured')
                 # A deployment can opt into an account-level guard for all members.
-                with (connection(project,codex,snapshot) if codex else nullcontext((None,None,None))) as (quota_rpc,_,_):
+                with (connection(project,codex,snapshot,account_only=True) if codex else nullcontext((None,None,None))) as (quota_rpc,_,_):
                     remaining=require_quota(quota_rpc,threshold) if codex else None;next_check=[time.monotonic()+15]
+                    snapshot['_external_quota_guard'] = codex is not None
                     def cancelled():
                         state=load(project)
                         if state['state'] in {'PAUSING','PAUSED','STOP_REQUESTED','STOPPED','QUOTA_PAUSED'}:return True
@@ -403,7 +410,8 @@ def _drain(project):
                         with edit(project) as live:
                             current=next(m for m in live['members'] if m['id']==actor['id']);current.update(prepared);current['status']='RUNNING'
                     if cancelled():raise TeamError('team interruption requested')
-                    response=run_turn(project,actor,snapshot,turn_question(job),cancelled)
+                    from .team_research import compile_context
+                    response=run_turn(project,actor,snapshot,turn_question(job)+compile_context(project,job),cancelled)
                 if not response['reply'].strip():raise TeamError('provider returned no public reply')
                 error=None
             except Exception as exc:
@@ -441,13 +449,20 @@ def _drain(project):
                             '\nUse this result to continue coordinating the team. State any remaining mathematical uncertainty.',
                             'object_id':job['request']['object_id'],'sender':'team-delivery','parent':job['id']}
                     s['messages'].append({'id':str(uuid.uuid4()),'key':'delivery:'+job['id'],'request':follow,
-                        'state':'QUEUED','created_at':now(),'reply':None,'error':None,
+                        'state':'QUEUED' if s['state']=='READY' else 'SUSPENDED','created_at':now(),'reply':None,'error':None,
                         **({'selected_object':copy.deepcopy(job['selected_object'])} if job.get('selected_object') else {})})
+
+            from .team_research import after_turn
+            after_turn(project, job, failed=bool(error))
+            from .milestones import checkpoint_if_enabled
+            checkpoint_if_enabled(project)
 
 
 def drain(project):
     try:
-        _drain(project)
+        from .team_verifier import managed_verifier
+        with managed_verifier(project, load(project)):
+            _drain(project)
     finally:
         from .milestones import checkpoint_if_enabled
         checkpoint_if_enabled(project)

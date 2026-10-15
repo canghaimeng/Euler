@@ -137,3 +137,14 @@ def test_map_focus_lists_unaccepted_records_with_structured_links_only(tmp_path,
     edge_ids = {edge["id"] for edge in TestClient(app).get("/api/graph", params={"layer": "research"}).json()["edges"]}
     assert set(line["edges"]) <= edge_ids
     assert TestClient(app).get("/api/map-focus", params={"layer": "nope"}).status_code == 400
+
+
+def test_native_root_proof_does_not_complete_reading_phase_before_final_audit():
+    graph = {'target_id': 'goal', 'nodes': [_node('goal', status='DISCHARGED')], 'edges': []}
+    workspace = {'control': {'available': True, 'target_status': 'DISCHARGED'}, 'acceptance': {}}
+    waiting = phase(graph, workspace)
+    assert waiting['proof_closed'] and waiting['awaiting_final_audit']
+    assert not waiting['complete'] and not waiting['controller_closed']
+    workspace['control']['outcome'] = 'SOLVED'
+    complete = phase(graph, workspace)
+    assert complete['complete'] and not complete['awaiting_final_audit']

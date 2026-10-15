@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import json
 import os
+import platform
 import re
 import shutil
 import subprocess
@@ -529,7 +530,7 @@ def _copy_tree(src: Path, dest: Path, *, deadline: float) -> str:
         remaining = _remaining(deadline, "dependency copy")
         try:
             completed = subprocess.run(
-                ["cp", "-a", "--reflink=auto", str(src), str(dest)],
+                (["cp", "-a", "-c"] if platform.system() == "Darwin" else ["cp", "-a", "--reflink=auto"]) + [str(src), str(dest)],
                 capture_output=True,
                 text=True,
                 timeout=remaining,
@@ -557,7 +558,7 @@ def _copy_tree(src: Path, dest: Path, *, deadline: float) -> str:
     remaining = _remaining(deadline, "ordinary package copy")
     try:
         fallback = subprocess.run(
-            ["cp", "-a", "--reflink=never", str(src), str(dest)],
+            (["cp", "-a"] if platform.system() == "Darwin" else ["cp", "-a", "--reflink=never"]) + [str(src), str(dest)],
             capture_output=True,
             text=True,
             timeout=remaining,
@@ -590,7 +591,7 @@ def _probe_reflink(src: Path, dest_parent: Path, *, deadline: float) -> tuple[bo
     _remove_path(probe)
     try:
         completed = subprocess.run(
-            ["cp", "--reflink=always", str(sample), str(probe)],
+            (["cp", "-c"] if platform.system() == "Darwin" else ["cp", "--reflink=always"]) + [str(sample), str(probe)],
             capture_output=True,
             text=True,
             timeout=remaining,
@@ -836,6 +837,25 @@ def _corresponding_source_file(src: Path, dest: Path, sample: Path) -> Path | No
 
 
 def _approx_size(root: Path, *, deadline: float) -> int:
+    if platform.system() == "Darwin":
+        # BSD du has no -b; measure apparent bytes without following symlinks.
+        total = 0
+        stack = [root]
+        try:
+            while stack:
+                _remaining(deadline, "size check")
+                directory = stack.pop()
+                total += directory.lstat().st_size
+                with os.scandir(directory) as entries:
+                    for entry in entries:
+                        _remaining(deadline, "size check")
+                        if entry.is_dir(follow_symlinks=False):
+                            stack.append(Path(entry.path))
+                        else:
+                            total += entry.stat(follow_symlinks=False).st_size
+            return total
+        except OSError as exc:
+            raise KernelDependencyError(f"dependency preparation: cannot measure package size: {exc}") from exc
     remaining = _remaining(deadline, "size check")
     try:
         completed = subprocess.run(

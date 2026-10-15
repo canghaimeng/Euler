@@ -159,6 +159,9 @@ def create(definition, workspace):
             os.environ.pop("EULER_AGENTS_ROOT", None)
         else:
             os.environ["EULER_AGENTS_ROOT"] = previous
+    from euler.control.project import open_project
+    with open_project(project) as opened:
+        opened.artifacts.put_text(problem['definitions'])
     # Equivalent to: euler-milestones enable --project P --store H; euler-team init --project P --definition team.json
     milestones = enable(project, store=history)
     initialize(project, team_definition["members"], objective=team_definition["objective"],

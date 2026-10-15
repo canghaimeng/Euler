@@ -76,3 +76,11 @@ Interface references: [Claude CLI](https://code.claude.com/docs/en/cli-reference
 [Gemini configuration](https://geminicli.com/docs/reference/configuration/),
 [Cursor CLI](https://cursor.com/docs/cli/overview). Installed CLI help and local
 provider code were also checked; Cursor's ACP surface may differ by release.
+
+## Live research tools
+
+Native teams receive research-state inspection, nested proof-plan proposals, scoped obstacle records, and typed state updates. Assistant proof submissions use the actual worker MCP gateway and the independent verification service. Main and verifier roles cannot submit Facts. The original goal requires a separate final audit. Research events drive the existing workbench directly; no retrospective graph export is needed.
+
+The runner can provision a loopback verifier using a Grok, Codex or Cursor team member. An explicit `EULER_VERIFY_URL` takes precedence. Claude Code and Gemini teams can use that service as well, but these two CLIs are not cold-start backends of the existing verify service. Sign in to the chosen verifier locally. The runner reuses refreshed credentials from the selected native member when available; credentials remain outside milestone archives. Five consecutive provider transport-retry notifications stop the turn with an infrastructure error. This does not add a whole-turn time limit to Grok.
+
+Sustained research is explicit: the lead enables it for a request to investigate. Current scoped context is compiled for each turn, and three unchanged lead turns pause work for review. Restored branches start with continued research disabled; user questions and subsequent research stay in that branch.

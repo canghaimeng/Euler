@@ -94,8 +94,8 @@ def test_selected_object_is_pinned_and_included_in_the_native_question(workspace
     record={'id':'selected-step','kind':'obligation','statement':'For every N > 0, some prime exceeds N.',
             'scope':{'assumptions':['N is a positive integer']},'status':'OPEN',
             'private_memory':'must never enter selected-object context'}
-    graph={'facts_graph':{'nodes':[]},'research_graph':{'nodes':[record],'edges':[]}}
-    monkeypatch.setattr(monitor,'snapshot',lambda _:graph)
+    graph={'facts_graph':{'nodes':[],'edges':[]},'research_graph':{'nodes':[record],'edges':[]}}
+    monkeypatch.setattr(monitor,'snapshot',lambda _,**kwargs:graph)
     job=team.queue_question(p,'helper','Check the assumption.',key='node-question',object_id=record['id'])
     prompt=team.turn_question(job)
     assert record['statement'] in prompt and record['id'] in prompt and 'Check the assumption.' in prompt
@@ -268,3 +268,20 @@ try:restrict_filesystem([sys.argv[1]],[sys.argv[2]]);raise AssertionError('ances
 except IsolationError:pass
 '''
     subprocess.run([sys.executable,'-c',code,str(tmp_path),str(old)],check=True)
+
+
+def test_late_assistant_reply_stays_held_after_pause(workspace, monkeypatch):
+    from euler.workspace import team_provider
+    p, _ = workspace
+    def turn(root, member, state, question, cancelled):
+        team.command(root, 'pause')
+        return {'reply':'A late discussion reply.', 'native_session_id':member['session_id']}
+    monkeypatch.setattr(team_provider, 'run_turn', turn)
+    team.queue_question(p, 'helper', 'Review this step', key='delegation', sender='lead', parent='fixture')
+    team.command(p, 'resume')
+    team._drain(p)
+    state = team.load(p)
+    assert state['state'] == 'PAUSED'
+    assert state['messages'][-1]['request']['sender'] == 'team-delivery'
+    assert state['messages'][-1]['state'] == 'SUSPENDED'
+    assert not any(m['state'] == 'QUEUED' for m in state['messages'])
