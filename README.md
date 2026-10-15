@@ -12,7 +12,7 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 **English** · [简体中文](README.zh-CN.md)
 
-[Contributions](#core-contributions) · [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [Citation](#citation) · [License](#license) · [Community](#community)
+[Contributions](#core-contributions) · [Citation](#citation) · [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license) · [Community](#community)
 
 </div>
 

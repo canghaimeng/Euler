@@ -12,7 +12,7 @@ Euler 是一个帮助研究者理解和把握完整推导过程的数学研究�
 
 [English](README.md) · **简体中文**
 
-[核心贡献](#核心贡献) · [数学成果](#数学成果) · [快速开始](#快速开始) · [使用指南](docs/DASHBOARD-GUIDE.zh.md) · [架构](ARCHITECTURE.zh.md) · [CLI 支持](docs/CLI-SUPPORT.zh.md) · [引用](#引用) · [许可](#许可) · [讨论社群](#讨论社群)
+[核心贡献](#核心贡献) · [引用](#引用) · [数学成果](#数学成果) · [快速开始](#快速开始) · [使用指南](docs/DASHBOARD-GUIDE.zh.md) · [架构](ARCHITECTURE.zh.md) · [CLI 支持](docs/CLI-SUPPORT.zh.md) · [许可](#许可) · [讨论社群](#讨论社群)
 
 </div>
 
