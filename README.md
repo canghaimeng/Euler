@@ -162,14 +162,11 @@ The suite runs offline, with local protocol doubles standing in for the provider
 Read the [Euler paper on arXiv](https://arxiv.org/abs/2610.19864). To cite Euler, use the paper citation below or [CITATION.cff](CITATION.cff).
 
 ```bibtex
-@misc{chen2026eulerhumancenteredmultiagentmathematical,
+@article{chen2026euler,
   title={Euler: Towards Human-Centered Multi-Agent Mathematical Discovery},
-  author={Qiuyu Chen and Qi Wang and Liang Xu and Xin Jin and Baao Xie and Wenjun Zeng},
-  year={2026},
-  eprint={2610.19864},
-  archivePrefix={arXiv},
-  primaryClass={cs.AI},
-  url={https://arxiv.org/abs/2610.19864},
+  author={Chen, Qiuyu and Wang, Qi and Xu, Liang and Jin, Xin and Xie, Baao and Zeng, Wenjun},
+  journal={arXiv preprint arXiv:2610.19864},
+  year={2026}
 }
 ```
 

@@ -200,8 +200,8 @@ def test_release_attribution_is_canonical() -> None:
     ][2:]
     assert displayed_names == expected_names
     assert "[Qiuyu Chen](https://github.com/canghaimeng)" in author_section
-    assert "@misc{chen2026eulerhumancenteredmultiagentmathematical," in author_section
-    assert "eprint={2610.19864}" in author_section
+    assert "@article{chen2026euler," in author_section
+    assert "journal={arXiv preprint arXiv:2610.19864}" in author_section
     assert "https://arxiv.org/abs/2610.19864" in citation
     assert "Euler: Towards Human-Centered Multi-Agent Mathematical Discovery" in citation
     assert "Copyright 2026 Qiuyu Chen (canghaimeng)" in license_text
