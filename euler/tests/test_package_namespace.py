@@ -192,7 +192,8 @@ def test_release_attribution_is_canonical() -> None:
     metadata = tomllib.loads(package)["project"]
     assert [author["name"] for author in metadata["authors"]] == expected_names
     assert metadata["maintainers"] == [{"name": "Qiuyu Chen"}]
-    author_section = readme.split("## 👥 Authors and citation", 1)[1].split("## ", 1)[0]
+    author_section = readme.split("## 👥 Authors", 1)[1].split("## ", 1)[0]
+    citation_section = readme.split("## 📚 Citation", 1)[1].split("## ", 1)[0]
     displayed_names = [
         line.split("|")[1].strip().split("](", 1)[0].removeprefix("[")
         for line in author_section.splitlines()
@@ -200,8 +201,8 @@ def test_release_attribution_is_canonical() -> None:
     ][2:]
     assert displayed_names == expected_names
     assert "[Qiuyu Chen](https://github.com/canghaimeng)" in author_section
-    assert "@article{chen2026euler," in author_section
-    assert "journal={arXiv preprint arXiv:2610.19864}" in author_section
+    assert "@article{chen2026euler," in citation_section
+    assert "journal={arXiv preprint arXiv:2610.19864}" in citation_section
     assert "https://arxiv.org/abs/2610.19864" in citation
     assert "Euler: Towards Human-Centered Multi-Agent Mathematical Discovery" in citation
     assert "Copyright 2026 Qiuyu Chen (canghaimeng)" in license_text

@@ -148,7 +148,7 @@ python -m pytest euler/ -q
 
 The suite runs offline, with local protocol doubles standing in for the provider CLIs. CI runs it on Python 3.10 and 3.13 and checks the packaged workbench in a real browser. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-## 👥 Authors and citation
+## 👥 Authors
 
 | Author | Affiliation |
 | --- | --- |
@@ -158,6 +158,8 @@ The suite runs offline, with local protocol doubles standing in for the provider
 | [Xin Jin](https://jinx-ustc.github.io/jinxin.github.io/) | Eastern Institute of Technology, Zhejiang, China |
 | [Baao Xie](https://openreview.net/profile?id=~Baao_Xie3) | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
+
+## 📚 Citation
 
 Read the [Euler paper on arXiv](https://arxiv.org/abs/2610.19864). To cite Euler, use the paper citation below or [CITATION.cff](CITATION.cff).
 

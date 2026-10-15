@@ -148,7 +148,7 @@ python -m pytest euler/ -q
 
 测试离线运行，使用本地协议模拟程序代替服务商 CLI。CI 覆盖 Python 3.10 和 3.13，并在真实浏览器中检查打包后的工作台。提交改动前请阅读 [贡献指南](CONTRIBUTING.zh.md)。
 
-## 👥 作者与引用
+## 👥 作者
 
 | 作者 | 单位 |
 | --- | --- |
@@ -158,6 +158,8 @@ python -m pytest euler/ -q
 | [Xin Jin](https://jinx-ustc.github.io/jinxin.github.io/) | Eastern Institute of Technology, Zhejiang, China |
 | [Baao Xie](https://openreview.net/profile?id=~Baao_Xie3) | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
+
+## 📚 引用
 
 阅读 [Euler 论文（arXiv）](https://arxiv.org/abs/2610.19864)。引用 Euler 请使用以下论文条目或 [CITATION.cff](CITATION.cff)。
 
