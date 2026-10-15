@@ -6,7 +6,6 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 [![Project Page](https://img.shields.io/badge/Project%20Page-Euler-285f58)](https://canghaimeng.site/euler/?lang=en)
 [![arXiv:2610.19864](https://img.shields.io/badge/arXiv-2610.19864-B31B1B)](https://arxiv.org/abs/2610.19864)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![Linux | macOS](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-57606A)](docs/CLI-SUPPORT.md)
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-8250DF)](LICENSING.md)
 
