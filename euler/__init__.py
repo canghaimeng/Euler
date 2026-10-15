@@ -8,4 +8,4 @@ long-running, strategy-steered research system. See ARCHITECTURE.md at the repo
 root for the module map.
 """
 
-__version__ = "0.3.0.dev0"
+__version__ = "0.3.0"

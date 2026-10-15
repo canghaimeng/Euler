@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "euler-math-research"
-version = "0.3.0.dev0"
+version = "0.3.0"
 description = "Euler — structured research state for understanding mathematical reasoning and coordinating agents"
 readme = "README.md"
 requires-python = ">=3.10"
