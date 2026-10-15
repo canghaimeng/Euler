@@ -12,7 +12,7 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 **English** · [简体中文](README.zh-CN.md)
 
-[Contributions](#core-contributions) · [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [License](#license) · [Community](#community)
+[Contributions](#core-contributions) · [Results](#mathematical-results) · [Quickstart](#quickstart) · [User guide](docs/DASHBOARD-GUIDE.md) · [Architecture](ARCHITECTURE.md) · [CLI support](docs/CLI-SUPPORT.md) · [Citation](#citation) · [License](#license) · [Community](#community)
 
 </div>
 
@@ -159,6 +159,7 @@ The suite runs offline, with local protocol doubles standing in for the provider
 | [Baao Xie](https://openreview.net/profile?id=~Baao_Xie3) | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
 
+<a id="citation"></a>
 ## 📚 Citation
 
 Read the [Euler paper on arXiv](https://arxiv.org/abs/2610.19864). To cite Euler, use the paper citation below or [CITATION.cff](CITATION.cff).

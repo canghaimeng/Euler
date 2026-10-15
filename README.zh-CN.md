@@ -12,7 +12,7 @@ Euler 是一个帮助研究者理解和把握完整推导过程的数学研究�
 
 [English](README.md) · **简体中文**
 
-[核心贡献](#核心贡献) · [数学成果](#数学成果) · [快速开始](#快速开始) · [使用指南](docs/DASHBOARD-GUIDE.zh.md) · [架构](ARCHITECTURE.zh.md) · [CLI 支持](docs/CLI-SUPPORT.zh.md) · [许可](#许可) · [讨论社群](#讨论社群)
+[核心贡献](#核心贡献) · [数学成果](#数学成果) · [快速开始](#快速开始) · [使用指南](docs/DASHBOARD-GUIDE.zh.md) · [架构](ARCHITECTURE.zh.md) · [CLI 支持](docs/CLI-SUPPORT.zh.md) · [引用](#引用) · [许可](#许可) · [讨论社群](#讨论社群)
 
 </div>
 
@@ -159,6 +159,7 @@ python -m pytest euler/ -q
 | [Baao Xie](https://openreview.net/profile?id=~Baao_Xie3) | Ningbo Institute of Digital Twin, Eastern Institute of Technology, Zhejiang, China |
 | [Wenjun Zeng](https://www.eitech.edu.cn/en/2025/0721/c606a2753/page.htm) | Eastern Institute of Technology, Zhejiang, China |
 
+<a id="引用"></a>
 ## 📚 引用
 
 阅读 [Euler 论文（arXiv）](https://arxiv.org/abs/2610.19864)。引用 Euler 请使用以下论文条目或 [CITATION.cff](CITATION.cff)。
