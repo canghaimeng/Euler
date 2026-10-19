@@ -17,6 +17,7 @@ Euler 是一个帮助研究者理解和把握完整推导过程的数学研究�
 
 ## 🚀 News
 
+- 🎉 **[20题测试 · 8项改进 · 3项社区领先结果](https://github.com/canghaimeng/openai-math-improvement/blob/main/README.zh-CN.md)** — Astra 与 GPT-6.1 Sol 在 Euler 中协作，以每项改进**平均86分钟的推理时间**，推进并超越 OpenAI 内部研究模型已经公开的具体数学结果。
 - 🎉 **[Lewis–Overton（2008）](examples/lewis-overton/README.zh.md)** — 由纽约大学 Silver Professor Michael Overton 与康奈尔大学教授 Adrian Lewis 提出的猜想，两位提出者均为 SIAM Fellow，并已审阅我们针对该猜想的论证，确认了其正确性。
 - 🎉 **[Nikoghosyan（2013）](examples/nikoghosyan/README.zh.md)** — 解决 Hamilton 图论中一个历时 13 年的开放问题，补齐 1-tough 图的单一禁用诱导子图 Hamilton 性分类。
 - 🎉 **[Jankiewicz–Norin–Wise（2017）](examples/jnw/README.zh.md)** — 由几何群论学者共同提出的问题，提出者之一 Daniel Wise 是 James McGill Professor、英国皇家学会会士。

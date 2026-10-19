@@ -17,6 +17,7 @@ Euler is a mathematical research agent system built to help researchers follow a
 
 ## 🚀 News
 
+- 🎉 **[20 problems · 8 improved results · 3 community-leading results](https://github.com/canghaimeng/openai-math-improvement)** — Astra and GPT-6.1 Sol collaborated through Euler to improve results published by OpenAI’s internal research models, with an average of **86 minutes of reasoning per improved problem**.
 - 🎉 **[Lewis–Overton (2008)](examples/lewis-overton/README.md)** — a conjecture proposed by NYU Silver Professor Michael Overton and Cornell Professor Adrian Lewis. Both are SIAM Fellows and have reviewed our argument concerning their conjecture, confirming its correctness.
 - 🎉 **[Nikoghosyan (2013)](examples/nikoghosyan/README.md)** — resolving a 13-year-old open problem in Hamiltonian graph theory and completing the single-forbidden-subgraph classification for 1-tough graphs.
 - 🎉 **[Jankiewicz–Norin–Wise (2017)](examples/jnw/README.md)** — a geometric group theory problem co-proposed by James McGill Professor Daniel Wise, a Fellow of the Royal Society.
