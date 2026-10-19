@@ -17,7 +17,7 @@ Euler 是一个帮助研究者理解和把握完整推导过程的数学研究�
 
 ## 🚀 News
 
-- 🎉 **[20题测试 · 8项改进 · 3项社区领先结果](https://github.com/canghaimeng/openai-math-improvement/blob/main/README.zh-CN.md)** — Astra 与 GPT-6.1 Sol 在 Euler 中协作，以每项改进**平均86分钟的推理时间**，推进并超越 OpenAI 内部研究模型已经公开的具体数学结果。
+- 🎉 **[Euler 推进 OpenAI 数学成果](https://github.com/canghaimeng/openai-math-improvement/blob/main/README.zh-CN.md)** — 我们从 OpenAI 公布的数学成果中，选取了20个仍有优化空间的问题。Astra 与 GPT-6.1 Sol 通过 Euler 协作，在 **8个问题**上超越原始结果，其中 **3项超过本轮核对的社区公开最好结论**，每项改进平均仅用 **86分钟推理时间**。
 - 🎉 **[Lewis–Overton（2008）](examples/lewis-overton/README.zh.md)** — 由纽约大学 Silver Professor Michael Overton 与康奈尔大学教授 Adrian Lewis 提出的猜想，两位提出者均为 SIAM Fellow，并已审阅我们针对该猜想的论证，确认了其正确性。
 - 🎉 **[Nikoghosyan（2013）](examples/nikoghosyan/README.zh.md)** — 解决 Hamilton 图论中一个历时 13 年的开放问题，补齐 1-tough 图的单一禁用诱导子图 Hamilton 性分类。
 - 🎉 **[Jankiewicz–Norin–Wise（2017）](examples/jnw/README.zh.md)** — 由几何群论学者共同提出的问题，提出者之一 Daniel Wise 是 James McGill Professor、英国皇家学会会士。
@@ -108,6 +108,12 @@ python examples/personal-research/create_workspace.py \
 **[在线阅读三个案例的可视化 →](https://canghaimeng.site/euler/cases/?lang=zh)**
 
 公开展示提供项目切换、证明阅读、研究历史和交互式依赖图。可点击节点查看前提、推导及来源，或突出其证明路径。展示使用历史研究快照，团队调用、发送消息和恢复研究功能均已关闭。
+
+### OpenAI Math：公开模型借助 Euler，超越内部模型已公开的数学结果
+
+我们从 OpenAI 公布的数学成果中，选取了20个仍有优化空间的问题。Astra 与 GPT-6.1 Sol 在 Euler 中协作，在 **8个问题**上超越原始结果，其中 **3项超过本轮核对的社区公开最好结论**，每项改进平均仅用 **86分钟推理时间**。这些进展涵盖傅里叶变换、几何覆盖、谱隙、图的混合时间与布尔函数复杂性。
+
+**[查看成果 →](https://github.com/canghaimeng/openai-math-improvement/blob/main/README.zh-CN.md)** · [论文与推理时间](https://github.com/canghaimeng/openai-math-improvement/blob/main/README.zh-CN.md#数学成果) · [Lean 形式化](https://github.com/canghaimeng/openai-math-improvement)
 
 ### Lewis–Overton：初始化如何影响渐近速率
 
