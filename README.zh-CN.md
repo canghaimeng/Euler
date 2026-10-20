@@ -213,6 +213,6 @@ Euler 的图结构设计参考了 [Danus](https://github.com/frenzymath/Danus)�
   </tr>
   <tr>
     <td align="center"><a href="https://discord.gg/gPmE4kzqC">点击加入 Discord</a>，也可扫码加入</td>
-    <td align="center">使用微信扫码加入 · 有效期至 10 月 19 日</td>
+    <td align="center">使用微信扫码加入 · 有效期至 10 月 27 日</td>
   </tr>
 </table>

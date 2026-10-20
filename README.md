@@ -213,6 +213,6 @@ Join the discussion to ask questions, share research experiences, and suggest im
   </tr>
   <tr>
     <td align="center"><a href="https://discord.gg/gPmE4kzqC">Join Discord</a> · click or scan</td>
-    <td align="center">Scan with WeChat · valid through October 19</td>
+    <td align="center">Scan with WeChat · valid until October 27</td>
   </tr>
 </table>
